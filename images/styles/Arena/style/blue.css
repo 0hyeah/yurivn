@@ -1,0 +1,100 @@
+a:link, body_alink {
+	color: #2a323f;
+	text-decoration: none;
+}
+a:visited, body_avisited {
+	color: #2a323f;
+	text-decoration: none;
+}
+a:hover, a:active, body_ahover {
+	color: #3a758e;
+	text-decoration: none;
+}
+#header {
+	background:url(headerBGBlue.gif) repeat-x top left;
+	height:142px;
+}
+#logo { 
+	background:url(logoBlue.jpg) no-repeat top left;
+	text-indent: -999em;
+	width:223px;
+	height:23px;
+}
+#navigation a {
+	float:left;
+	background:url(navLeftBlue.gif) no-repeat left top;
+	margin:0 8px 0 0;
+	padding:0;
+	text-decoration:none;
+}
+#navigation a span {
+	float:left;
+	display:block;
+	background:url(navRightBlue.gif) no-repeat right top;
+	padding:0 11px 0 11px;
+	line-height:35px;	
+	color:#ddd;
+}
+.breadcrumb strong {
+	color:#3a758e;
+}
+.breadcrumb a:hover {
+	color:#3a758e;
+	text-decoration:none;
+}
+.tcat_alt_title a:hover {
+	color:#3a758e;
+	text-decoration:none;
+}
+.bigfont a:hover {
+	color:#3a758e;
+	text-decoration:none;
+}
+a:hover.bigusername {
+	color:#3a758e;
+}
+.smallfont a strong,.smallfont a:visited strong {
+	color:#3a758e;
+	font-weight:400;
+}
+.lastpost_user a:hover a,.lastpost_user a:visited {
+	color:#3a758e;
+}
+.lastpost_user a:hover {
+	color:#3a758e;
+}
+.thead {
+	background: #3a758e;
+	color: #eae7df;
+	font: 11px arial, helvetica, sans-serif;
+}
+.post_field strong {
+	color: #3a758e;
+}
+.post_field2 strong {
+	color: #3a758e;
+}
+.vbmenu_alt a:hover, .vbmenu_alt a:active {
+	color: #3a758e;
+	text-decoration: none;
+}
+.contentNav a:hover {
+	color:#3a758e;
+	text-decoration:none;
+}
+.copyright a:hover {
+	color:#3a758e;
+	text-decoration:none;
+}
+.memberBox a:hover {
+	color:#3a758e;
+}
+#footerLogo { 
+	background:url(footerLogoBlue.gif) no-repeat top left;
+	text-indent: -999em;
+	width:152px;
+	height:32px;
+}
+
+
+

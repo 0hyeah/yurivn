@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<navgroups product="yrms">
+	<navgroup text="YRMS Setting" displayorder="1">
+		<navoption displayorder="1">
+			<text>Main Setting</text>
+			<link>options.php?dogroup=yrms_main&amp;sdo=options</link>
+		</navoption>
+		<navoption displayorder="2">
+			<text>Vietsub Manga Setting</text>
+			<link>options.php?dogroup=yrms_vietsubmanga&amp;sdo=options</link>
+		</navoption>
+		<navoption displayorder="3">
+			<text>Vietsub Anime Setting</text>
+			<link>kbankadmin.php?do=bank_man</link>
+		</navoption>
+                <navoption displayorder="4">
+			<text>Anime Setting</text>
+			<link>kbankadmin.php?do=bank_man</link>
+		</navoption>
+	</navgroup>
+</navgroups>

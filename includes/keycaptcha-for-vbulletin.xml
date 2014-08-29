@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<product productid="keycaptcha" active="1">
+	<title>KeyCAPTCHA</title>
+	<description>KeyCAPTCHA is the first free service providing reliable defense of sites against spam by means of highly attractive and interactive CAPTCHA.</description>
+	<version>3.7.0</version>
+	<url>http://www.keycaptcha.com/</url>
+	<versioncheckurl><![CDATA[http://www.keycaptcha.com/]]></versioncheckurl>
+	<dependencies>
+		<dependency dependencytype="vbulletin" minversion="3.7" />
+	</dependencies>
+	<codes>
+        <code version="1.0">
+            <installcode><![CDATA[
+					$db->query("UPDATE " . TABLE_PREFIX . "setting set optioncode = CONCAT(optioncode, '
+KeyCAPTCHA|KeyCAPTCHA') where varname='hv_type'");
+					
+			$db->query("UPDATE " . TABLE_PREFIX . "phrase set text = CONCAT(text , '
+					
+			<div style=\"font-weight:bold; margin-top:1em\"><a href=\"https://www.keycaptcha.com\" target=\"_blank\">KeyCAPTCHA</a></div>
+			<div>KeyCAPTCHA is a free service providing effective anti-spam protection by highly attractive interactive captchas. <br><i>For the first please register on <a href=\"https://www.keycaptcha.com\" target=\"_blank\">KeyCAPTCHA site</a></i></div>
+				'
+				) where varname='setting_hv_type_desc'");
+ 	]]></installcode>
+            <uninstallcode><![CDATA[
+				$res = $db->query_read("select optioncode from " . TABLE_PREFIX . "setting
+							where varname = 'hv_type' and optioncode like '%KeyCAPTCHA%' LIMIT 1");
+				if ($db->num_rows($res)>0){
+					$tmp = $db->fetch_array($res);
+					$src = $tmp['optioncode'];
+					
+					$toFind = "\nKeyCAPTCHA|KeyCAPTCHA";
+					$pattern = '/'.preg_replace('/\s+/','\s*',preg_quote($toFind,'/')).'/mi';
+					$dst = preg_replace($pattern,"",$src,-1,$cnt);
+
+					$db->query("UPDATE ".TABLE_PREFIX."setting set optioncode= '".$dst."' where varname='hv_type'");
+				}
+				$res = $db->query_read("select text from " . TABLE_PREFIX . "phrase where varname='setting_hv_type_desc' and text like '%KeyCAPTCHA%'");
+				if ($db->num_rows($res)>0){
+					$tmp = $db->fetch_array($res);
+					$src = $tmp['text'];
+					$toFind = '			
+			<div style="font-weight:bold; margin-top:1em"><a href="https://www.keycaptcha.com" target="_blank">KeyCAPTCHA</a></div>
+			<div>KeyCAPTCHA is a free service providing effective anti-spam protection by highly attractive interactive captchas. <br><i>For the first please register on <a href="https://www.keycaptcha.com" target="_blank">KeyCAPTCHA site</a></i></div>
+';
+					$pattern = '/'.preg_replace('/\s+/','\s*',preg_quote($toFind,'/')).'/mi';
+					$dst = preg_replace($pattern,"",$src,-1,$cnt); // 
+						$db->query('UPDATE ' .TABLE_PREFIX . "phrase set text='".addslashes($dst)."' where varname='setting_hv_type_desc'");
+				}
+            ]]>
+			</uninstallcode> 
+		</code>
+	</codes>
+	<plugins>
+		<plugin active="1" executionorder="5">
+			<title>Add KeyCAPTCHA to human verification manager options</title>
+			<hookname>admin_humanverify_intro_start</hookname>			
+			<phpcode><![CDATA[
+				$res = $db->query("select 1 from " . TABLE_PREFIX . "setting
+							where varname = 'hv_type' and optioncode LIKE '%KeyCAPTCHA%'");
+			
+				if ($db->num_rows($res)==0) {
+					$db->query("UPDATE " . TABLE_PREFIX . "setting set optioncode = CONCAT(optioncode, '
+KeyCAPTCHA|KeyCAPTCHA') where varname='hv_type'");
+				}
+				
+				$res = $db->query("select text from " . TABLE_PREFIX . "phrase where varname='setting_hv_type_desc' and text like '%KeyCAPTCHA%'");
+				if ($db->num_rows($res)==0){
+				$db->query("UPDATE " . TABLE_PREFIX . "phrase set text = CONCAT(text , '
+					
+<div style=\"font-weight:bold; margin-top:1em\"><a href=\"https://www.keycaptcha.com\" target=\"_blank\">KeyCAPTCHA</a></div>
+<div>KeyCAPTCHA is a free service providing effective anti-spam protection by highly attractive interactive captchas. <br><i>For the first please register on <a href=\"https://www.keycaptcha.com\" target=\"_blank\">KeyCAPTCHA site</a></i></div>
+				'
+				) where varname='setting_hv_type_desc'");
+				}
+		]]></phpcode>
+		</plugin>
+	</plugins>
+
+	<phrases>
+		<phrasetype name="Error Messages" fieldname="error">
+			<phrase name="keycaptcha_wrong_solution" username="KeyCAPTCHA" version="1.0"><![CDATA[The solution of task you submitted was incorrect. Please read the instruction and try again.]]></phrase>
+		</phrasetype>
+		<phrasetype name="vBulletin Settings" fieldname="vbsettings">
+			<phrase name="setting_keycaptcha_privatekey_title" username="KeyCAPTCHA" version="1.0"><![CDATA[Private key]]></phrase>
+			<phrase name="setting_keycaptcha_privatekey_desc" username="KeyCAPTCHA" version="1.0"><![CDATA[You can get this key in "My sites" section at <a href="https://www.keycaptcha.com"target="_blank">www.keycaptcha.com</a> (Please note that "My sites" section is available only for users who are logged in)]]></phrase>
+			<phrase name="setting_keycaptcha_task_title" username="KeyCAPTCHA" version="1.0"><![CDATA[That text displayed above a captcha]]></phrase>
+			<phrase name="settinggroup_keycaptcha" username="KeyCAPTCHA" version="1.0"><![CDATA[KeyCAPTCHA Settings]]></phrase>
+			<phrase name="setting_keycaptcha_onerror_title" username="KeyCAPTCHA" version="1.0"><![CDATA[The text of popup alert which will be displayed when an incorrect solution of KeyCAPTCHA is submitted. Please leave this field blank if you would not like to show the popup alert for your visitors.]]></phrase>
+		</phrasetype>
+	</phrases>
+	<options>
+		<settinggroup name="keycaptcha" displayorder="6690">
+			<setting varname="keycaptcha_privatekey" displayorder="5">
+				<datatype>free</datatype>
+				<defaultvalue></defaultvalue>
+			</setting>
+			<setting varname="keycaptcha_task" displayorder="24">
+				<datatype>free</datatype>
+				<defaultvalue><![CDATA[Antispam, complete the task:]]></defaultvalue>
+			</setting>
+			<setting varname="keycaptcha_onerror" displayorder="25">
+				<datatype>free</datatype>
+				<defaultvalue></defaultvalue>
+			</setting>
+		</settinggroup>
+	</options>
+	<helptopics>
+	</helptopics>
+	<cronentries>
+	</cronentries>
+	<faqentries>
+	</faqentries>
+</product>

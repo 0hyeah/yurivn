@@ -1,0 +1,370 @@
+body
+{
+	background: #c5c5c5 url(../../styles/webpoint/gradients/bg.gif) repeat-x top;
+	color: #5b5b5b;
+	font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	margin: 10px 10px 10px 10px;
+	padding: 0px;
+}
+a:link, body_alink
+{
+	color: #8B8378;
+	text-decoration: none;
+}
+a:visited, body_avisited
+{
+	color: #8B8378;
+	text-decoration: none;
+}
+a:hover, a:active, body_ahover
+{
+	color: #829aa0;
+	text-decoration: underline;
+}
+.page
+{
+	background: #FFFFFF url(../../styles/webpoint/gradients/page.gif) repeat-x top;
+	color: #5b5b5b;
+}
+td, th, p, li
+{
+	font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.tborder
+{
+	color: #5b5b5b;
+}
+.tcat
+{
+	background: #FFFFFF url(../../styles/webpoint/gradients/gradient_tcat.gif) repeat-x bottom left;
+	color: #9eaf44;
+	font: bold 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	border-bottom: 1px solid #999999;
+}
+.tcat a:link, .tcat_alink
+{
+	color: #FF6666;
+	text-decoration: none;
+}
+.tcat a:visited, .tcat_avisited
+{
+	color: #FF6666;
+	text-decoration: none;
+}
+.tcat a:hover, .tcat a:active, .tcat_ahover
+{
+	color: #FF6666;
+	text-decoration: underline;
+}
+.thead
+{
+	background: #717171;
+	color: #FFFFFF;
+	font: bold 11px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.thead a:link, .thead_alink
+{
+	color: #FFFFFF;
+}
+.thead a:visited, .thead_avisited
+{
+	color: #FFFFFF;
+}
+.thead a:hover, .thead a:active, .thead_ahover
+{
+	color: #FFFFFF;
+}
+.tfoot
+{
+	background: #717171;
+	color: #E0E0F6;
+}
+.tfoot a:link, .tfoot_alink
+{
+	color: #E0E0F6;
+}
+.tfoot a:visited, .tfoot_avisited
+{
+	color: #E0E0F6;
+}
+.tfoot a:hover, .tfoot a:active, .tfoot_ahover
+{
+	color: #FFFF66;
+}
+.alt1, .alt1Active
+{
+	background: #FFFFFF;
+	color: #5b5b5b;
+	border: 1px solid #dddddd;
+}
+.alt2, .alt2Active
+{
+	background: #eeeeee;
+	color: #5b5b5b;
+}
+.inlinemod
+{
+	background: #FFFFCC;
+	color: #5b5b5b;
+}
+.wysiwyg
+{
+	background: #eeeeee;
+	color: #5b5b5b;
+	font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	margin: 5px 10px 10px 10px;
+	padding: 0px;
+}
+textarea, .bginput
+{
+	background: #ffffff url(../../styles/1/gradients/gradient_input.gif) repeat-x bottom;
+	color: #666666;
+	font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	border: 1px solid #c3c3c3;
+}
+.bginput option, .bginput optgroup
+{
+	font-size: 10pt;
+	font-family: verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.button
+{
+	font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+select
+{
+	font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+option, optgroup
+{
+	font-size: 11px;
+	font-family: verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.smallfont
+{
+	font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.time
+{
+	color: #c13966;
+}
+.navbar
+{
+	font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.highlight
+{
+	color: #FF0000;
+	font-weight: bold;
+}
+.fjsel
+{
+	background: #3E5C92;
+	color: #E0E0F6;
+}
+.fjdpth0
+{
+	background: #F7F7F7;
+	color: #5b5b5b;
+}
+.panel
+{
+	background: #e1e1e1 url(../../styles/webpoint/gradients/gradient_panel.gif) repeat-x top left;
+	color: #5b5b5b;
+	padding: 10px;
+	border: 2px outset;
+}
+.panelsurround
+{
+	background: #c8c8c8 url(../../styles/webpoint/gradients/gradient_panelsurround.gif) repeat-x bottom left;
+	color: #5b5b5b;
+	padding: 10px 10px 20px 10px;
+}
+legend
+{
+	color: #22229C;
+	font: 11px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.vbmenu_control
+{
+	background: #FFFFFF url(../../styles/webpoint/gradients/gradient_tcat.gif) repeat-x bottom left;
+	color: #9eaf44;
+	font: bold 11px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	padding: 3px 6px 3px 6px;
+	white-space: nowrap;
+	border-bottom: 1px solid #c5c5c5;
+}
+.vbmenu_control a:link, .vbmenu_control_alink
+{
+	color: #FF6666;
+	text-decoration: none;
+}
+.vbmenu_control a:visited, .vbmenu_control_avisited
+{
+	color: #FF6666;
+	text-decoration: none;
+}
+.vbmenu_control a:hover, .vbmenu_control a:active, .vbmenu_control_ahover
+{
+	color: #FF6666;
+	text-decoration: underline;
+}
+.vbmenu_popup
+{
+	background: #dddddd;
+	color: #5b5b5b;
+}
+.vbmenu_option
+{
+	background: #ffffff;
+	color: #5b5b5b;
+	font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	white-space: nowrap;
+	cursor: pointer;
+}
+.vbmenu_option a:link, .vbmenu_option_alink
+{
+	color: #5b5b5b;
+	text-decoration: none;
+}
+.vbmenu_option a:visited, .vbmenu_option_avisited
+{
+	color: #5b5b5b;
+	text-decoration: none;
+}
+.vbmenu_option a:hover, .vbmenu_option a:active, .vbmenu_option_ahover
+{
+	color: #5b5b5b;
+	text-decoration: none;
+}
+.vbmenu_hilite
+{
+	background: #efefef;
+	color: #5b5b5b;
+	font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	white-space: nowrap;
+	cursor: pointer;
+}
+.vbmenu_hilite a:link, .vbmenu_hilite_alink
+{
+	color: #5b5b5b;
+	text-decoration: none;
+}
+.vbmenu_hilite a:visited, .vbmenu_hilite_avisited
+{
+	color: #5b5b5b;
+	text-decoration: none;
+}
+.vbmenu_hilite a:hover, .vbmenu_hilite a:active, .vbmenu_hilite_ahover
+{
+	color: #5b5b5b;
+	text-decoration: none;
+}
+/* ***** styling for 'big' usernames on postbit etc. ***** */
+.bigusername { font-size: 14pt; }
+
+/* ***** small padding on 'thead' elements ***** */
+td.thead, th.thead, div.thead { padding: 4px; }
+
+/* ***** basic styles for multi-page nav elements */
+.pagenav a { text-decoration: none; }
+.pagenav td { padding: 2px 4px 2px 4px; }
+
+/* ***** de-emphasized text */
+.shade, a.shade:link, a.shade:visited { color: #777777; text-decoration: none; }
+a.shade:active, a.shade:hover { color: #FF4400; text-decoration: underline; }
+.tcat .shade, .thead .shade, .tfoot .shade { color: #DDDDDD; }
+
+/* ***** define margin and font-size for elements inside panels ***** */
+.fieldset { margin-bottom: 6px; }
+.fieldset, .fieldset td, .fieldset p, .fieldset li { font-size: 11px; }
+.page_container {
+padding: 20px
+}
+.page_ls {
+background: url(../../styles/webpoint/misc/page_ls.gif) repeat-y left;
+}
+.page_rs {
+background: url(../../styles/webpoint/misc/page_rs.gif) repeat-y right;
+}
+.logo {
+margin: 5px;
+}
+.search_input {
+background: #ffffff url(../../styles/webpoint/misc/search.gif) no-repeat left;
+border: 1px solid #c2c2c2;
+font: 10pt Lucida Sans Unicode, arial;
+padding-left: 18px;
+}
+.avatarwrapper {
+background: url(../../styles/webpoint/misc/avatarback.gif) no-repeat top left;
+}
+.avatarwrapper2 {
+background: url(../../styles/webpoint/misc/avatarback_small.gif) no-repeat top left;
+height: 70px;
+width: 70px;
+padding: 3px 3px 3px 0px;
+}
+.alt3 {
+background: #eeeeee;
+padding: 5px;
+border: 1px solid #dddddd;
+}
+.footer {
+background: url(../../styles/webpoint/gradients/footer_gradient.gif) repeat-x top left;
+}
+.dropshadow{
+
+	clear:left;
+	background: url(../../styles/webpoint/misc/shadowAlpha.png) no-repeat bottom right !important;
+	background: url(../../styles/webpoint/misc/shadow.gif) no-repeat bottom right;
+	margin: 10px 0 10px 10px !important;
+	margin: 10px 0 10px 5px;
+	width: 90px;
+}
+.dropshadow p{
+background: #ffffff;
+	position:relative;
+	bottom:6px;
+	right: 6px;
+	border: 1px solid #999999;
+	padding:4px;
+	font-size:14px;
+	margin: 0px;
+}
+
+
+
+.blue #slatenav{position:relative;display:block;height:42px;font-size:11px;font-weight:bold;background:transparent url(../../styles/webpoint/misc/blueslate_background.gif) repeat-x top left;font-family:Arial,Verdana,Helvitica,sans-serif;}
+.blue #slatenav ul{margin:0px;padding:0;list-style-type:none;width:auto;}
+.blue #slatenav ul li{display:block;float:left;margin:0 1px 0 0;}
+.blue #slatenav ul li a{display:block;float:left;color:#ffffff;text-decoration:none;padding:14px 11px 0 11px;height:28px;}
+.blue #slatenav ul li a:hover,.blue #slatenav ul li a.current{color:#fff;background:transparent url(../../styles/webpoint/misc/blueslate_backgroundOVER.gif) no-repeat top center;}
+.user_box_container {
+width: 300px;
+margin: 8px;
+height: 50px;
+}
+.user_box {
+background:#4d4d4d;
+border-top:4px solid #5b5b5b;
+border-bottom:4px solid #5b5b5b;
+width: 240px;
+color: #f0f0f0;
+}
+
+
+.info {
+border-left: 3px solid #c5d8e2;
+border-top: 1px solid #c5d8e2;
+border-right: 1px solid #c5d8e2;
+border-bottom: 1px solid #c5d8e2;
+background-color: #eaf7fd;
+padding: 2px;
+margin-left: 3px;
+margin-right: 3px;
+text-align: left;
+margin-bottom: 4px;
+font-size: 8pt;
+width: 140px;
+}

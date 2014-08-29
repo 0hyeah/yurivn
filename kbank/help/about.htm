@@ -1,0 +1,42 @@
+<!-- Page Title: "About" End Page Title-->
+<table class="tborder" width="100%" align="center" border="0" cellpadding="6" cellspacing="1">
+<tbody><tr>
+	<td class="tcat">
+		<a href="{$url_prefix}index">Help Index</a>
+		> <a href="{$url_prefix}about">About</a>
+	</td>
+</tr>
+<tr>
+	<td class="alt1">
+		You are using kBank System version $kbank[version]<br/>
+		Included:<br/>
+		<ul>
+			<li>Money System - "" . iif($vbulletin->kbank['enabled'],$vbphrase['kbank_on'],$vbphrase['kbank_off']) . ""</li>
+			<li>Items - "" . iif($vbulletin->kbank['itemEnabled'],$vbphrase['kbank_on'],$vbphrase['kbank_off']) . ""</li>
+			<li>Awarding (Award/Thank) - "" . iif($vbulletin->kbank['award']['enabled'],$vbphrase['kbank_on'],$vbphrase['kbank_off']) . ""</li>
+			<li>Post Hide - "" . iif($vbulletin->kbank['hide']['enabled'],$vbphrase['kbank_on'],$vbphrase['kbank_off']) . ""</li>
+		</ul>
+		Queries count:<br/>
+		<ul>
+			<li>Always run
+				<ul>
+					<li>Datastore (itemtypes cache, warning items cache, announces, top richest)</li>
+					<li>Current User Items (active & inactive, only run if Items enabled)</li>
+					<li>Smilies Cache (BBCode Parser)</li>
+				</ul>
+			</li>
+			<li>By script (common queries only)
+				<ul>
+					<li>[index] 24h online list (can be disabled)</li>
+					<li>[index, forumdisplay, usercp] Moderators' userid (only run if show moderator column & Items enabled)</li>
+					<li>[index, forumdisplay, usercp] Cache active items of moderators and online users (can be skiped)</li>
+					<li>[showthread, showpost] Load awarded/thanked (only run if Awarding enabled)</li>
+					<li>[showthread, showpost] Cache usernames for awarded/thanked (only run if Awarding enabled & show username)</li>
+					<li>[showthread, showpost] Cache active items of posters (only run if Items enabled)</li>
+				</ul>
+			</li>
+		</ul>
+		Contact: <a href="mailto:mrpaint@gmail.com">mrpaint@gmail.com</a>
+	</td>
+</tr>
+</tbody></table>

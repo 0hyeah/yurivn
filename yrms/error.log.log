@@ -1,0 +1,1323 @@
+Fatal error: Field <em>forumid</em> is not defined in <em>$validfields</em> in class <strong>vB_DataManager_Post</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 515
+Date: Wednesday 22nd of January 2014 09:04:39 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: Field <em>forumid</em> is not defined in <em>$validfields</em> in class <strong>vB_DataManager_Post</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 515
+Date: Wednesday 22nd of January 2014 09:08:19 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Assigning the return value of new by reference is deprecated in C:\xampp\htdocs\yurivn\kbank\functions.php on line 392
+Date: Thursday 23rd of January 2014 09:40:20 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: Assigning the return value of new by reference is deprecated in C:\xampp\htdocs\yurivn\kbank\classes.php on line 764
+Date: Thursday 23rd of January 2014 09:40:20 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: Assigning the return value of new by reference is deprecated in C:\xampp\htdocs\yurivn\kbank\classes.php on line 790
+Date: Thursday 23rd of January 2014 09:40:20 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: Assigning the return value of new by reference is deprecated in C:\xampp\htdocs\yurivn\kbank\classes.php on line 870
+Date: Thursday 23rd of January 2014 09:40:20 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Thursday 23rd of January 2014 09:40:52 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\includes\class_bootstrap.php(430) : eval()'d code on line 207
+Date: Thursday 23rd of January 2014 12:43:11 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\includes\class_bootstrap.php(430) : eval()'d code on line 221
+Date: Thursday 23rd of January 2014 12:43:11 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\includes\class_bootstrap.php(430) : eval()'d code on line 176
+Date: Thursday 23rd of January 2014 12:43:44 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\includes\class_bootstrap.php(430) : eval()'d code on line 197
+Date: Thursday 23rd of January 2014 12:43:44 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\includes\class_bootstrap.php(430) : eval()'d code on line 176
+Date: Thursday 23rd of January 2014 12:43:47 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\includes\class_bootstrap.php(430) : eval()'d code on line 197
+Date: Thursday 23rd of January 2014 12:43:47 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\includes\class_bootstrap.php(430) : eval()'d code on line 176
+Date: Thursday 23rd of January 2014 12:43:52 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\includes\class_bootstrap.php(430) : eval()'d code on line 197
+Date: Thursday 23rd of January 2014 12:43:52 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\forum.php(791) : eval()'d code on line 4
+Date: Thursday 23rd of January 2014 12:44:06 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\forum.php(791) : eval()'d code on line 4
+Date: Thursday 23rd of January 2014 12:44:25 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\forum.php(791) : eval()'d code on line 4
+Date: Thursday 23rd of January 2014 12:44:43 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\forum.php(791) : eval()'d code on line 4
+Date: Thursday 23rd of January 2014 12:55:55 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\forum.php(791) : eval()'d code on line 4
+Date: Thursday 23rd of January 2014 12:56:43 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\forum.php(791) : eval()'d code on line 4
+Date: Thursday 23rd of January 2014 12:57:47 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\forum.php(791) : eval()'d code on line 4
+Date: Thursday 23rd of January 2014 12:58:57 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\forum.php(791) : eval()'d code on line 4
+Date: Thursday 23rd of January 2014 01:00:00 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\forum.php(791) : eval()'d code on line 4
+Date: Thursday 23rd of January 2014 01:00:45 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Function split() is deprecated in C:\xampp\htdocs\yurivn\forum.php(791) : eval()'d code on line 4
+Date: Thursday 23rd of January 2014 01:00:53 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Thursday 23rd of January 2014 01:10:23 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Thursday 23rd of January 2014 01:12:34 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Thursday 23rd of January 2014 01:13:19 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Thursday 23rd of January 2014 01:15:46 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Thursday 23rd of January 2014 01:16:05 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Object of class vB_Template could not be converted to string in C:\xampp\htdocs\yurivn\yrms\hook\award_postbit_display_complete.php on line 5
+Date: Thursday 23rd of January 2014 01:23:32 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Object of class vB_Template could not be converted to string in C:\xampp\htdocs\yurivn\yrms\hook\award_postbit_display_complete.php on line 5
+Date: Thursday 23rd of January 2014 01:23:32 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Object of class vB_Template could not be converted to string in C:\xampp\htdocs\yurivn\yrms\hook\award_postbit_display_complete.php on line 5
+Date: Thursday 23rd of January 2014 01:23:32 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Object of class vB_Template could not be converted to string in C:\xampp\htdocs\yurivn\yrms\hook\award_postbit_display_complete.php on line 5
+Date: Thursday 23rd of January 2014 01:23:32 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Object of class vB_Template could not be converted to string in C:\xampp\htdocs\yurivn\yrms\hook\award_postbit_display_complete.php on line 5
+Date: Thursday 23rd of January 2014 01:23:32 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Object of class vB_Template could not be converted to string in C:\xampp\htdocs\yurivn\yrms\hook\award_postbit_display_complete.php on line 5
+Date: Thursday 23rd of January 2014 01:23:32 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Object of class vB_Template could not be converted to string in C:\xampp\htdocs\yurivn\yrms\hook\award_postbit_display_complete.php on line 5
+Date: Thursday 23rd of January 2014 01:23:32 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Object of class vB_Template could not be converted to string in C:\xampp\htdocs\yurivn\yrms\hook\award_postbit_display_complete.php on line 5
+Date: Thursday 23rd of January 2014 01:23:32 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Thursday 23rd of January 2014 03:54:45 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Friday 24th of January 2014 04:39:18 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: Field <em>forumid</em> is not defined in <em>$validfields</em> in class <strong>vB_DataManager_Post</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 515
+Date: Wednesday 29th of January 2014 04:15:51 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: Field <em>forumid</em> is not defined in <em>$validfields</em> in class <strong>vB_DataManager_Post</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 515
+Date: Wednesday 29th of January 2014 04:18:34 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: Field <em>forumid</em> is not defined in <em>$validfields</em> in class <strong>vB_DataManager_Post</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 515
+Date: Wednesday 29th of January 2014 04:22:52 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: Field <em>prefixid</em> is not defined in <em>$validfields</em> in class <strong>vB_DataManager_Post</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 515
+Date: Wednesday 29th of January 2014 04:29:15 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: Field <em>pagetext</em> is not defined in <em>$validfields</em> in class <strong>vB_DataManager_Thread</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 515
+Date: Wednesday 29th of January 2014 04:35:33 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: Field <em>pagetext</em> is not defined in <em>$validfields</em> in class <strong>vB_DataManager_Thread</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 515
+Date: Wednesday 29th of January 2014 04:40:16 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: Field <em>showsignature</em> is not defined in <em>$validfields</em> in class <strong>vB_DataManager_Thread</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 515
+Date: Wednesday 29th of January 2014 04:40:55 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: Field <em>allowsmilie</em> is not defined in <em>$validfields</em> in class <strong>vB_DataManager_Thread</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 515
+Date: Wednesday 29th of January 2014 04:44:42 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: <ul><li>A required field called <em>allowsmilie</em> is missing or has an invalid value.</ul>Unable to proceed with save while $errors array is not empty in class <strong>vB_DataManager_Thread_FirstPost</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 849
+Date: Wednesday 29th of January 2014 08:21:56 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: Field <em>parseurl</em> is not defined in <em>$validfields</em> in class <strong>vB_DataManager_Thread_FirstPost</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 515
+Date: Wednesday 29th of January 2014 08:34:50 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: Field <em>parseurl</em> is not defined in <em>$validfields</em> in class <strong>vB_DataManager_Thread_FirstPost</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 515
+Date: Wednesday 29th of January 2014 08:35:28 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: <ul><li>Nội dung bài viết của bạn quá ngắn, xin diễn tả ít nhất là $vboptions[postminchars] từ, cám ơn.</li><li>Please complete both the subject and message fields.</ul>Unable to proceed with save while $errors array is not empty in class <strong>vB_DataManager_Thread_FirstPost</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 849
+Date: Monday 03rd of February 2014 06:18:25 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: <ul><li>Nội dung bài viết của bạn quá ngắn, xin diễn tả ít nhất là $vboptions[postminchars] từ, cám ơn.</li><li>Please complete both the subject and message fields.</ul>Unable to proceed with save while $errors array is not empty in class <strong>vB_DataManager_Thread_FirstPost</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 849
+Date: Monday 03rd of February 2014 06:20:04 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: <ul><li>Nội dung bài viết của bạn quá ngắn, xin diễn tả ít nhất là $vboptions[postminchars] từ, cám ơn.</li><li>Please complete both the subject and message fields.</ul>Unable to proceed with save while $errors array is not empty in class <strong>vB_DataManager_Thread_FirstPost</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 849
+Date: Monday 03rd of February 2014 06:21:14 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: <ul><li>Nội dung bài viết của bạn quá ngắn, xin diễn tả ít nhất là $vboptions[postminchars] từ, cám ơn.</li><li>Please complete both the subject and message fields.</ul>Unable to proceed with save while $errors array is not empty in class <strong>vB_DataManager_Thread_FirstPost</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 849
+Date: Monday 03rd of February 2014 06:21:46 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: Field <em>forumid</em> is not defined in <em>$validfields</em> in class <strong>vB_DataManager_Post</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 515
+Date: Monday 03rd of February 2014 06:22:21 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: <ul><li>Nội dung bài viết của bạn quá ngắn, xin diễn tả ít nhất là $vboptions[postminchars] từ, cám ơn.</ul>Unable to proceed with save while $errors array is not empty in class <strong>vB_DataManager_Post</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 849
+Date: Monday 03rd of February 2014 06:22:55 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Fatal error: <ul><li>A required field called <em>threadid</em> is missing or has an invalid value.</ul>Unable to proceed with save while $errors array is not empty in class <strong>vB_DataManager_Post</strong> in C:\xampp\htdocs\yurivn\includes\class_dm.php on line 849
+Date: Monday 03rd of February 2014 06:24:49 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Monday 03rd of February 2014 11:43:44 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Monday 03rd of February 2014 12:59:13 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 659 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 140
+Date: Monday 17th of February 2014 11:33:17 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 659 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 144
+Date: Monday 17th of February 2014 11:37:31 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Monday 17th of February 2014 11:55:57 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 659 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 144
+Date: Monday 17th of February 2014 06:51:10 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Monday 17th of February 2014 07:18:10 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Monday 17th of February 2014 07:18:52 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Monday 17th of February 2014 07:19:56 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Monday 17th of February 2014 07:26:38 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Monday 17th of February 2014 07:27:21 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Monday 17th of February 2014 07:28:08 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Monday 17th of February 2014 07:29:30 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Monday 17th of February 2014 07:55:23 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 657 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 144
+Date: Monday 24th of February 2014 12:51:54 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Only variables should be passed by reference in C:\xampp\htdocs\yurivn\editpost.php on line 323
+Date: Monday 24th of February 2014 01:06:24 PM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, null given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 782 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 144
+Date: Thursday 27th of February 2014 06:28:22 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, null given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 795 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 144
+Date: Thursday 27th of February 2014 06:28:22 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, null given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 782 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 144
+Date: Thursday 27th of February 2014 06:32:56 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, null given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 795 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 144
+Date: Thursday 27th of February 2014 06:32:56 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, null given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 828 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Thursday 27th of February 2014 11:27:17 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, null given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 841 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Thursday 27th of February 2014 11:27:17 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 828 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Thursday 27th of February 2014 11:35:29 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 841 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Thursday 27th of February 2014 11:35:29 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 841 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Thursday 27th of February 2014 11:40:58 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 840 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Friday 28th of February 2014 03:31:35 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, null given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 842 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Friday 28th of February 2014 05:11:29 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, null given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 855 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Friday 28th of February 2014 05:11:29 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, null given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 842 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Friday 28th of February 2014 06:12:58 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, null given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 855 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Friday 28th of February 2014 06:12:58 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 855 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Friday 28th of February 2014 06:15:58 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 855 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Friday 28th of February 2014 06:49:48 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 855 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Friday 28th of February 2014 06:51:58 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 857 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Friday 28th of February 2014 06:52:12 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 857 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Friday 28th of February 2014 06:53:19 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 857 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Friday 28th of February 2014 06:56:21 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 857 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Friday 28th of February 2014 07:01:05 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 668 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 150
+Date: Monday 10th of March 2014 09:58:09 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: Argument 2 passed to update_array_to_array() must be of the type array, boolean given, called in C:\xampp\htdocs\yurivn\yrms\class\vietsubmanga.class.php on line 878 and defined in C:\xampp\htdocs\yurivn\yrms\class\function.php on line 161
+Date: Friday 14th of March 2014 04:40:27 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\functions_login.php on line 167
+Date: Thursday 03rd of April 2014 05:54:39 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Thursday 03rd of April 2014 05:55:17 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Thursday 03rd of April 2014 05:55:17 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Thursday 03rd of April 2014 05:55:17 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Thursday 03rd of April 2014 05:55:17 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Thursday 03rd of April 2014 05:55:17 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Thursday 03rd of April 2014 05:55:17 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\functions_login.php on line 167
+Date: Thursday 03rd of April 2014 07:48:13 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Thursday 03rd of April 2014 07:48:46 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Friday 11th of July 2014 01:18:19 PM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php on line 2958
+Date: Wednesday 16th of July 2014 10:18:08 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Wednesday 16th of July 2014 10:20:27 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Wednesday 16th of July 2014 10:20:27 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Wednesday 16th of July 2014 10:20:27 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Wednesday 16th of July 2014 10:20:27 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Wednesday 16th of July 2014 10:20:27 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Wednesday 16th of July 2014 10:20:27 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Wednesday 16th of July 2014 10:20:27 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Wednesday 16th of July 2014 10:20:27 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Wednesday 16th of July 2014 10:20:27 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Wednesday 16th of July 2014 10:20:27 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Wednesday 16th of July 2014 10:20:27 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Wednesday 16th of July 2014 10:20:27 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Wednesday 16th of July 2014 10:20:27 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Wednesday 16th of July 2014 10:20:27 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_mail.php on line 473
+Date: Wednesday 16th of July 2014 10:20:27 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Wednesday 16th of July 2014 10:21:50 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Wednesday 16th of July 2014 10:21:50 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Wednesday 16th of July 2014 10:21:50 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php on line 2958
+Date: Wednesday 16th of July 2014 10:21:50 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\functions_login.php on line 167
+Date: Wednesday 16th of July 2014 10:49:26 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Wednesday 16th of July 2014 10:50:03 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Wednesday 16th of July 2014 10:50:03 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Wednesday 16th of July 2014 10:50:03 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Wednesday 16th of July 2014 10:50:03 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Wednesday 16th of July 2014 10:50:03 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Wednesday 16th of July 2014 10:50:03 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\functions_login.php on line 167
+Date: Wednesday 16th of July 2014 10:53:56 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\functions_login.php on line 167
+Date: Wednesday 16th of July 2014 10:54:34 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php on line 2958
+Date: Wednesday 16th of July 2014 10:55:22 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\functions_login.php on line 167
+Date: Wednesday 16th of July 2014 11:41:54 AM
+Username: Khách
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Wednesday 16th of July 2014 11:50:15 AM
+Username: Kawaii
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Wednesday 16th of July 2014 11:50:15 AM
+Username: Kawaii
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php(223) : eval()'d code on line 8
+Date: Wednesday 16th of July 2014 11:50:15 AM
+Username: Kawaii
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\class_bbcode.php on line 2958
+Date: Wednesday 16th of July 2014 11:50:15 AM
+Username: Kawaii
+IP Address: ::1
+
+=====================================================
+
+Warning: preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in D:\Webserver\htdocs\yurivn\includes\functions_login.php on line 167
+Date: Wednesday 16th of July 2014 11:53:04 AM
+Username: Gin
+IP Address: ::1
+
+=====================================================
+

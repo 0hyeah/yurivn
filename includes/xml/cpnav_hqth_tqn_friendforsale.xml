@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<navgroups product="hqth_tqn_friendforsale">
+        <navgroup phrase="hqthffs" permissions="canadminusers" displayorder="118">
+                <navoption displayorder="10">
+                        <phrase>hqthffs_settings</phrase>
+                        <link>options.php?do=options&amp;dogroup=hqthffs</link>
+                </navoption>
+				<navoption displayorder="20">
+                        <phrase>hqthffs_comfort</phrase>
+                        <link>hqth_ffs.php?do=comfort</link>
+                </navoption> 
+				<navoption displayorder="30">
+                        <phrase>hqthffs_bullying</phrase>
+                        <link>hqth_ffs.php?do=bullying</link>
+                </navoption> 
+				<navoption displayorder="40">
+                        <phrase>hqthffs_wheedle</phrase>
+                        <link>hqth_ffs.php?do=wheedle</link>
+                </navoption> 
+        </navgroup>
+</navgroups>
+<!-- HQTH: cpnav_tqn_hqth_st.xml,v $ - http://hoiquantinhoc.com $ -->

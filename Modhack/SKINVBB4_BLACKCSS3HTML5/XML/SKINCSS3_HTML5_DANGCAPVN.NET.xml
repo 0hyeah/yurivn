@@ -1,0 +1,5401 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<style name="sell4" vbversion="4.2.0" product="vbulletin" type="custom">
+	<templategroup name="Forum Home">
+		<template name="FORUMHOME" templatetype="template" date="1334151205" username="Địa Ngục Máu" version="4.1.8"><![CDATA[{vb:stylevar htmldoctype}
+<html xmlns="http://www.w3.org/1999/xhtml"<vb:if condition="$vboptions['enablefacebookconnect']"> xmlns:fb="http://www.facebook.com/2008/fbml"</vb:if> dir="{vb:stylevar textdirection}" lang="{vb:stylevar languagecode}" id="vbulletin_html">
+<head>
+	{vb:raw headinclude}
+	<title>{vb:raw vboptions.bbtitle}</title>
+	<script type="text/javascript" src="clientscript/vbulletin_read_marker.js?v={vb:raw vboptions.simpleversion}"></script>
+	<vb:if condition="$vboptions['storecssasfile']">
+	{vb:cssfile forumhome-rollup.css}
+	<vb:else />
+	{vb:cssfile forumbits.css,forumhome.css,widgets.css,sidebar.css,options.css,tagcloud.css}
+	</vb:if>
+	<!--[if lt IE 8]>{vb:cssfile forumbits-ie.css,sidebar-ie.css,options-ie.css}<![endif]-->
+	<vb:if condition="$show['sidebar']">
+	<script type="text/javascript" src="{vb:stylevar yuipath}/animation/animation-min.js?v={vb:raw vboptions.simpleversion}"></script>
+	<script type="text/javascript">
+		var sidebar_align = '{vb:raw show.sidebarposition}';
+		var content_container_margin = parseInt('{vb:math {vb:stylevar forum_sidebar_width}+{vb:math {vb:stylevar padding}*2}}');
+		var sidebar_width = parseInt('{vb:stylevar forum_sidebar_width}');
+	</script>
+	<script type="text/javascript" src="{vb:raw vboptions.bburl}/clientscript/vbulletin-sidebar.js?v={vb:raw vboptions.simpleversion}"></script>
+	</vb:if>
+	{vb:raw headinclude_bottom}
+</head>
+	<body>
+
+	{vb:raw header}
+
+	{vb:raw navbar}
+
+	<div id="pagetitle">
+		<h1>{vb:raw vboptions.bbtitle}</h1>
+		<p id="welcomemessage" class="description">{vb:rawphrase welcome_to_the_x, {vb:raw vboptions.bbtitle}}</p>
+	</div>
+
+	<vb:if condition="$show['sidebar']">
+	<div id="content_container"<vb:if condition="$show['sidebarposition'] == 'left'"> class="contentright"</vb:if>>
+		<div id="content">
+	</vb:if>
+	<!-- main -->
+        {vb:raw template_hook.forumhome_above_forums}
+	<ol id="forums" class="floatcontainer">
+		{vb:raw forumbits}
+	</ol>
+        {vb:raw template_hook.forumhome_below_forums}
+	<!-- /main -->
+
+        <div class="navlinks">
+        <a href="{vb:raw $vboptions.vbforum_url}{vb:if "$vboptions['vbforum_url']", '/', ''}forumdisplay.php?{vb:raw session.sessionurl}do=markread&amp;markreadhash={vb:raw bbuserinfo.securitytoken}" rel="nofollow">{vb:rawphrase mark_forums_read}</a>
+	<vb:if condition="$vboptions['forumleaders']">|
+	<a href="showgroups.php{vb:raw session.sessionurl_q}" rel="nofollow">
+		<vb:if condition="$vb_suite_installed">
+			{vb:rawphrase view_site_leaders}
+		<vb:else />
+			{vb:rawphrase view_forum_leaders}
+		</vb:if>
+	</a></vb:if>
+        </div>
+	{vb:raw ad_location.board_after_forums}
+	<!-- what's going on box -->
+	<div id="wgo" class="collapse wgo_block block">
+		<h2 class="blockhead">{vb:rawphrase whats_going_on}</h2>
+		<div class="blockbody formcontrols floatcontainer">
+			{vb:raw template_hook.forumhome_wgo_pos1}
+			<vb:if condition="$show['loggedinusers']">
+			<!-- logged-in users -->
+			<div id="wgo_onlineusers" class="wgo_subblock section">
+				<h3 class="blocksubhead"><img src="{vb:stylevar imgdir_misc}/users_online.png" alt="{vb:rawphrase currently_active_users}" />{vb:rawphrase currently_active_users}</h3>
+				<div>
+					<p>{vb:rawphrase there_are_x_y_online_link, {vb:raw totalonline}, {vb:raw session.sessionurl_q}} <span class="shade">{vb:rawphrase x_members_and_y_guests, {vb:raw numberregistered}, {vb:raw numberguest}}</span></p>
+					<p>{vb:rawphrase most_users_ever_online_was_x_y_at_z, {vb:raw recordusers}, {vb:raw recorddate}, {vb:raw recordtime}}</p>
+					<vb:if condition="$activeusers">
+					<ol class="commalist" id="wgo_onlineusers_list">
+						<vb:each from="activeusers" value="loggedin">
+							<li>{vb:stylevar dirmark}<a class="username" href="{vb:link member, {vb:raw loggedin}}">{vb:raw loggedin.musername}</a>{vb:raw loggedin.invisiblemark}{vb:raw loggedin.buddymark}{vb:raw loggedin.comma}</li>
+						</vb:each>
+					</ol>
+					</vb:if>
+				</div>
+			</div>
+			<!-- end logged-in users -->
+			</vb:if>
+			
+			<div id="wgo_stats" class="wgo_subblock section">
+				<h3 class="blocksubhead"><img src="{vb:stylevar imgdir_misc}/forum_stats.png" alt="{vb:rawphrase x_statistics, {vb:raw vboptions.bbtitle}}" />{vb:rawphrase x_statistics, {vb:raw vboptions.bbtitle}}</h3>
+				<div>
+					<dl>
+						<dt>{vb:rawphrase threads}</dt>
+							<dd>{vb:raw totalthreads}</dd>
+						<dt>{vb:rawphrase posts}</dt>
+							<dd>{vb:raw totalposts}</dd>
+						<dt>{vb:rawphrase members}</dt>
+							<dd>{vb:raw numbermembers}</dd>
+						<vb:if condition="$show['activemembers']">
+                                                <dt>{vb:rawphrase active_members}</dt>
+                                                         <dd>{vb:raw activemembers}</dd>
+                                                </vb:if>
+					</dl>
+					<p>{vb:rawphrase welcome_to_our_newest_member_x, {vb:link member, {vb:raw newuserinfo}}, {vb:raw newuserinfo.username}}</p>
+					{vb:raw template_hook.forumhome_wgo_stats}
+				</div>
+			</div>
+			<div id="wgo_legend" class="wgo_subblock section">
+				<h3 class="blocksubhead"><img src="{vb:stylevar imgdir_misc}/legend.png" alt="{vb:rawphrase icon_legend}" />{vb:rawphrase icon_legend}</h3>
+				<div>
+					<dl id="icon_legends" class="icon_legends">
+						<dt><img src="{vb:stylevar imgdir_statusicon}/forum_new-16.png" alt="{vb:rawphrase new_posts_forum}" /></dt><dd>{vb:rawphrase new_posts_forum}</dd>
+						<dt><img src="{vb:stylevar imgdir_statusicon}/forum_old-16.png" alt="{vb:rawphrase no_new_posts_forum}" /></dt><dd>{vb:rawphrase no_new_posts_forum}</dd>
+						<vb:if condition="$vboptions['showlocks']"><dt><img src="{vb:stylevar imgdir_statusicon}/forum_lock-16.png" alt="{vb:rawphrase forum_is_closed_for_posting}" /></dt><dd>{vb:rawphrase forum_is_closed_for_posting}</dd></vb:if>
+						<dt><img src="{vb:stylevar imgdir_statusicon}/category-16.png" alt="{vb:rawphrase category_forum}" /></dt><dd>{vb:rawphrase category_forum}</dd>
+						<dt><img src="{vb:stylevar imgdir_statusicon}/forum_link-16.png" alt="{vb:rawphrase link_forum}" /></dt><dd>{vb:rawphrase link_forum}</dd>
+					{vb:raw template_hook.forumhome_icon_legend}
+					</dl>
+				</div>
+			</div>
+			{vb:raw template_hook.forumhome_wgo_pos5}
+		</div>
+	</div>
+	<!-- end what's going on box -->
+
+	{vb:raw ad_location.board_below_whats_going_on}
+	<vb:if condition="$show['sidebar']">
+		</div>
+	</div>
+
+	<div id="sidebar_container"<vb:if condition="$show['sidebarposition'] == 'left'"> class="sidebarleft"</vb:if>>
+		<a id="sidebar_button_link" href="#">
+			<vb:if condition="$show['sidebarposition'] == 'left'">
+			<img id="sidebar_button" src="{vb:stylevar imgdir_misc}/tab-collapsed-left.png" alt="" />
+			<vb:else />
+			<img id="sidebar_button" src="{vb:stylevar imgdir_misc}/tab-collapsed.png" alt="" />
+			</vb:if>
+		</a>
+		<ul id="sidebar">
+			{vb:raw sidebar}
+		</ul>
+	</div>
+	</vb:if>
+	<script type="text/javascript">
+	<!--
+	vbphrase['doubleclick_forum_markread'] = "{vb:rawphrase doubleclick_forum_markread}";
+	init_forum_readmarker_system();
+	//-->
+	</script>
+	{vb:raw footer}
+</body>
+</html>]]></template>
+		<template name="forumhome_forumbit_level1_nopost" templatetype="template" date="1334167310" username="Địa Ngục Máu" version="4.1.8"><![CDATA[<li class="forumbit_nopost {vb:raw forum.statusicon} L1" id="cat{vb:raw forum.forumid}">
+	<div class="forumhead foruminfo L1 collapse">
+		<h2>
+			<span class="forumtitle"><a href="{vb:link forum, {vb:raw forum}}">{vb:raw forum.title}</a></span>
+			<span class="forumthreadpost">{vb:rawphrase threads_posts}&nbsp;</span>
+			<span class="forumlastpost">{vb:rawphrase last_post}</span>
+		<vb:if condition="!$show['collapsable_forums']">
+			<a class="collapse" id="collapse_c_cat{vb:raw forum.forumid}" href="{vb:raw relpath}#top"><img src="http://www.kadimamada.org/forumImages/collapse.gif" alt="" title="{vb:rawphrase collapse_this_category}" /></a>
+		</vb:if>
+		</h2>
+
+		<vb:if condition="$show['forumdescription'] OR $show['subforums']">
+		<div class="forumrowdata">
+			<vb:if condition="$show['forumdescription']"><p class="subforumdescription">{vb:raw forum.description}</p></vb:if>
+			<vb:if condition="$show['subforums']">
+				{vb:raw forum.subforums}
+			</vb:if>
+		</div>
+		</vb:if>
+	</div>
+	<vb:if condition="$childforumbits">
+	<ol id="c_cat{vb:raw forum.forumid}" class="childforum">
+		{vb:raw childforumbits}
+	</ol>
+	</vb:if>
+</li>]]></template>
+		<template name="forumhome_forumbit_level2_post" templatetype="template" date="1334154524" username="Địa Ngục Máu" version="4.1.8"><![CDATA[<li id="forum{vb:raw forum.forumid}" class="forumbit_post {vb:raw forum.statusicon} L2">
+	<div class="forumrow table">
+<div class="s5_circle">{vb:raw forum.forumid}</div>
+		<div class="foruminfo td">
+			
+			<div class="forumdata">
+				<div class="datacontainer">
+					<div class="titleline">
+						<h2 class="forumtitle"><a href="{vb:link forum, {vb:raw forum}}">{vb:raw forum.title}</a></h2>
+						<vb:if condition="$show['browsers']"><span class="viewing">({vb:raw forum.browsers} {vb:rawphrase viewing})</span></vb:if>
+					</div>
+					<vb:if condition="$show['forumdescription']"><p class="forumdescription">{vb:raw forum.description}</p></vb:if>
+
+					<vb:if condition="$vboptions['showmoderatorcolumn'] AND $forum['moderators']">
+						<div class="moderators">
+							<h4>{vb:rawphrase moderators}:</h4>
+							<ol class="commalist">
+								<vb:each from="forum['moderators']" value="row">
+									<li><a class="username" href="{vb:link member, {vb:raw row}}">{vb:raw row.musername}</a>{vb:raw row.comma}</li>
+								</vb:each>
+							</ol>
+						</div>
+					</vb:if>
+
+					<vb:if condition="$show['subforums']">
+						{vb:raw forum.subforums}
+					</vb:if>
+
+					<vb:if condition="$show['forumsubscription']">
+						<p class="unsubscribe">
+							<a href="{vb:raw vboptions.vbforum_url}{vb:if "$vboptions['vbforum_url']", '/', ''}subscription.php?{vb:raw session.sessionurl}do=removesubscription&amp;f={vb:raw forum.forumid}" rel="nofollow">{vb:rawphrase unsubscribe_from_this_forum}</a>
+						</p>
+					</vb:if>
+				</div>
+			</div>
+		</div>
+        <vb:if condition="$forum['statusicon'] != 'link'">
+		<h4 class="nocss_label">{vb:rawphrase forum_actions}:</h4>
+        	<vb:if condition="$vboptions['externalrss'] OR $show['member']">
+		<ul class="forumactionlinks td">
+			<vb:if condition="$forum['allowposting']"><vb:if condition="$vboptions['externalrss']"><li class="forumactionlink rsslink"><a href="external.php?{vb:raw session.sessionurl}type=RSS2&amp;forumids={vb:raw forum.forumid}" title="{vb:rawphrase view_forum_rss_feed}">{vb:rawphrase view_forum_rss_feed}</a></li></vb:if>
+			<vb:if condition="$show['member']"><vb:if condition="$show['forumsubscription']"><li class="forumactionlink unsubslink"> <a href="{vb:raw $vboptions.vbforum_url}{vb:if "$vboptions['vbforum_url']", '/', ''}subscription.php?{vb:raw session.sessionurl}do=removesubscription&amp;f={vb:raw forum.forumid}" title="{vb:rawphrase unsubscribe_from_this_forum}">{vb:rawphrase unsubscribe_from_this_forum}</a></li><vb:else /><li class="forumactionlink subslink"> <a href="{vb:raw $vboptions.vbforum_url}{vb:if "$vboptions['vbforum_url']", '/', ''}subscription.php?{vb:raw session.sessionurl}do=addsubscription&amp;f={vb:raw forum.forumid}" title="{vb:rawphrase subscribe_to_this_forum}">{vb:rawphrase subscribe_to_this_forum}</a></li></vb:if></vb:if></vb:if>
+		</ul>
+		<vb:else />
+		<div class="forumactionlinks"></div>
+		</vb:if>
+        <h4 class="nocss_label">{vb:rawphrase forum_statistics}:</h4>
+		<ul class="forumstats td">
+			<li>{vb:rawphrase threads}: {vb:raw forum.threadcount}</li>
+			<li>{vb:rawphrase posts}: {vb:raw forum.replycount}</li>
+		</ul>
+		<div class="forumlastpost td">
+			<h4 class="lastpostlabel">{vb:rawphrase last_post}:</h4>
+			<div>
+				{vb:raw forum.lastpostinfo}
+			</div>
+		</div>
+        </vb:if>
+	</div>
+	<vb:if condition="$childforumbits">
+		<ul class="childsubforum">
+			{vb:raw childforumbits}
+
+		</ul>
+	</vb:if>
+</li>]]></template>
+	</templategroup>
+	<templategroup name="Navigation / Breadcrumb">
+		<template name="navbar" templatetype="template" date="1364306968" username="diangucmau" version="4.2.0"><![CDATA[<div id="s5_grey_box" class="s5_wrap">
+	<div id="s5_grey_box_inner">
+	
+			<div id="s5_pos_custom_1" class="s5_float_left">
+				
+
+				
+
+		<div class="module_round_box_outer">
+
+		
+
+		<div class="module_round_box">
+
+
+
+
+
+				<div class="s5_module_box_1">
+
+					<div class="s5_module_box_2">
+
+												
+<div style="display:none">
+
+<img src="cyan/images/fd_inactive.png" alt=""></img>
+<img src="cyan/images/fd_image1.jpg" alt=""></img>
+<img src="cyan/images/fd_active.png" alt=""></img>
+<img src="cyan/images/fd_inactive.png" alt=""></img>
+<img src="cyan/images/fd_image2.jpg" alt=""></img>
+<img src="cyan/images/fd_active.png" alt=""></img>
+<img src="cyan/images/fd_inactive.png" alt=""></img>
+<img src="cyan/images/fd_image3.jpg" alt=""></img>
+<img src="cyan/images/fd_active.png" alt=""></img>
+
+</div>
+
+<div id="s5_fd_outer" style="background:#90909; display:none; margin-bottom:0px; margin-top:0px; margin-right:0px; margin-left:0px; padding:0px; width:930px; height:417px;">
+
+	
+	<div style="height:291px; width:930px; overflow:hidden; position:relative; z-index:1">
+	
+		<div id="s5_fd_div1" onmouseover="s5_fd_hover()" onmouseout="s5_fd_hover_out()" style="position:absolute; z-index:1; opacity: 0;">
+			<div id="s5_fd_div1_inner" style="margin-bottom:-291px; height:291px; width:930px; position:absolute; z-index:2">
+				<div style="padding:52px; padding-top:57px"><br /><div class="highlight_opaque">Tutorial Rip skin VBb4</div><div class="black_opaque" style="width:570px">Tutorial hướng dẫn bạn Rip một skin vbb3 từ dễ đến khó. Với video hướng dẫn dễ hiểu bạn sẽ....</div><div style="clear:both;height:0px"></div><a target="blank" href="http://www.shape5.com/joomla/framework/vertex_framework.html" class="black_readmore_opaque">Read More</a></div>			</div> 
+			<img id="s5_fd_image1" alt="" src="/demo/cyan/" />
+		</div>
+		
+		<div id="s5_fd_div2" onmouseover="s5_fd_hover()" onmouseout="s5_fd_hover_out()" style="position:absolute; z-index:1; opacity: 1;">
+			<div id="s5_fd_div2_inner" style="margin-bottom:-291px; height:291px; width:930px; position:absolute; z-index:2">
+				<div style="padding:52px; padding-top:57px"><br /><div class="highlight_opaque">Tutorial Rip Skin VBb4</div><div class="black_opaque" style="width:570px">The S5 Vertex Framework is a set of functionality that creates the core logic and structure of a template. The purpose of the S5 Vertex framework is to unify the layouts, designs, and functions that Shape5 has built over the years to create one of the most flexible, robust and powerful template blue prints available!</div><div style="clear:both;height:0px"></div><a target="blank" href="http://www.shape5.com/joomla/framework/vertex_framework.html" class="black_readmore_opaque">Read More</a></div>			</div> 
+			<img id="s5_fd_image2" alt="" src="/demo/cyan/" />
+		</div>
+		
+	</div>
+	
+	<div id="s5_fd_1" onmouseover="s5_fd1();s5_fd_hover()" onmouseout="s5_fd_hover_out()" style="float:left; padding:0px; margin:0px; height:126px; width:310px; background-image: url(http://www.shape5.com/demo/cyan/images/fd_inactive.png); background-repeat: no-repeat">
+		<div class="s5_fd_box">	<h3 class="highlight">Tutorial Rip Skin VBb3</h3>	<img alt="icon" src="cyan/images/fd_icon1.png" class="s5_fd_icon"></img>	<span class="s5_fd_text">	Tutorial hướng dẫn bạn Rip một skin vbb3 từ dễ đến khó. Với video hướng dẫn dễ hiểu bạn sẽ....	</span>		<div style="clear:both;height:0px"></div>		<a target="blank" href="http://www.shape5.com/joomla/framework/vertex_framework.html" class="readon">Read More</a>	</div>	</div>
+	<div id="s5_fd_2" onmouseover="s5_fd2();s5_fd_hover()" onmouseout="s5_fd_hover_out()" style="float:left; padding:0px; margin:0px; height:126px; width:310px; background-image: url(cyan/images/fd_inactive.png); background-repeat: no-repeat">
+		<div class="s5_fd_box">	<h3 class="highlight">Tutorial Rip Skin Vbb4 New</h3>	<img alt="icon" src="cyan/images/fd_icon2.png" class="s5_fd_icon"></img>	<span class="s5_fd_text">	Với tutorial này bạn sẽ dễ dàng Rip được một skin vbb4 bất kỳ. Việc sử dụng công cụ và một số hiểu biết...	</span>		<div style="clear:both;height:0px"></div>		<a href="/demo/cyan/index.php/features-mainmenu-47/template-features/95-module-positions" class="readon">Read More</a>	</div>	</div>
+		<div id="s5_fd_3" onmouseover="s5_fd3();s5_fd_hover()" onmouseout="s5_fd_hover_out()" style="float:left; padding:0px; margin:0px; height:126px; width:310px; background-image: url(cyan/images/fd_inactive.png); background-repeat: no-repeat">
+		<div class="s5_fd_box">	<h3 class="highlight">Tutorial Convert Skin Vbb3 - Vbb4</h3>	<img alt="icon" src="cyan/images/fd_icon3.png" class="s5_fd_icon"></img>	<span class="s5_fd_text">	Video sẽ hướng dẫn bạn việc convert một skin từ vbb3 lên...	</span>		<div style="clear:both;height:0px"></div>		<a href="/demo/cyan/index.php/features-mainmenu-47/template-features/mobile-device-ready" class="readon">Read More</a>	</div>	</div>
+								
+</div>
+
+<script type="text/javascript">//�![CDATA[
+
+var s5_fd_highlight = '1';
+var s5_fd_rotate = 'yes';
+var s5_fd_speed = '5';
+var top1_pic = 'cyan/images/fd_image1.jpg';
+var top1_hyperlink = '';
+var top1_target = 'same';
+var top1_content = '<div style="padding:52px; padding-top:57px"><br /><div class="highlight_opaque">Tutorial Rip Skin VBB3</div><div class="black_opaque" style="width:570px">Tutorial hướng dẫn bạn Rip một skin vbb3 từ dễ đến khó. Với video hướng dẫn dễ hiểu bạn sẽ....</div><div style="clear:both;height:0px"></div><a target="blank" href="http://www.shape5.com/joomla/framework/vertex_framework.html" class="black_readmore_opaque">Read More</a></div>';
+var box1_pic = 'cyan/images/fd_inactive.png';
+var box1_pic_hover = 'cyan/images/fd_active.png';
+var box1_hyperlink = '';
+var box1_target = 'same';
+var top2_pic = 'cyan/images/fd_image2.jpg';
+var top2_hyperlink = '';
+var top2_target = 'same';
+var top2_content = '<div style="padding:52px; padding-top:57px"><br /><div class="highlight_opaque" style="background:#8F6106">TUTORIAL RIP SKIN VBB4 NEW</div><div class="black_opaque" style="width:570px">Với tutorial này bạn sẽ dễ dàng Rip được một skin vbb4 bất kỳ. Việc sử dụng công cụ và một số hiểu biết...</div><div style="clear:both;height:0px"></div><a href="/demo/cyan/index.php/features-mainmenu-47/template-features/95-module-positions" class="black_readmore_opaque">Read More</a></div>';
+var box2_pic = 'cyan/images/fd_inactive.png';
+var box2_pic_hover = 'cyan/images/fd_active.png';
+var box2_hyperlink = '';
+var box2_target = 'same';
+var top3_pic = 'cyan/images/fd_image3.jpg';
+var top3_hyperlink = '';
+var top3_target = 'same';
+var top3_content = '<div style="padding:52px; padding-top:57px"><br /><div class="highlight_opaque" style="background:#764E29">TUTORIAL CONVERT SKIN VBB3 - VBB4</div><div class="black_opaque" style="width:570px">Video sẽ hướng dẫn bạn việc convert một skin từ vbb3 lên...</div><div style="clear:both;height:0px"></div><a href="/demo/cyan/index.php/features-mainmenu-47/template-features/mobile-device-ready" class="black_readmore_opaque">Read More</a></div>';
+var box3_pic = 'cyan/images/fd_inactive.png';
+var box3_pic_hover = 'cyan/images/fd_active.png';
+var box3_hyperlink = '';
+var box3_target = 'same';
+var top4_pic = '';
+var top4_hyperlink = '';
+var top4_target = 'same';
+var top4_content = '';
+var box4_pic = '';
+var box4_pic_hover = '';
+var box4_hyperlink = '';
+var box4_target = 'same';
+var top5_pic = '';
+var top5_hyperlink = '';
+var top5_target = 'same';
+var box5_pic = '';
+var box5_pic_hover = '';
+var box5_hyperlink = '';
+var box5_target = 'same';
+var top5_content = '';
+var top6_pic = '';
+var top6_hyperlink = '';
+var top6_target = 'same';
+var top6_content = '';
+var box6_pic = '';
+var box6_pic_hover = '';
+var box6_hyperlink = '';
+var box6_target = 'same';
+var top7_pic = '';
+var top7_hyperlink = '';
+var top7_target = 'same';
+var top7_content = '';
+var box7_pic = '';
+var box7_pic_hover = '';
+var box7_hyperlink = '';
+var box7_target = 'same';
+var top8_pic = '';
+var top8_hyperlink = '';
+var top8_target = 'same';
+var top8_content = '';
+var box8_pic = '';
+var box8_pic_hover = '';
+var box8_hyperlink = '';
+var box8_target = 'same';
+
+//]]�</script>
+
+<script language="javascript" type="text/javascript" src="cyan//modules/mod_s5_frontpage_display2/s5_frontpage_display_2/s5_fd.js"></script>						<div style="clear:both; height:0px"></div>
+
+					</div>
+
+				</div>
+
+
+
+			
+
+		</div>
+
+		
+
+		</div>
+
+
+
+	
+
+		</div>
+		<div style="clear:both; height:0px"></div>	
+		
+	<div id="s5_white_box">
+<div id="s5_breadcrumb_login_wrap">
+	
+							<div id="s5_breadcrumb_wrap">
+							<div class="moduletable">
+
+			<span class="breadcrumbs pathway">
+Home</span>
+		</div>
+
+	
+
+				</div>
+						
+							<div id="fontControls"></div>
+						
+				
+				<div id="s5_loginreg">	
+	<vb:if condition="$show['member']">
+<div id="s5_login" class="s5box_login">
+										<ul class="s5boxmenu">
+											<li>
+												Thông tin cá nhân											</li>
+										</ul>
+									</div>
+	<vb:else />
+						<div id="s5_logregtm">
+							
+								
+																			<div id="s5_register" class="s5box_register">
+											<ul class="s5boxmenu">
+												<li>Register</li>
+											</ul>
+										</div>
+																		
+																
+															
+									<div id="s5_login" class="s5box_login">
+										<ul class="s5boxmenu">
+											<li>
+												Login											</li>
+										</ul>
+									</div>
+								
+																
+						</div>
+</vb:if>
+				</div>
+						
+			<div style="clear:both;height:0px"></div>
+			
+		</div>
+<div class="box-dnm"><div id="breadcrumb" class="breadcrumb">
+	<ul class="floatcontainer">
+		<li class="navbithome"><a href="index.php{vb:raw session.sessionurl_q}" accesskey="1"><img src="{vb:stylevar imgdir_misc}/navbit-home.png" alt="{vb:rawphrase home}" /></a></li>
+		{vb:raw navbits.breadcrumb}
+		{vb:raw navbits.lastelement}
+	</ul>
+	<hr />
+</div></div><br>
+<div class="body_wrapper">
+
+
+{vb:raw ad_location.ad_navbar_below}
+{vb:raw ad_location.global_below_navbar}
+
+<vb:if condition="$show['notices'] AND THIS_SCRIPT != 'register'">
+	<form action="profile.php?do=dismissnotice" method="post" id="notices" class="notices">
+		<input type="hidden" name="do" value="dismissnotice" />
+		<input type="hidden" name="s" value="{vb:raw session.sessionurl}" />
+		<input type="hidden" name="securitytoken" value="{vb:raw bbuserinfo.securitytoken}" />
+		<input type="hidden" id="dismiss_notice_hidden" name="dismiss_noticeid" value="" />
+		<input type="hidden" name="url" value="{vb:raw return_link}" />
+		<ol>
+			{vb:raw notices}
+		</ol>
+	</form>
+</vb:if>]]></template>
+	</templategroup>
+	<templategroup name="Postbit">
+		<template name="postbit.css" templatetype="template" date="1364307532" username="diangucmau" version="4.2.0"><![CDATA[@charset "UTF-8";
+/* CSS Document */
+
+/* last edited notice */
+.lastedited {
+	font-style:italic;
+	padding-top: 1em;
+	color: {vb:stylevar body_color};
+	font-size: {vb:stylevar small_fontSize};
+/*	clear:both; */
+}
+
+.lastedited a {
+	color: {vb:stylevar body_color};
+}
+/* reputation image */
+.postbit_reputation {
+	clear: both;
+	display: block;
+	font-size: 0;
+	padding-left: 2px;
+}
+
+img.repimg {
+    display: inline;
+    margin-left: -2px;
+}
+
+.quickedit {
+border-top: {vb:stylevar formrow_border};
+}
+/*signature */
+.signature {
+        padding-top: 1em;
+	border-top: {vb:stylevar signature_border};
+        margin-top: 2em;
+}
+
+
+/*post bit*/
+.postbit, .postbitlegacy, .eventbit {
+	margin-bottom: {vb:stylevar padding};
+	display:block;
+	width: 100%;
+	clear:both;
+	position: relative;
+	float: {vb:stylevar left};
+	color: {vb:stylevar body_color};
+	border: {vb:stylevar postbit_border};
+}
+
+.postbit object {
+	clear:both; 
+}
+
+.postbit .postdetails {
+	width: 100%;
+	display:block;
+	float: {vb:stylevar left};
+}
+
+.postrow {
+	overflow: auto;
+}
+
+.postbit .posthead, .postbitlegacy .posthead, .eventbit .eventhead {
+	background: {vb:stylevar postbithead_background};
+	_background-image: none;
+	border: {vb:stylevar postbithead_border};
+	clear:both;
+	display:block;
+	float: {vb:stylevar left};
+	width: 100%;
+	color: {vb:stylevar postbithead_color};
+	margin: -{vb:stylevar postbithead_border.borderWidth}{vb:stylevar postbithead_border.units} -{vb:stylevar postbithead_border.borderWidth}{vb:stylevar postbithead_border.units} 0;
+	font: {vb:stylevar postbithead_font};
+	padding: 4px 0;
+}
+
+.postbit .posthead .postdate, .postbitlegacy .posthead .postdate {
+            display:block;
+            float:{vb:stylevar left};
+            clear:{vb:stylevar right};
+            width: 49%;
+            margin-{vb:stylevar left}: 10px;
+            font: {vb:stylevar postbithead_font};
+            padding-{vb:stylevar left}: 15px;
+}
+
+.postbit .posthead .postdate.old, .postbitlegacy .posthead .postdate.old {
+            background:transparent url({vb:stylevar imgdir_statusicon}/post_old.png) no-repeat center {vb:stylevar left};
+}
+
+.postbit .posthead .postdate.new, .postbitlegacy .posthead .postdate.new {
+            background:transparent url({vb:stylevar imgdir_statusicon}/post_new.png) no-repeat center {vb:stylevar left};
+}
+
+.postbit .postdate .time {
+	color: {vb:stylevar postbithead_color};
+	margin-{vb:stylevar left}: {vb:stylevar padding};
+}
+
+.postbithead .postdate .time {
+	color: {vb:stylevar body_color};
+}
+
+.postbit .userinfo .contact, .postbit .userinfo_noavatar .contact {
+	position: relative;
+	float: {vb:stylevar left};
+	clear: {vb:stylevar right};
+	width: 50%;
+	display:block;
+}
+.postbit .postuseravatarlink {
+	display:block; 
+	text-align: center;
+	position: relative;
+	top: 0;
+	margin-{vb:stylevar left}: {vb:math {vb:stylevar padding}+5};
+	float: {vb:stylevar left};
+	clear: {vb:stylevar right};
+}
+
+.postbit .postuseravatarlink img {
+}
+
+
+.postbit .nodecontrols .postimod{
+	top: 0;
+	position:relative;
+	margin-{vb:stylevar left}: {vb:stylevar padding};
+}
+
+.postbit .userinfo, .postbit .userinfo_noavatar {
+	background: {vb:stylevar postbit_userinfo_background};
+	_background-image: none;
+	clear:both;
+	height: auto !important;
+	border-bottom:{vb:stylevar postbit_border};
+	padding: 0.5em 0;
+	width: 100%;
+	float: {vb:stylevar left};
+}
+
+.postbit .userinfo .contact, .userinfo .userinfo_extra, .postbit .userinfo_noavatar .contact {
+	display:inline-block;
+	height: auto !important;
+}
+.postbit .username_container {
+ 	float: {vb:stylevar left};
+ 	clear: {vb:stylevar right};
+ 	display:block;
+ 	margin-{vb:stylevar left}: {vb:stylevar padding};
+}
+.postbit .userinfo .username_container .memberaction, .postbit .userinfo_noavatar .username_container .memberaction {
+ 	display: inline;
+}
+
+.postbit .postdetails_noavatar .posthead, .postbit .postdetails_noavatar .userinfo .contact {
+	margin-{vb:stylevar left}: 0;
+}
+
+.postbit .userinfo .username, .postbit .userinfo_noavatar .username {
+	font-size: {vb:stylevar font.fontSize}{vb:stylevar font.units};
+	font-weight: bold;
+}
+
+.postbit .userinfo_noavatar .imlinks img {
+	display:inline;
+}
+.postbit .userinfo .username.guest, .postbit .userinfo_noavatar .username.guest {
+	font-weight:normal;
+}
+
+.postbit .userinfo_noavatar .usertitle, .postbit .userinfo .usertitle, .postbit .userinfo_noavatar .rank, .postbit .userinfo .rank {
+	font-size: {vb:stylevar small_fontSize};
+	font-weight: bold;
+	display:block;
+	clear:both;
+}
+.postbit .userinfo .userinfo_extra, .postbit .userinfo_noavatar .userinfo_extra {
+	text-align: {vb:stylevar right};
+	width: 300px;
+	float: {vb:stylevar right};
+	font-size: {vb:stylevar small_fontSize};
+}
+
+.postbit .userinfo .userinfo_extra dl, .postbit .userinfo_noavatar .userinfo_extra dl {
+	margin-{vb:stylevar right}: {vb:stylevar padding};
+	float: {vb:stylevar right};
+	width: 150px;
+}
+
+.postbit .userinfo_extra dl dt {
+	float:{vb:stylevar left};
+	display:block;
+	margin-{vb:stylevar right}: {vb:math {vb:stylevar padding}/2};
+}
+
+.postbit .userinfo_extra dl dt:after  {
+	content:":";
+}
+.postbit .userinfo_extra dl dt.blank:after {
+	content:none;
+}
+.postbit .userinfo_extra dl dd {
+	display:block;
+}
+
+.postbit .userinfo .moreinfo, .postbit .userinfo_noavatar .moreinfo {
+	float: {vb:stylevar left};
+	display: inline;
+}
+
+.postbit .userinfo .popupmenu a.popupctrl, .postbit .userinfo_noavatar .popupmenu a.popupctrl {
+	font-size: {vb:stylevar mid_fontSize};
+	background: transparent;
+	padding: 0;
+	display:inline-block;
+}
+
+.postbit .userinfo .popupmenu a.popupctrl:hover, .postbit .userinfo_noavatar .popupmenu a.popupctrl:hover {
+	color: {vb:stylevar link_color};
+	text-decoration: {vb:stylevar linkhover_hoverDecoration};
+}
+
+.postbit .postbody {
+	clear: both;
+	color: {vb:stylevar postbit_color};
+	background: {vb:stylevar postbit_background};
+}
+
+.postrow blockquote ul, .postrow blockquote ol, .postrow blockquote dl {
+	margin:0 40px;
+}
+
+.postbit .postrow {
+	font-family: {vb:stylevar postbit_font.fontFamily};
+}
+.postbit .postrow {
+	padding: {vb:math {vb:stylevar padding}/2} {vb:stylevar padding} 3em;
+	
+}
+.postbit hr {
+	display:none;
+}
+
+.postcontent {
+	word-wrap: break-word;
+}
+
+
+.postbit .posttitle {
+	display:block;
+	padding: {vb:stylevar padding};
+	font-weight:bold;
+	font: {vb:stylevar post_title_font};
+	margin: 0;
+}
+
+/*postbit legacy*/
+
+.postbitlegacy hr, .eventbit hr {
+	display: none;
+}
+
+blockquote.restore hr {
+	display: block;
+}
+
+.postbitlegacy .postdetails, .eventbit .eventdetails {
+	float: {vb:stylevar left};
+	width: 100%;
+	background: {vb:stylevar postbit_userinfo_background};
+	_background-image: none;
+}
+
+.postbitlegacy .posthead .time {
+	font: {vb:stylevar postbithead_font};
+	color: {vb:stylevar postbithead_color};
+}
+
+.postbit .posthead .nodecontrols, .postbitlegacy .posthead .nodecontrols, .eventbit .eventhead .nodecontrols {
+	position: absolute;
+	color: {vb:stylevar postbithead_color};
+	{vb:stylevar right}: 0;
+	top: 0;
+	width: 50% ;
+	padding: 4px {vb:stylevar padding} 0;
+	text-align: {vb:stylevar right};
+	font: {vb:stylevar postbithead_font};
+	vertical-align: middle;
+}
+
+.postbit .posthead .nodecontrols a, .postbitlegacy .posthead .nodecontrols a, .eventbit .eventhead .nodecontrols a {
+	color: {vb:stylevar postbithead_color};
+        top: -2px;
+        position:relative;
+}
+
+.postbitlegacy .posthead .nodecontrols img, .eventbit .eventhead .nodecontrols img {
+	position: relative;
+	top: 2px;
+	padding: 0;
+}
+
+.postbitlegacy .posthead .nodecontrols .postimod, .eventbit .eventhead .nodecontrols .postimod {
+	top: 0px;
+	position:relative;
+	margin-{vb:stylevar left}: 5px;
+}
+
+.postbitlegacy .postbody, .eventbit .eventdetails .eventbody {
+	margin-{vb:stylevar left}: {vb:stylevar postbitlegacy_userinfo_width};
+	border-{vb:stylevar left}: {vb:stylevar postbit_userinfo_border};
+	background: {vb:stylevar postbit_background};
+	_background-image: none;
+	padding-bottom: 1em;
+}
+
+.postbitlegacy .postrow, .eventbit .eventrow, .postbitdeleted .postrow, .postbitignored .postrow {
+	padding: {vb:math {vb:stylevar padding}/2} {vb:stylevar padding} {vb:stylevar padding};
+	font: {vb:stylevar postbit_font};
+	color: {vb:stylevar postbit_color};
+}
+
+.postbitlegacy .userinfo {
+	float:{vb:stylevar left};
+	position: relative;
+	width:{vb:math {vb:stylevar postbitlegacy_userinfo_width}-{vb:math {vb:stylevar padding}*2}}; 
+	padding: 2px {vb:stylevar padding} {vb:math {vb:stylevar padding}/2};
+	font-size: {vb:stylevar small_fontSize};
+	display:block;
+        background: {vb:stylevar postbit_userinfo_background};
+	clear:both;
+}
+
+.postbitlegacy .userinfo .rank, .postbitlegacy .userinfo .usertitle {
+	font-size: {vb:stylevar small_fontSize};
+	display:block;
+	clear:both;
+}
+
+.postbitlegacy .userinfo .username_container {
+	margin-bottom: 8px;
+}
+
+
+.postbitlegacy .userinfo .username_container .memberaction {
+	display: inline;
+}
+
+.postbitlegacy .userinfo .postuseravatar, .eventbit .userinfo .eventuseravatar {
+	display:block;
+	margin:{vb:math {vb:stylevar padding}/3} auto 0;
+	text-align:{vb:stylevar left};
+	width: auto;
+	float: {vb:stylevar left};
+	clear: both;
+}
+
+.postbitlegacy .userinfo .postuseravatar img, .eventbit .userinfo .eventuseravatar img {
+ 	max-width: {vb:math {vb:stylevar postbitlegacy_userinfo_width} - {vb:math {vb:stylevar padding}*2}};
+}
+
+.postbitlegacy .userinfo a.username, .eventbit .userinfo a.username {
+	clear:{vb:stylevar right};
+	font-size:{vb:stylevar font.fontSize}{vb:stylevar font.units};
+	font-weight:bold;
+	width: auto;
+	max-width:{vb:math {vb:stylevar postbitlegacy_userinfo_width} - {vb:math {vb:stylevar padding}*2} - 20px};
+	word-wrap:break-word;
+}
+
+.postbitlegacy .userinfo .guest.username, .eventbit .userinfo .guest.username {
+	padding-top: {vb:math {vb:stylevar padding}/2};
+	display:block;
+	font-size: {vb:stylevar font.fontSize}{vb:stylevar font.units};
+}
+
+.postbitlegacy dl.userinfo_extra, .postbitlegacy dl.user_rep {
+	margin: {vb:math {vb:stylevar padding}/2} 0;
+	display:block;
+	float: {vb:stylevar left};
+	width: {vb:math {vb:stylevar postbitlegacy_userinfo_width}-{vb:math {vb:stylevar padding}*2}}; 
+}
+.postbitlegacy dl.userinfo_extra dt, .postbitlegacy dl.user_rep dt {
+	float: {vb:stylevar left};
+	text-align: {vb:stylevar left};
+	/*color: {vb:stylevar shade_color};*/
+	margin-{vb:stylevar right}: {vb:stylevar padding};
+	margin-{vb:stylevar left}: 0;
+	min-width:60px;
+	width:auto !important;
+	width:60px;
+}
+
+.postbitlegacy dl.userinfo_extra dt:after, .postbitlegacy dl.user_rep dt:after {
+	content: ":";
+}
+
+.postbitlegacy dl.user_rep dt.blank:after {
+	content: none;
+}
+
+.postbitlegacy dl.userinfo_extra dd, .postbitlegacy dl.userinfo_extra dd a, .postbitlegacy dl.user_rep dd {
+	padding-bottom: 3px;
+}
+
+.postbitlegacy dl.user_rep img {
+	margin-top: {vb:stylevar padding};
+}
+
+.postbitlegacy .imlinks {
+	width: 100%;
+	float: {vb:stylevar left};
+}
+
+.postbitlegacy .imlinks img {
+	display:inline;
+}
+
+.postbitlegacy .title, .eventbit .title {
+	display:block;
+	padding: {vb:stylevar padding};
+        padding-{vb:stylevar left}: 0;
+	font: {vb:stylevar post_title_font};
+}
+
+.postbit .postfoot, .postbitlegacy .postfoot, .eventbit .eventfoot {
+	display:block;
+	position: relative;
+	{vb:stylevar right}: 0;
+	float: {vb:stylevar left};
+	clear:both;
+	/*vertical-align: bottom;*/
+	background: transparent;
+	/*height: {vb:math 16px + {vb:math 5px * 2}};*/
+	font: {vb:stylevar postbit_control_font};
+	width: 100%;
+}
+
+.postbitlegacy .postrow.has_after_content {
+	padding-bottom: 4em;
+}
+
+.postbitlegacy .after_content {
+	position: relative;
+	width: 100%;
+	clear:both;
+}
+
+.postbitlegacy .signature, .postbitlegacy .lastedited {
+	margin-top: 1em;
+	padding: 1em {vb:stylevar padding} 0;
+}
+
+.postbit .postfoot .textcontrols, .postbitlegacy .postfoot .textcontrols, .eventbit .eventfoot .eventcontrols {
+	padding: 6px 0 4px;
+	display:block;
+	background: {vb:stylevar postbit_foot_background};
+	_background-image: none;
+	font: {vb:stylevar postbit_control_font};
+	width: 100%;
+	margin-{vb:stylevar right}: 10px;
+}
+.postbitlegacy .postfoot  .postcontrols, .postbit .postfoot  .postcontrols {
+	float:{vb:stylevar right};
+	padding-{vb:stylevar right}:{vb:stylevar padding};
+	text-align:{vb:stylevar right};
+	width:50%;
+}
+
+.postbitlegacy .postfoot .postlinking, .postbit .postfoot .postlinking {
+	padding-{vb:stylevar left}:{vb:stylevar padding};
+}
+
+.postbitlegacy .postfoot .textcontrols img.inline, .postbit .postfoot .textcontrols img.inline {
+	position: absolute;
+	top: 2px;
+	{vb:stylevar left}: -1px;
+	margin-{vb:stylevar right}: 1px;
+}
+.postbitlegacy .postfoot .textcontrols span.seperator, .postbit .postfoot .textcontrols span.seperator {
+	border-right: {vb:stylevar postbit_foot_separator};
+	display: inline;
+	margin: 0 5px;
+}
+.postbitlegacy .postfoot .textcontrols a, .postbit .postfoot .textcontrols a, .eventbit .eventfoot .eventcontrols a,
+.postbitlegacy .postfoot .textcontrols span.mobile, .postbit .postfoot .textcontrols span.mobile {
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	padding: 0;
+	padding-{vb:stylevar left}: {vb:math 3px+20px};
+	border: {vb:stylevar postbit_control_border};
+	background: {vb:stylevar postbit_control_background};
+	_background-image: none;
+	color: {vb:stylevar postbit_control_color};
+	font: {vb:stylevar postbit_control_font};
+	display:inline-block;
+	/* margin needs to be left invariant of the text direction (LTR-RTL) */
+	margin-left: 5px;
+}
+
+/* Text button hover images */
+.postbitlegacy .postfoot .textcontrols img.spam, .postbit .postfoot .textcontrols img.spam  {
+	padding-top: 2px;
+}
+.postbitlegacy .postfoot .textcontrols img.moderated, .postbit .postfoot .textcontrols img.moderated, .postbitlegacy .postfoot .textcontrols img.spam, .postbit .postfoot .textcontrols img.spam, .postbitlegacy .postfoot .textcontrols img.deleted_nolink, .postbit .postfoot .textcontrols img.deleted_nolink  {
+	padding-top: 2px;
+}
+.postbitlegacy .postfoot .textcontrols a.editpost, .postbit .postfoot .textcontrols a.editpost, .eventbit .eventfoot .textcontrols a.editevent  {
+	background: url({vb:stylevar imgdir_button}/edit_40b.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left} ;
+        padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_border};
+}
+.postbitlegacy .postfoot .textcontrols a.editpost:hover, .postbit .postfoot .textcontrols a.editpost:hover, .eventbit .eventfoot .textcontrols a.editevent:hover  {
+	background: url({vb:stylevar imgdir_button}/edit_40b-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_hover_border};
+}
+.postbitlegacy .postfoot .textcontrols a.quickreply, .postbit .postfoot .textcontrols a.quickreply, .postbitlegacy .postfoot .textcontrols a.forwardpost, .postbit .postfoot .textcontrols a.forwardpost  {
+	background: url({vb:stylevar imgdir_button}/reply_40b.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_border};
+}
+.postbitlegacy .postfoot .textcontrols a.quickreply:hover, .postbit .postfoot .textcontrols a.quickreply:hover, .postbitlegacy .postfoot .textcontrols a.forwardpost:hover, .postbit .postfoot .textcontrols a.forwardpost:hover  {
+	background: url({vb:stylevar imgdir_button}/reply_40b-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_hover_border};
+}
+.postbitlegacy .postfoot .textcontrols a.newreply, .postbit .postfoot .textcontrols a.newreply  {
+	background: url({vb:stylevar imgdir_button}/quote_40b.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_border};
+}
+.postbitlegacy .postfoot .textcontrols a.newreply:hover, .postbit .postfoot .textcontrols a.newreply:hover  {
+	background: url({vb:stylevar imgdir_button}/quote_40b-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_hover_border};
+}
+.postbitlegacy .postfoot .textcontrols a.multiquote, .postbit .postfoot .textcontrols a.multiquote  {
+	background: url({vb:stylevar imgdir_button}/multiquote-back_40b.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	padding-bottom:1px;
+	border: {vb:stylevar postbit_control_border};
+}
+.postbitlegacy .postfoot .textcontrols a.multiquote:hover, .postbit .postfoot .textcontrols a.multiquote:hover  {
+	background: url({vb:stylevar imgdir_button}/multiquote_40b-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left};	
+}
+.postbitlegacy .postfoot .textcontrols a.promotecms, .postbit .postfoot .textcontrols a.promotecms  {
+	background: url({vb:stylevar imgdir_cms}/promote_small.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_border};
+}
+.postbitlegacy .postfoot .textcontrols a.promotecms:hover, .postbit .postfoot .textcontrols a.promotecms:hover  {
+	background: url({vb:stylevar imgdir_cms}/promote_small-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_hover_border};
+}
+.postbitlegacy .postfoot .textcontrols a.infraction, .postbit .postfoot .textcontrols a.infraction  {
+	background: url({vb:stylevar imgdir_button}/add-infraction_sm.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_border};
+}
+.postbitlegacy .postfoot .textcontrols a.infraction:hover, .postbit .postfoot .textcontrols a.infraction:hover  {
+	background: url({vb:stylevar imgdir_button}/add-infraction_sm-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_hover_border};
+}
+.postbitlegacy .postfoot .textcontrols a.report, .postbit .postfoot .textcontrols a.report  {
+	background: url({vb:stylevar imgdir_button}/report-40b.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_border};
+}
+.postbitlegacy .postfoot .textcontrols a.report:hover, .postbit .postfoot .textcontrols a.report:hover  {
+	background: url({vb:stylevar imgdir_button}/report-40b-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_hover_border};
+}
+.postbitlegacy .postfoot .textcontrols a.blog, .postbit .postfoot .textcontrols a.blog  {
+	background: url({vb:stylevar imgdir_misc}/blog/blogpost_40b.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_border};
+}
+.postbitlegacy .postfoot .textcontrols a.blog:hover, .postbit .postfoot .textcontrols a.blog:hover  {
+	background: url({vb:stylevar imgdir_misc}/blog/blogpost_40b-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left} ;
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_hover_border};
+}
+.postbitlegacy .postfoot .textcontrols a.reputation, .postbit .postfoot .textcontrols a.reputation  {
+	background: url({vb:stylevar imgdir_button}/reputation-40b.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_border};
+}
+.postbitlegacy .postfoot .textcontrols a.reputation:hover, .postbit .postfoot .textcontrols a.reputation:hover  {
+	background: url({vb:stylevar imgdir_button}/reputation-40b-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_hover_border};
+}
+.postbitlegacy .postfoot .textcontrols a.ip, .postbit .postfoot .textcontrols a.ip  {
+	background: url({vb:stylevar imgdir_button}/ip-40b.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_border};
+}
+.postbitlegacy .postfoot .textcontrols a.ip:hover, .postbit .postfoot .textcontrols a.ip:hover  {
+	background: url({vb:stylevar imgdir_button}/ip-40b-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_hover_border};
+}
+.postbitlegacy .postfoot .textcontrols a.redcard, .postbit .postfoot .textcontrols a.redcard  {
+	background: url({vb:stylevar imgdir_button}/red-card_sm.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_border};
+}
+.postbitlegacy .postfoot .textcontrols a.redcard:hover, .postbit .postfoot .textcontrols a.redcard:hover  {
+	background: url({vb:stylevar imgdir_button}/red-card_sm-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_hover_border};
+}
+.postbitlegacy .postfoot .textcontrols a.yellowcard, .postbit .postfoot .textcontrols a.yellowcard  {
+	background: url({vb:stylevar imgdir_button}/yellow-card_sm.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_border};
+}
+.postbitlegacy .postfoot .textcontrols a.yellowcard:hover, .postbit .postfoot .textcontrols a.yellowcard:hover  {
+	background: url({vb:stylevar imgdir_button}/yellow-card_sm-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_hover_border};
+}
+.postbitlegacy .postfoot .textcontrols a.deleted, .postbit .postfoot .textcontrols a.deleted  {
+	background: url({vb:stylevar imgdir_button}/deleted_sm.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_border};
+}
+.postbitlegacy .postfoot .textcontrols a.deleted:hover, .postbit .postfoot .textcontrols a.deleted:hover  {
+	background: url({vb:stylevar imgdir_button}/deleted_sm-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_hover_border};
+}
+.postbitlegacy .postfoot .textcontrols a:hover, .postbit .postfoot .textcontrols a:hover {
+	color: {vb:stylevar postbit_control_hover_color};
+	background: {vb:stylevar postbit_control_hover_background};
+	_background-image: none;
+}
+
+.postbitlegacy .postfoot .textcontrols a.highlight, .postbit .postfoot .textcontrols a.highlight {
+	background-color: {vb:stylevar postbit_control_hover_background.backgroundColor};
+}
+
+.postbitlegacy .postfoot .textcontrols a img, .postbit .postfoot .textcontrols a img {
+	position: absolute;
+	top: {vb:math {vb:stylevar padding}/5};
+	{vb:stylevar left}: {vb:math {vb:stylevar padding}/5+1};
+}
+
+.postbitlegacy .postfoot .textcontrols a:hover img, .postbit .postfoot .textcontrols a:hover img {
+	top: {vb:math {vb:stylevar padding}/5};
+}
+
+.postbitlegacy .postfoot .textcontrols .mobile.mobile_android, .postbit .postfoot .textcontrols .mobile.mobile_android,
+.postbitlegacy .postfoot .textcontrols .mobile.mobile_iphone, .postbit .postfoot .textcontrols .mobile.mobile_iphone,
+.postbitlegacy .postfoot .textcontrols .mobile.mobile_facebook, .postbit .postfoot .textcontrols .mobile.mobile_facebook
+ {
+	background: url({vb:stylevar imgdir_button}/android_icon.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left};
+	padding: {vb:stylevar postbit_control_padding};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar postbit_control_padding}+20};
+	border: {vb:stylevar postbit_control_border};
+}
+
+.postbitlegacy .postfoot .textcontrols a.mobile_android:hover, .postbit .postfoot .textcontrols a.mobile_android:hover  {
+	background: url({vb:stylevar imgdir_button}/android_icon-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left};	
+}
+
+.postbitlegacy .postfoot .textcontrols .mobile.mobile_iphone, .postbit .postfoot .textcontrols .mobile.mobile_iphone  {
+	background: url({vb:stylevar imgdir_button}/iphone_icon.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left};
+}
+
+.postbitlegacy .postfoot .textcontrols a.mobile_iphone:hover, .postbit .postfoot .textcontrols a.mobile_iphone:hover  {
+	background: url({vb:stylevar imgdir_button}/iphone_icon-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left};	
+}
+
+.postbitlegacy .postfoot .textcontrols .mobile.mobile_facebook, .postbit .postfoot .textcontrols .mobile.mobile_facebook  {
+	background: url({vb:stylevar imgdir_button}/facebook_icon.png) no-repeat {vb:stylevar postbit_control_background} {vb:stylevar left};
+}
+
+.postbitlegacy .postfoot .textcontrols a.mobile_facebook:hover, .postbit .postfoot .textcontrols a.mobile_facebook:hover  {
+	background: url({vb:stylevar imgdir_button}/facebook_icon-hover.png) no-repeat {vb:stylevar postbit_control_hover_background} {vb:stylevar left};	
+}
+
+/*post bit deleted*/
+.postbitdeleted, .postbitignored {
+	margin-bottom: {vb:stylevar padding};
+	display:block;
+	width: 100%;
+	clear:both;
+	position: relative;
+	color: {vb:stylevar body_color};
+	border: {vb:stylevar postbit_border};
+	float: {vb:stylevar left};
+	background: {vb:stylevar postbit_deleted_background};
+	_background-image: none;
+}
+
+.postbitdeleted hr, .postbitignored hr {
+	display: none;
+}
+
+.postbitdeleted .posthead, .postbitignored .posthead {
+	display:table;
+	background: {vb:stylevar postbithead_background};
+	_background-image: none;
+	border: {vb:stylevar postbithead_border};
+	height: {vb:math {vb:stylevar padding}+6};
+	padding: {vb:math {vb:stylevar padding}/5+2} 0;
+	color: {vb:stylevar postbithead_color};
+	width: 100%;
+	margin: -{vb:stylevar postbithead_border.borderWidth}{vb:stylevar postbithead_border.units} -{vb:stylevar postbithead_border.borderWidth}{vb:stylevar postbithead_border.units} 0;
+	font: {vb:stylevar postbithead_font};
+}
+
+.postbitdeleted .posthead .date, .postbitignored .posthead .date {
+	display:inline-block;
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar padding}+4};
+	margin-{vb:stylevar left}: {vb:stylevar padding};
+	color: {vb:stylevar postbithead_color};
+	background:transparent url({vb:stylevar imgdir_statusicon}/post_old.png) no-repeat center {vb:stylevar left};
+	font: {vb:stylevar postbithead_font};
+}
+
+.postbitdeleted .posthead .date .time, .postbitignored .date .time {
+	color: {vb:stylevar postbithead_color};
+	font: {vb:stylevar postbithead_font};
+}
+
+.postbitdeleted .posthead .postimod, .postbitignored .posthead .postimod {
+	position: absolute;
+	{vb:stylevar right}: {vb:stylevar padding};
+	top: {vb:math {vb:stylevar padding}/2};
+}
+
+.postbitdeleted .postbody, .postbitignored .postbody {
+	padding: 0;
+}
+
+.postbitdeleted .postrow, .postbitignored .postrow {
+	padding:  {vb:stylevar padding};
+}
+
+.postbitdeleted .userinfo .memberaction, .postbitignored .userinfo .memberaction {
+	display: block;
+}
+
+
+.postbitdeleted .userinfo, .postbitignored .userinfo {
+	display:block;
+	background: transparent;
+	position: relative;
+	clear: both;
+	padding: {vb:math {vb:stylevar padding}/2} {vb:stylevar padding};
+	border-bottom: {vb:stylevar postbit_border};
+	word-wrap: break-word;
+}
+
+.postbitdeleted .userinfo .username, .postbitignored .userinfo .username {
+	display:block;
+	float: {vb:stylevar left};
+	clear: {vb:stylevar right};
+	font-size: {vb:stylevar font.fontSize}{vb:stylevar font.units};
+	/*font-weight:bold;*/
+}
+
+.postbitdeleted .userinfo .moreinfo, .postbitignored .userinfo .moreinfo {
+	float: {vb:stylevar left};
+	display:block;
+	position: relative;
+	top: -5px;
+}
+
+.postbitdeleted .userinfo .usertitle, .postbitignored .userinfo .usertitle {
+	clear:both;
+	display:block
+	width: 100%;
+}
+
+.postbitdeleted .userinfo .popupmenu a.popupctrl:hover, .postbitignored .userinfo .popupmenu a.popupctrl:hover {
+	color: {vb:stylevar link_color};
+	text-decoration: {vb:stylevar linkhover_textDecoration};
+}
+
+.postbitdeleted .title, .postbitignored .title {
+	font: {vb:stylevar post_title_font};
+}
+
+.postbitdeleted .nodecontrols, .postbitignored .nodecontrols {
+	padding: 4px 0;
+	padding-{vb:stylevar right}: {vb:stylevar padding};
+	text-align: {vb:stylevar right};
+	background: {vb:stylevar postbit_foot_background};
+	_background-image: none;
+	font: {vb:stylevar postbit_control_font};
+	height: 16px;
+}
+
+.postbitdeleted .nodecontrols .textcontrol, .postbitignored .nodecontrols .textcontrol {
+	background: {vb:stylevar postbit_control_background};
+	_background-image: none;
+	border: {vb:stylevar postbit_control_border};
+	font: {vb:stylevar postbit_control_font};
+}
+
+.postbitdeleted .nodecontrols a.textcontrol:hover, .postbitignored .nodecontrols a.textcontrol:hover {
+	background: {vb:stylevar postbit_control_hover_background};
+	_background-image: none;
+	border: {vb:stylevar postbit_control_border};
+}
+
+.userinfo .popupmenu:hover a.popupctrl {
+	background-color:transparent;
+}
+
+.userinfo .popupgroup .popupmenu:hover a.popupctrl.active,
+.userinfo .popupmenu a.popupctrl.active {
+	background-color:transparent;
+	color:inherit;
+}
+.postbit .userinfo .popupmenu .popupctrl {
+	color:auto;
+}
+
+.postbit.imod_highlight .userinfo_noavatar,
+.postbit.imod_highlight .userinfo,
+.postbit.imod_highlight .postbody,
+.postbitlegacy.imod_highlight .postdetails,
+.postbitlegacy.imod_highlight .userinfo,
+.postbitlegacy.imod_highlight .postbody,
+.postbitdeleted.imod_highlight,
+.postbitignored.imod_highlight {
+	background:{vb:stylevar imodhilite_backgroundColor};
+	color: {vb:stylevar body_color};
+}
+
+
+/* start styles for postbit_legacy */
+.userinfo .popupmenu:hover a.popupctrl {
+	background-color:transparent;
+}
+.userinfo .popupgroup .popupmenu:hover a.popupctrl.active,
+.userinfo .popupmenu a.popupctrl.active {
+	background-color:transparent;
+	color:inherit;
+}
+.postbitlegacy .userinfo .popupmenu .popupctrl {
+	color:auto;
+}
+/* end styles for postbit_legacy */
+
+img.onlinestatus_noavatar {
+	position: relative;
+	top: 5px;
+	{vb:stylevar left}: -56px;
+}
+img.onlinestatus {
+	position: relative;
+	top: 5px;
+	{vb:stylevar left}: -4px;
+}
+
+.postbody img.inlineimg {
+	vertical-align: bottom;
+}
+
+.postbody .lastedited .reason {
+	font-weight: bold;
+}
+
+.postbitlegacy .userinfo .userinfo_extra {
+	width:{vb:math {vb:stylevar postbitlegacy_userinfo_width}-{vb:math {vb:stylevar padding}*2}};
+	float: {vb:stylevar left};
+	font-size: {vb:stylevar small_fontSize};
+}
+
+.hasad {
+	display:block;
+	margin-{vb:stylevar right}: {vb:stylevar ad_post_maxWidth};
+}
+.postbit .posttitle, .postbitlegacy .title
+{
+	border-bottom: {vb:stylevar postbittitle_border};
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}]]></template>
+	</templategroup>
+	<templategroup name="Ungrouped Templates {1}">
+		<template name="additional.css" templatetype="template" date="1334162970" username="Địa Ngục Máu" version="4.1.8"><![CDATA[#s5_grey_box {
+margin-top: 18px;
+margin-bottom: 0px !important;
+}
+.body_wrapper {
+-webkit-box-shadow: 0 0px 5px #D1CFCF !important;
+-moz-box-shadow: 0 0px 5px #D1CFCF !important;
+box-shadow: 0 0px 5px #D1CFCF !important;
+border-radius: 0px !important;
+}
+.box-dnm {
+background:#FFFFFF;
+padding:16px;
+-webkit-box-shadow: 0 0px 5px #D1CFCF;
+-moz-box-shadow: 0 0px 5px #D1CFCF;
+box-shadow: 0 0px 5px #D1CFCF;
+}
+.s5_circle{
+background:url(cyan/templates/cyan/images/typography/s5_circle.png) no-repeat top center;
+padding:0px;
+height:29px;
+width:41px;
+font-size:2em;
+color:#FFFFFF;
+text-align:center;
+padding-top:12px;
+float:left;
+
+margin-left:4px;
+}
+.forumbit_post .foruminfo {
+width: 99px !important;
+min-width: 50% !important;
+float: left;
+clear: right;
+min-height: 48px;
+}
+.forumbit_post .foruminfo .forumdata .datacontainer {
+float: left;
+width: 88%;
+padding-left: 8px !important;
+}
+.dateblock {border:3px solid #fff;padding-top:8px;display:block;width:60px;height:52px;text-align:center;color:#fff;background:#111;background:rgba(0,0,0,0.8);text-shadow:none;border-radius:40px;-moz-border-radius:40px;-webkit-border-radius:40px;float:left;text-transform:uppercase;font-weight:normal}
+
+.excerpt {margin-left:75px;line-height:140%;}
+.excerpt em {font-style:normal;}
+
+]]></template>
+		<template name="footer" templatetype="template" date="1364307947" username="diangucmau" version="4.2.0"><![CDATA[<vb:if condition="!empty($ad_location['ad_footer_start']) or !empty($ad_location['global_above_footer'])">
+<div style="clear: {vb:stylevar left}">
+  {vb:raw ad_location.ad_footer_start}
+  {vb:raw ad_location.global_above_footer}
+</div>
+</vb:if>
+
+<div id="footer" class="floatcontainer footer">
+
+	<form action="{vb:link forumhome|nosession}" method="get" id="footer_select" class="footer_select">
+
+		<vb:if condition="$show['quickchooser']">
+			<select name="styleid" onchange="switch_id(this, 'style')">
+				<optgroup label="{vb:rawphrase quick_style_chooser}"><option class="hidden"></option></optgroup>
+				<vb:if condition="$quickchooserbits1">
+					<vb:if condition="$quickchooserbits2">
+					<optgroup label="&nbsp;{vb:rawphrase standard_styles}">
+					</vb:if>				
+					{vb:raw quickchooserbits1}
+					<vb:if condition="$quickchooserbits2">
+					</optgroup>
+					</vb:if>					
+				</vb:if>
+				<vb:if condition="$quickchooserbits2">
+					<vb:if condition="$quickchooserbits1">
+					<optgroup label="&nbsp;{vb:rawphrase mobile_styles}">
+					</vb:if>
+					{vb:raw quickchooserbits2}
+					<vb:if condition="$quickchooserbits1">
+					</optgroup>
+					</vb:if>					
+				</vb:if>
+			</select>	
+		</vb:if>
+		
+		<vb:if condition="$show['languagechooser']">
+			<select name="langid" onchange="switch_id(this, 'lang')">
+				<optgroup label="{vb:rawphrase quick_language_chooser}">
+					{vb:raw languagechooserbits}
+				</optgroup>
+			</select>
+		</vb:if>
+	</form>
+
+	<ul id="footer_links" class="footer_links">
+		<vb:if condition="$show['contactus']"><li><a href="{vb:raw vboptions.contactuslink}" rel="nofollow" accesskey="9">{vb:rawphrase contact_us}</a></li></vb:if>
+		<vb:if condition="$vboptions['hometitle']"><li><a href="{vb:raw vboptions.homeurl}">{vb:raw vboptions.hometitle}</a></li></vb:if>
+		<vb:if condition="$show['admincplink']"><li><a href="{vb:raw admincpdir}/index.php{vb:raw session.sessionurl_q}">{vb:rawphrase admin}</a></li></vb:if>
+		<vb:if condition="$show['modcplink']"><li><a href="{vb:raw modcpdir}/index.php{vb:raw session.sessionurl_q}">{vb:rawphrase mod}</a></li></vb:if>
+		<vb:if condition="$vboptions['archiveenabled']"><li><a href="archive/index.php{vb:raw session.sessionurl_q}">{vb:rawphrase archive}</a></li></vb:if>
+		{vb:raw template_hook.footer_links}
+		<vb:if condition="$vboptions['privacyurl']"><li><a href="{vb:raw vboptions.privacyurl}">{vb:rawphrase privacy_statement}</a></li></vb:if>
+		<vb:if condition="$vboptions['tosurl']"><li><a href="{vb:raw vboptions.tosurl}">{vb:rawphrase terms_of_service}</a></li></vb:if>
+		<li><a href="{vb:raw relpath}#top" onclick="document.location.hash='top'; return false;">{vb:rawphrase top}</a></li>
+	</ul>
+	
+	
+	<vb:if condition="$show['dst_correction']">
+	<!-- auto DST correction code -->
+		<form action="profile.php?do=dst" method="post" name="dstform">
+			<input type="hidden" name="s" value="{vb:raw session.sessionhash}" />
+			<input type="hidden" name="securitytoken" value="{vb:raw bbuserinfo.securitytoken}" />
+			<input type="hidden" name="do" value="dst" />
+		</form>
+		<script type="text/javascript">
+		<!--
+			var tzOffset = {vb:raw bbuserinfo.timezoneoffset} + {vb:raw bbuserinfo.dstonoff};
+			var utcOffset = new Date().getTimezoneOffset() / 60;
+			if (Math.abs(tzOffset + utcOffset) == 1)
+			{	// Dst offset is 1 so its changed
+				document.forms.dstform.submit();
+			}
+		//-->
+		</script>
+		<!-- / auto DST correction code -->
+	</vb:if>
+	
+	<script type="text/javascript">
+	<!--
+		// Main vBulletin Javascript Initialization
+		vBulletin_init();
+	//-->
+	</script>
+        {vb:raw template_hook.footer_javascript}
+</div>
+</div> <!-- closing div for body_wrapper -->
+</div>
+</div>
+
+<div id="s5_bottom_menu_wrap">
+							<div class="moduletable-s5_box">
+			
+
+<script type="text/javascript" src="cyan/modules/mod_s5_box/js/s5_box_hide_div.js"></script>
+
+<script type="text/javascript" src="clientscript/vbulletin_md5.js?v={vb:raw vboptions.simpleversion}"></script>
+
+
+	<vb:if condition="$show['member']">
+<div class="s5boxhidden"><div id="s5box_login">
+
+		<div class="moduletable">
+<ul class="isuser">
+				<li><a href="login.php?{vb:raw session.sessionurl}do=logout&amp;logouthash={vb:raw bbuserinfo.logouthash}" onclick="return log_out('{vb:rawphrase sure_you_want_to_log_out}')">{vb:rawphrase log_out}</a></li>
+				<vb:if condition="$show['registerbutton']">
+				<li><a href="register.php{vb:raw session.sessionurl_q}" rel="nofollow">{vb:rawphrase register}</a></li>
+				</vb:if>
+				<li><a href="usercp.php{vb:raw session.sessionurl_q}">{vb:rawphrase user_control_panel}</a></li>
+				<li><a href="{vb:link member, {vb:raw bbuserinfo}}">{vb:rawphrase your_profile}</a></li>
+				<vb:if condition="$notifications_total">
+				<li class="popupmenu notifications" id="notifications">
+					<a class="popupctrl" href="usercp.php{vb:raw session.sessionurl_q}">{vb:rawphrase your_notifications}: <span class="notifications-number"><strong>{vb:raw notifications_total}</strong></span></a>
+					<ul class="popupbody popuphover">
+						{vb:raw notifications_menubits}
+					</ul>
+				</li>
+				<vb:else />
+				<li class="popupmenu nonotifications" id="nonotifications">
+					<a class="popupctrl" href="usercp.php{vb:raw session.sessionurl_q}">{vb:rawphrase your_notifications}</a>
+					<ul class="popupbody popuphover">
+						<li>{vb:rawphrase no_new_messages}</li>
+						<vb:if condition="$show['pmmainlink']"><li><a href="private.php{vb:raw session.sessionurl_q}">{vb:rawphrase inbox}</a></li></vb:if>
+					</ul>
+				</li>
+				</vb:if>
+				<li class="welcomelink">{vb:rawphrase welcome_x_link_y, {vb:raw bbuserinfo.username}, {vb:link member, {vb:raw bbuserinfo}}}</li>
+				<vb:if condition="$vboptions['enablefacebookconnect']">
+					{vb:raw facebook_header}
+				</vb:if>
+			</ul>
+</div>
+</div></div>
+<vb:else />
+<div class="s5boxhidden"><div id="s5box_login">
+
+		<div class="moduletable">
+					<h3>Login</h3>
+					<form action="login.php?{vb:raw session.sessionurl}do=login" method="post" onsubmit="md5hash(vb_login_password, vb_login_md5password, vb_login_md5password_utf, {vb:raw show.nopasswordempty})" id="login-form" >
+		<fieldset id="logindetails" class="logindetails">
+					<div>
+						<div>
+					<input type="text" class="inputbox textbox<vb:if condition="!$username"> default-value</vb:if>" name="vb_login_username" id="navbar_username" size="10" accesskey="u" tabindex="101" value="<vb:if condition="$username">{vb:raw username}<vb:else />{vb:rawphrase username}</vb:if>" />
+					<input type="password" class="inputbox textbox" tabindex="102" name="vb_login_password" id="navbar_password" size="10" />
+					<input type="text" class="inputbox textbox default-value" tabindex="102" name="vb_login_password_hint" id="navbar_password_hint" size="10" value="{vb:rawphrase password}" style="display:none;" />
+					<input type="submit" class="button loginbutton" tabindex="104" value="{vb:rawphrase log_in}" title="{vb:rawphrase enter_username_to_login_or_register}" accesskey="s" />
+						</div>
+					</div>
+				</fieldset>
+				<div id="remember" style="
+    margin-top: -25px;
+" class="remember">
+					<label for="cb_cookieuser_navbar"><input type="checkbox" style="
+    top: 12px;
+    left: -22px;
+" name="cookieuser" value="1" id="cb_cookieuser_navbar" class="cb_cookieuser_navbar" accesskey="c" tabindex="103" /> {vb:rawphrase remember_me}</label>
+				</div>
+
+				<input type="hidden" name="s" value="{vb:raw session.sessionhash}" />
+				<input type="hidden" name="securitytoken" value="{vb:raw bbuserinfo.securitytoken}" />
+				<input type="hidden" name="do" value="login" />
+				<input type="hidden" name="vb_login_md5password" />
+				<input type="hidden" name="vb_login_md5password_utf" />
+			</form>
+			<script type="text/javascript">
+			YAHOO.util.Dom.setStyle('navbar_password_hint', "display", "inline");
+			YAHOO.util.Dom.setStyle('navbar_password', "display", "none");
+			vB_XHTML_Ready.subscribe(function()
+			{
+			//
+				YAHOO.util.Event.on('navbar_username', "focus", navbar_username_focus);
+				YAHOO.util.Event.on('navbar_username', "blur", navbar_username_blur);
+				YAHOO.util.Event.on('navbar_password_hint', "focus", navbar_password_hint);
+				YAHOO.util.Event.on('navbar_password', "blur", navbar_password);
+			});
+			
+			function navbar_username_focus(e)
+			{
+			//
+				var textbox = YAHOO.util.Event.getTarget(e);
+				if (textbox.value == '<vb:if condition="$username">{vb:raw username}<vb:else />{vb:rawphrase username}</vb:if>')
+				{
+				//
+					textbox.value='';
+					textbox.style.color='{vb:stylevar input_color}';
+				}
+			}
+
+			function navbar_username_blur(e)
+			{
+			//
+				var textbox = YAHOO.util.Event.getTarget(e);
+				if (textbox.value == '')
+				{
+				//
+					textbox.value='<vb:if condition="$username">{vb:raw username}<vb:else />{vb:rawphrase username}</vb:if>';
+					textbox.style.color='{vb:stylevar shade_color}';
+				}
+			}
+			
+			function navbar_password_hint(e)
+			{
+			//
+				var textbox = YAHOO.util.Event.getTarget(e);
+				
+				YAHOO.util.Dom.setStyle('navbar_password_hint', "display", "none");
+				YAHOO.util.Dom.setStyle('navbar_password', "display", "inline");
+				YAHOO.util.Dom.get('navbar_password').focus();
+			}
+
+			function navbar_password(e)
+			{
+			//
+				var textbox = YAHOO.util.Event.getTarget(e);
+				
+				if (textbox.value == '')
+				{
+					YAHOO.util.Dom.setStyle('navbar_password_hint', "display", "inline");
+					YAHOO.util.Dom.setStyle('navbar_password', "display", "none");
+				}
+			}
+			</script>
+		</div>
+	</div></div>  
+
+<div class="s5boxhidden"><div id="s5box_register">
+
+		<div class="moduletable">
+					<h3>Register</h3>
+														
+
+<form id="member-registration" action="/demo/cyan/index.php/component/users/" method="post" class="form-validate">
+
+
+
+<div style="float:left;width:108px;line-height:31px;">
+
+	<label for="jform_name" id="jform_name-lbl">
+
+			Name:
+
+	</label>
+
+</div>		
+
+<div style="float:left;">
+
+	<input type="text" maxlength="50" class="inputbox required" value="" size="40" id="jform_name" name="jform[name]"/> *
+
+</div>
+
+<div style="clear:both;"></div>
+
+
+
+<div style="float:left;width:108px;line-height:31px;">
+
+		<label for="jform_username" id="jform_username-lbl">
+
+			Username:
+
+		</label>
+
+</div>
+
+<div style="float:left;">
+
+		<input type="text" maxlength="25" class="inputbox required validate-username" value="" size="40" name="jform[username]" id="jform_username"/> *
+
+</div>
+
+<div style="clear:both;"></div>
+
+
+
+
+
+<div style="float:left;width:108px;line-height:31px;">
+
+		<label for="jform_email1" id="jform_email1-lbl">
+
+			E-mail:
+
+		</label>
+
+</div>
+
+<div style="float:left;">
+
+		<input type="text" maxlength="100" class="inputbox required validate-email" value="" size="40" name="jform[email1]" id="jform_email1"/> *
+
+</div>
+
+<div style="clear:both;"></div>
+
+
+
+<div style="float:left;width:108px;line-height:31px;">
+
+		<label for="jform_email2" id="jform_email2-lbl">
+
+			Verify E-mail:
+
+		</label>
+
+</div>
+
+<div style="float:left;">
+
+		<input type="text" maxlength="100" class="inputbox required validate-email" value="" size="40" name="jform[email2]" id="jform_email2"/> *
+
+</div>
+
+<div style="clear:both;"></div>
+
+
+
+
+
+<div style="float:left;width:108px;line-height:31px;">
+
+		<label for="jform_password1" id="jform_password1-lbl">
+
+			Password:
+
+		</label>
+
+</div>
+
+<div style="float:left;">
+
+  		<input type="password" value="" size="40" name="jform[password1]" id="jform_password1" class="inputbox required validate-password"/> *
+
+</div>
+
+<div style="clear:both;"></div>
+
+
+
+<div style="float:left;width:108px;line-height:31px;">
+
+		<label for="jform_password2" id="jform_password2-lbl">
+
+			Verify Password:
+
+		</label>
+
+</div>
+
+<div style="float:left;">
+
+  		<input type="password" value="" size="40" name="jform[password2]" id="jform_password2" class="inputbox required validate-password"/> *
+
+</div>
+
+<div style="clear:both;"></div>
+
+
+
+<br/>
+
+	Fields marked with an asterisk (*) are required.	
+
+<br/><br/>
+
+	<button type="submit" class="button validate">Register</button>
+
+	<input type="hidden" name="option" value="com_users" />
+
+	<input type="hidden" name="task" value="registration.register" />
+
+	<input type="hidden" name="f6f99cb109c7003e463ef4de8921f41e" value="1" /></form>
+
+					
+
+		</div>
+	</div></div>
+
+</vb:if>
+
+<script type="text/javascript">
+function s5_scrollit() { new SmoothScroll({ duration: 800 }); }
+function s5_scrollitload() {s5_scrollit();}
+window.setTimeout(s5_scrollitload,400);
+</script>
+<a href="#s5_scrolltotop" class="s5_scrolltotop"></a>
+		<script type="text/javascript" language="javascript" src="cyan/templates/cyan/js/tooltips.js"></script>
+	
+	<script type="text/javascript">
+		var s5mbox = {};
+		
+				
+		        window.addEvent('domready', function() {
+				
+		s5mbox = new MultiBox('s5mb', {descClassName: 's5_multibox', useOverlay: true, showControls: true});	
+		
+		});	</script>
+		
+			<script type="text/javascript">//�![CDATA[
+			if (document.getElementById("s5_top_row1_area_inner")) {
+				var s5_lazy_load_imgs = document.getElementById("s5_top_row1_area_inner").getElementsByTagName("IMG");
+				for (var s5_lazy_load_imgs_y=0; s5_lazy_load_imgs_y<s5_lazy_load_imgs.length; s5_lazy_load_imgs_y++) {
+					if (s5_lazy_load_imgs[s5_lazy_load_imgs_y].className == "") {
+						s5_lazy_load_imgs[s5_lazy_load_imgs_y].className = "s5_lazyload";
+					}
+					else {
+						s5_lazy_load_imgs[s5_lazy_load_imgs_y].className = s5_lazy_load_imgs[s5_lazy_load_imgs_y].className + " s5_lazyload";
+					}
+				}
+			}
+			if (document.getElementById("s5_top_row2_area_inner")) {
+				var s5_lazy_load_imgs = document.getElementById("s5_top_row2_area_inner").getElementsByTagName("IMG");
+				for (var s5_lazy_load_imgs_y=0; s5_lazy_load_imgs_y<s5_lazy_load_imgs.length; s5_lazy_load_imgs_y++) {
+					if (s5_lazy_load_imgs[s5_lazy_load_imgs_y].className == "") {
+						s5_lazy_load_imgs[s5_lazy_load_imgs_y].className = "s5_lazyload";
+					}
+					else {
+						s5_lazy_load_imgs[s5_lazy_load_imgs_y].className = s5_lazy_load_imgs[s5_lazy_load_imgs_y].className + " s5_lazyload";
+					}
+				}
+			}
+			if (document.getElementById("s5_top_row3_area_inner")) {
+				var s5_lazy_load_imgs = document.getElementById("s5_top_row3_area_inner").getElementsByTagName("IMG");
+				for (var s5_lazy_load_imgs_y=0; s5_lazy_load_imgs_y<s5_lazy_load_imgs.length; s5_lazy_load_imgs_y++) {
+					if (s5_lazy_load_imgs[s5_lazy_load_imgs_y].className == "") {
+						s5_lazy_load_imgs[s5_lazy_load_imgs_y].className = "s5_lazyload";
+					}
+					else {
+						s5_lazy_load_imgs[s5_lazy_load_imgs_y].className = s5_lazy_load_imgs[s5_lazy_load_imgs_y].className + " s5_lazyload";
+					}
+				}
+			}
+			if (document.getElementById("s5_center_area_inner")) {
+				var s5_lazy_load_imgs = document.getElementById("s5_center_area_inner").getElementsByTagName("IMG");
+				for (var s5_lazy_load_imgs_y=0; s5_lazy_load_imgs_y<s5_lazy_load_imgs.length; s5_lazy_load_imgs_y++) {
+					if (s5_lazy_load_imgs[s5_lazy_load_imgs_y].className == "") {
+						s5_lazy_load_imgs[s5_lazy_load_imgs_y].className = "s5_lazyload";
+					}
+					else {
+						s5_lazy_load_imgs[s5_lazy_load_imgs_y].className = s5_lazy_load_imgs[s5_lazy_load_imgs_y].className + " s5_lazyload";
+					}
+				}
+			}
+			if (document.getElementById("s5_bottom_row1_area_inner")) {
+				var s5_lazy_load_imgs = document.getElementById("s5_bottom_row1_area_inner").getElementsByTagName("IMG");
+				for (var s5_lazy_load_imgs_y=0; s5_lazy_load_imgs_y<s5_lazy_load_imgs.length; s5_lazy_load_imgs_y++) {
+					if (s5_lazy_load_imgs[s5_lazy_load_imgs_y].className == "") {
+						s5_lazy_load_imgs[s5_lazy_load_imgs_y].className = "s5_lazyload";
+					}
+					else {
+						s5_lazy_load_imgs[s5_lazy_load_imgs_y].className = s5_lazy_load_imgs[s5_lazy_load_imgs_y].className + " s5_lazyload";
+					}
+				}
+			}
+			if (document.getElementById("s5_bottom_row2_area_inner")) {
+				var s5_lazy_load_imgs = document.getElementById("s5_bottom_row2_area_inner").getElementsByTagName("IMG");
+				for (var s5_lazy_load_imgs_y=0; s5_lazy_load_imgs_y<s5_lazy_load_imgs.length; s5_lazy_load_imgs_y++) {
+					if (s5_lazy_load_imgs[s5_lazy_load_imgs_y].className == "") {
+						s5_lazy_load_imgs[s5_lazy_load_imgs_y].className = "s5_lazyload";
+					}
+					else {
+						s5_lazy_load_imgs[s5_lazy_load_imgs_y].className = s5_lazy_load_imgs[s5_lazy_load_imgs_y].className + " s5_lazyload";
+					}
+				}
+			}
+			if (document.getElementById("s5_bottom_row3_area_inner")) {
+				var s5_lazy_load_imgs = document.getElementById("s5_bottom_row3_area_inner").getElementsByTagName("IMG");
+				for (var s5_lazy_load_imgs_y=0; s5_lazy_load_imgs_y<s5_lazy_load_imgs.length; s5_lazy_load_imgs_y++) {
+					if (s5_lazy_load_imgs[s5_lazy_load_imgs_y].className == "") {
+						s5_lazy_load_imgs[s5_lazy_load_imgs_y].className = "s5_lazyload";
+					}
+					else {
+						s5_lazy_load_imgs[s5_lazy_load_imgs_y].className = s5_lazy_load_imgs[s5_lazy_load_imgs_y].className + " s5_lazyload";
+					}
+				}
+			}
+		//]]�</script>
+		<script type="text/javascript" language="javascript" src="cyan/templates/cyan/js/lazy_load.js"></script>
+
+<div class="below_body">
+<div id="footer_time" class="shade footer_time">{vb:rawphrase all_times_are_gmt_x_time_now_is_y}</div>
+
+<div id="footer_copyright" class="shade footer_copyright">
+	<!-- Do not remove this copyright notice -->
+	{vb:rawphrase powered_by_vbulletin}
+	<!-- Do not remove this copyright notice -->	
+</div>
+<div id="footer_morecopyright" class="shade footer_morecopyright">
+	<!-- Do not remove cronimage or your scheduled tasks will cease to function -->
+	{vb:raw cronimage}
+	<!-- Do not remove cronimage or your scheduled tasks will cease to function -->
+	{vb:raw vboptions.copyrighttext}
+</div>
+{vb:raw ad_location.ad_footer_end} 
+<vb:if condition="$vboptions['enablefacebookconnect']">
+	{vb:raw facebook_footer}
+</vb:if>
+</div>]]></template>
+		<template name="forumbits.css" templatetype="template" date="1334211868" username="Địa Ngục Máu" version="4.1.8"><![CDATA[@charset "UTF-8";
+/* CSS Document */
+
+#forums {
+	clear:both;
+}
+
+.forumhead {
+	background: {vb:stylevar forumhead_background};
+	_background-image: none;
+	padding: 0;
+	font:{vb:stylevar forumhead_font};
+	color:{vb:stylevar forumhead_color};
+	clear:both;
+	margin-top: 8px;
+	float: {vb:stylevar left};
+	border: {vb:stylevar forumhead_border};
+	width: 100%;
+	-moz-border-radius-top{vb:stylevar right}: {vb:stylevar forumhead_top_corner_radius};
+	-moz-border-radius-top{vb:stylevar left}: {vb:stylevar forumhead_top_corner_radius};
+	-webkit-border-top-{vb:stylevar right}-radius: {vb:stylevar forumhead_top_corner_radius};
+	-webkit-border-top-{vb:stylevar left}-radius: {vb:stylevar forumhead_top_corner_radius};
+	border-top-{vb:stylevar right}-radius: {vb:stylevar forumhead_top_corner_radius};
+	border-top-{vb:stylevar left}-radius: {vb:stylevar forumhead_top_corner_radius};
+}
+
+#forums .L1 .forumhead a {
+	font: {vb:stylevar forumhead_font};
+}
+
+#forums .L1 .forumhead .forumdescription {
+	display:none;
+}
+
+#forums .L1 .L2 {
+	display:block;
+	clear: both;
+}
+
+#forums a.username {
+	color: {vb:stylevar link_color};
+}
+
+#forums a.username:hover {
+	color: {vb:stylevar linkhover_color};
+}
+
+.forumbit_post .forumrow, .forumbit_nopost .forumhead, .forumbit_nopost .forumrow, .forumbit_post .forumhead, .forumbits .forumhead {
+	-moz-box-shadow: -2px 2px 2px {vb:stylevar forumbits_shadow_color};
+	-webkit-box-shadow: -2px 2px 2px {vb:stylevar forumbits_shadow_color};
+	box-shadow: -2px 2px 2px {vb:stylevar forumbits_shadow_color};
+-webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+.forumbit_post .forumrow:hover, .forumbit_nopost .forumhead:hover, .forumbit_nopost .forumrow:hover, .forumbit_post .forumhead:hover, .forumbits .forumhead:hover {
+	-moz-box-shadow: -2px 2px 2px {vb:stylevar forumbits_shadow_color};
+	-webkit-box-shadow: -2px 2px 2px {vb:stylevar forumbits_shadow_color};
+	box-shadow: -2px 2px 2px {vb:stylevar forumbits_shadow_color};
+-webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+}
+.forumbit_post:nth-child(2n) .forumrow { 
+-moz-box-shadow: -2px 2px 2px {vb:stylevar forumbits_shadow_color};
+	-webkit-box-shadow: -2px 2px 2px {vb:stylevar forumbits_shadow_color};
+	box-shadow: -2px 2px 2px {vb:stylevar forumbits_shadow_color};
+-webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+.forumbit_post:nth-child(2n) .forumrow:hover { 
+-moz-box-shadow: -2px 2px 2px {vb:stylevar forumbits_shadow_color};
+	-webkit-box-shadow: -2px 2px 2px {vb:stylevar forumbits_shadow_color};
+	box-shadow: -2px 2px 2px {vb:stylevar forumbits_shadow_color};
+-webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+.forumbit_nopost .forumbit_nopost .forumrow, .forumbit_post .forumrow {
+	background: {vb:stylevar forumrow_background};
+	_background-image: none;
+	display:block;
+	width: 100%;
+	float: {vb:stylevar left};
+	min-height: {vb:math {vb:stylevar forumicon_size}+{vb:stylevar padding}}; /* 48px is the icon size */
+	position:relative;
+	border-bottom: {vb:stylevar forumbits_border};
+	border-{vb:stylevar left}: {vb:stylevar forumbits_border};
+	border-{vb:stylevar right}: {vb:stylevar forumbits_border};
+}
+
+.forumbit_nopost .forumbit_nopost .forumrow .forumicon {
+	position: absolute;
+	{vb:stylevar left}: {vb:stylevar padding};
+	top: {vb:math {vb:stylevar padding}/2};
+	width: {vb:stylevar forumicon_size};
+}
+
+.forumbit_nopost .forumbit_nopost .forumrow .forumdata {
+	display: inline-block;
+	width:100%;
+}
+
+.forumbit_nopost .forumbit_nopost .forumrow .forumdata .datacontainer {
+	margin-{vb:stylevar left}: {vb:math {vb:stylevar forumicon_size} + {vb:math {vb:stylevar padding}*2}};
+}
+
+.forumbit_nopost .forumbit_post .forumrow .forumdata .datacontainer {
+	margin-{vb:stylevar left}: 0;
+}
+
+/* forumbit nopost */
+.forumbit_post .foruminfo .forumdata {
+	padding: {vb:math {vb:stylevar padding}/2-1} 0;
+	font-size: {vb:math {vb:stylevar font.fontSize}-1}{vb:stylevar font.units};
+}
+
+.forumbit_nopost .forumhead .forumtitle {
+	font-size: {vb:stylevar font.fontSize}{vb:stylevar font.units};
+	min-width: 64%;
+}
+
+.forumbit_nopost .forumhead .forumtitle a {
+	color: {vb:stylevar forumhead_color};
+	margin-{vb:stylevar left}: {vb:stylevar padding};
+}
+
+.forumbit_nopost .forumhead span, .forumbit_post .forumhead span {
+	font-size: {vb:math {vb:stylevar font.fontSize}-1}{vb:stylevar font.units};
+}
+
+.forumbit_nopost .forumhead span.forumlastpost, .forumbit_post .forumhead span.forumlastpost {
+	width: 21%;
+}
+
+.forumbit_nopost .forumhead a.collapse img {
+/* values are based on the image */
+	position:absolute;
+	top: -{vb:math {vb:stylevar padding} * 1.5};
+	{vb:stylevar right}: -{vb:math {vb:stylevar padding} * 0.6};
+	display:block;
+	width:13px;
+	height:13px;
+	overflow:hidden;
+	float: {vb:stylevar right};
+	clear: {vb:stylevar left};
+}
+
+.forumbit_nopost:hover .forumhead  a.collapsegadget {
+	visibility:visible;
+}
+
+.forumbit_nopost .forumbit_nopost .forumrow .forumdata, .forumbit_post .forumrow .forumdata  {
+	padding: {vb:math {vb:stylevar padding}/2} {vb:stylevar padding};
+	padding-{vb:stylevar left}: 0;
+	font-size: {vb:stylevar small_fontSize};
+}
+
+.forumbit_nopost .forumbit_nopost .foruminfo .subforums {
+	margin-{vb:stylevar left}: {vb:stylevar padding};
+	position: relative;
+	top: -{vb:stylevar padding};
+}
+
+/* forumbit post */
+.forumbit_post {
+	float: {vb:stylevar left};
+	position:relative;
+	width: 100%;
+	display:block;
+}
+
+.forumbit_post .forumhead span {
+	padding: 0;
+}
+
+.forumbit_post .forumhead .forumlastpost {
+	top: 0;
+	margin-top: 0;
+}
+
+.forumbit_post .foruminfo, .forumbit_post .forumlastpost, .forumbit_post .forumactionlinks, .forumbit_post .forumstats, .forumbit_post .forumstats_2{
+	padding: {vb:math {vb:stylevar padding}/2} 0;
+}
+
+.forumbit_post .forumhead .forumtitle {
+	font-size: {vb:stylevar font.fontSize}{vb:stylevar font.units};
+	min-width: 64%;
+}
+
+.forumbit_post .forumhead .forumtitle span {
+padding: 0;
+padding-{vb:stylevar left}: {vb:stylevar padding};
+}
+
+.forumbit_post .foruminfo {
+	width: 57%;
+	min-width: 30%;
+	float: {vb:stylevar left};
+	clear: {vb:stylevar right};
+	min-height: {vb:stylevar forumicon_size}; 
+}
+
+.forumbit_post .foruminfo .forumicon{
+	position: absolute;
+	{vb:stylevar left}: {vb:stylevar padding};
+	width: {vb:stylevar forumicon_size};
+}
+
+.forumbit_post .foruminfo .forumdata, .forumbit_post .foruminfo .forumtitle, .forumbit_post .foruminfo .viewing {
+	float: {vb:stylevar left};
+	clear: {vb:stylevar right};
+	color: {vb:stylevar forumbits_text_color};
+}
+
+.forumbit_post .foruminfo .viewing {
+        white-space:nowrap;
+}
+
+.forumbit_post .foruminfo .forumdata {
+	padding: 0;
+	width: 100%;
+	_width: 99%;
+}
+
+.forumbit_post .foruminfo .forumdata .datacontainer {
+	float: {vb:stylevar left};
+	width: 88%;
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar forumicon_size} + {vb:math {vb:stylevar padding}*2}};
+}
+
+.forumbit_post .foruminfo .forumdata .forumtitle, .forumbit_nopost .forumbit_nopost .forumrow .forumtitle {
+
+font-size: {vb:stylevar font.fontSize}{vb:stylevar font.units};
+	margin-{vb:stylevar right}: {vb:stylevar padding};
+}
+
+.forumbit_post .foruminfo .forumdata .forumtitle a, .forumbit_nopost .forumbit_nopost .forumrow .forumtitle a {
+	font-weight:bold;
+}
+
+.childsubforum .forumbit_post .foruminfo .forumdata .datacontainer .forumtitle a {
+        padding-{vb:stylevar left}:1.8em;
+        background:url('{vb:stylevar imgdir_misc}/child_forum.png') top {vb:stylevar left} no-repeat;
+}
+
+.forumbit_post .foruminfo .forumdata .viewing {
+	font-style: italic;
+	margin-{vb:stylevar right}:{vb:stylevar padding};
+	margin-top: 3px;
+	font-size: {vb:math {vb:stylevar font.fontSize}-2}{vb:stylevar font.units};
+}
+
+.forumbit_post .forumactionlinks {
+	width: 5%;
+	display:block;
+	float:{vb:stylevar left};
+	clear:{vb:stylevar right};
+}
+
+.forumbit_post .forumactionlinks li {
+	display: inline;
+}
+
+.forumbit_post .forumactionlink {
+/* values based on icon size */
+	display:block;
+	width:18px;
+	height:12px;
+	overflow:hidden;
+	float: {vb:stylevar right};
+	clear: {vb:stylevar left};
+	background:transparent none no-repeat;
+	position: relative;
+	margin: 3px {vb:stylevar padding} 0 0;
+}
+
+.forumactionlink a {
+/* values based on icon size */
+	display:block;
+	padding-{vb:stylevar left}:18px;
+}
+
+.forumactionlinks .rsslink {
+	background-image:url({vb:stylevar imgdir_misc}/rss_40b.png);
+}
+
+.forumactionlinks .subslink {
+	background-image:url({vb:stylevar imgdir_misc}/subscribed_40b.png);
+}
+.forumactionlinks .unsubslink {
+	background-image:url({vb:stylevar imgdir_misc}/unsubscribed_40b.png);
+}
+.forumbit_post .forumdescription {
+	display:block;
+	clear:both;
+	padding-{vb:stylevar right}: {vb:stylevar padding};
+}
+
+.forumbit_post .unsubscribe {
+	display:block;
+	{vb:stylevar right}: 0;
+	top: 2px;
+}
+
+.forumbit_post .forumstats, .forumbit_post .forumstats_2 {
+	display: block;
+	float: {vb:stylevar left};
+	clear: {vb:stylevar right};
+	width: 12%;
+	margin-{vb:stylevar right}: 2%;
+}
+
+.forumbit_post .forumstats li, .forumbit_post .forumstats_2 li{
+	font-size: {vb:stylevar mid_fontSize};
+	text-align: {vb:stylevar right};
+	padding-{vb:stylevar right}: {vb:math {vb:stylevar padding}*2};
+	display:block;
+}
+
+
+.forumbit_post .forumlastpost {
+	display:block;
+	float: {vb:stylevar left};
+	clear: {vb:stylevar right};
+}
+
+.forumbit_post .forumrow .forumlastpost {
+	width: 22%;
+	font-size: {vb:stylevar mid_fontSize};
+	padding-top: {vb:math {vb:stylevar padding}/2};
+}
+
+.forumbit_post .forumlastpost .lastpostdate {
+	font-size: {vb:stylevar small_fontSize};
+}
+
+.lastpostlabel { 
+	display: none; 
+}
+
+.moderators, .subforums {
+	display: block;
+	clear:both;
+}
+
+.moderators h4, .subforums h4 {
+	font-weight: bold;
+	padding-{vb:stylevar right}: {vb:math {vb:stylevar padding}/2};
+}
+
+.moderators h4, .moderators .commalist, .subforums h4, .subforums .commalist {
+	float:{vb:stylevar left};
+	clear:{vb:stylevar right};
+}
+
+/* Project Tools Forum Display */
+.forumstats dt {
+	display: inline;
+	margin-{vb:stylevar right}: 0;
+}
+
+.forumstats dl {
+	color: {vb:stylevar body_color};
+	font-size: {vb:stylevar mid_fontSize};
+	display: block;
+	text-align: {vb:stylevar right};
+}
+
+.forumstats dd {
+	display: inline-block;
+	padding-{vb:stylevar left}: {vb:stylevar padding};
+	padding-{vb:stylevar right}: {vb:math {vb:stylevar padding}*2};
+}
+
+.forumstats dt:after {
+	content:":";
+}
+
+h2 span.forumthreadpost {
+	width: 12%;
+	text-align: center;
+}]]></template>
+		<template name="header" templatetype="template" date="1364305499" username="diangucmau" version="4.2.0"><![CDATA[<link rel="stylesheet" href="cyan/templates/cyan/css/s5_flex_menu.css" type="text/css" />
+  <link rel="stylesheet" href="cyan/media/com_finder/css/finder.css" type="text/css" />
+  <script src="cyan/media/system/js/mootools-core.js" type="text/javascript"></script>
+  <script src="cyan/media/system/js/core.js" type="text/javascript"></script>
+  <script src="cyan/media/system/js/caption.js" type="text/javascript"></script>
+  <script src="cyan/media/system/js/mootools-more.js" type="text/javascript"></script>
+  <script src="cyan/templates/cyan/js/s5_flex_menu.js" type="text/javascript"></script>
+  <script src="cyan/media/com_finder/js/autocompleter.js" type="text/javascript"></script>
+  <script type="text/javascript">
+window.addEvent('load', function() {
+				new JCaption('img.caption');
+			});
+function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"}).send();} window.addEvent("domready", function(){ keepAlive.periodical(840000); });
+  </script>
+  <style type="text/css">.s5boxhidden{display:none;} </style>
+  <script language="javascript" type="text/javascript" >var s5_boxeffect = "elastic";</script>
+  <script src="cyan/modules/mod_s5_box/js/s5box.js" type="text/javascript"></script>
+  
+ <script type="text/javascript">$(window).addEvent("domready", function(){							
+								new S5Box(".s5box_register", { width:"38%", inline:true, href:"#s5box_register" }); 
+								new S5Box(".s5box_login", {width:"25%", inline:true, href:"#s5box_login"}); 
+								new S5Box(".s5box_one", {width:"35%", inline:true, href:"#s5box_one"}); 
+								new S5Box(".s5box_two", {width:"35%", inline:true, href:"#s5box_two"}); 
+								new S5Box(".s5box_three", {width:"35%", inline:true, href:"#s5box_three"});
+								new S5Box(".s5box_four", {width:"35%", inline:true, href:"#s5box_four"}); 
+								new S5Box(".s5box_five", {width:"35%", inline:true, href:"#s5box_five"}); 
+								new S5Box(".s5box_six", {width:"35%", inline:true, href:"#s5box_six"}); 
+								new S5Box(".s5box_seven", {width:"35%", inline:true, href:"#s5box_seven"}); 
+								new S5Box(".s5box_eight", {width:"35%", inline:true, href:"#s5box_eight"}); 
+								new S5Box(".s5box_nine", {width:"35%", inline:true, href:"#s5box_nine"}); 
+								new S5Box(".s5box_ten", {width:"35%", inline:true, href:"#s5box_ten"});
+							});</script>
+
+<script type="text/javascript">
+var s5_multibox_path = "cyan/templates/cyan/js/multibox/";
+</script>
+
+
+
+
+
+
+
+
+	<script type="text/javascript">
+		
+				        window.addEvent('domready', function() {
+		            var myMenu = new MenuMatic({
+                effect:"slide & fade",
+                duration:1000,
+                physics: Fx.Transitions.Pow.easeOut,
+                hideDelay:500,
+                orientation:"horizontal",
+                tweakInitial:{x:0, y:0},
+                                   	            direction:{    x: 'right',    y: 'down' },
+				                opacity:100            });
+        });		
+				
+    </script>    
+	
+<link rel="stylesheet" href="cyan/templates/system/css/system.css" type="text/css" />
+<link rel="stylesheet" href="cyan/templates/system/css/general.css" type="text/css" />
+
+<link href="cyan/templates/cyan/css/template_default.css" rel="stylesheet" type="text/css" />
+<link href="cyan/templates/cyan/css/template.css" rel="stylesheet" type="text/css" />
+
+<link href="cyan/templates/cyan/css/com_content.css" rel="stylesheet" type="text/css" />
+
+
+
+<link href="cyan/templates/cyan/css/thirdparty.css" rel="stylesheet" type="text/css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arial" />
+
+
+
+
+<link href="cyan/templates/cyan/css/multibox/multibox.css" rel="stylesheet" type="text/css" />
+<link href="cyan/templates/cyan/css/multibox/ajax.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="cyan/templates/cyan/js/multibox/overlay.js"></script>
+<script type="text/javascript" src="cyan/templates/cyan/js/multibox/multibox.js"></script>
+<script type="text/javascript" src="cyan/templates/cyan/js/multibox/AC_RunActiveContent.js"></script>
+
+
+<link href="cyan/templates/cyan/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+<script type="text/javascript" src="cyan/templates/cyan/js/s5_font_adjuster.js"></script>
+
+
+
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Carme" />
+
+<style type="text/css"> 
+body {font-family: 'Arial',Helvetica,Arial,Sans-Serif ;} 
+
+
+#s5_nav, #subMenusContainer, #s5_search_wrap input, h3, h1, .contentheading, #s5_breadcrumb_login_wrap, #s5_accordion_menu h3, .s5_circle, #s5_button_frame ul li a, #s5_fd_outer, .highlight_opaque, .black_opaque, .black_readmore_opaque, #s5_component_wrap_inner h2, h2 span {
+font-family: Carme;
+}
+
+#s5_nav, #s5_search_wrap input, h3, h1, #s5_breadcrumb_login_wrap, #s5_accordion_menu h3, #s5_button_frame ul li a, .highlight_opaque {
+text-transform:uppercase;
+}
+
+#s5_nav li.active a, #s5_nav li.mainMenuParentBtnFocused a, #s5_nav li:hover a, a, #cboxLoadedContent h3, .highlight, #s5_button_frame  ul li.s5_ts_active a, #s5_white_box #current a, #s5_md_padding_wrap h3, h2 span {
+color:#6D8D2F;
+}
+
+.button, #s5_white_box .module_round_box-highlight h3.s5_mod_h3 {
+background:#4f6f11;
+}
+
+.highlight_opaque {
+background:#6D8D2F;
+}
+
+#s5_login, #s5_register, a, div.s5_accordion_menu_element #current a, #current span.s5_accordion_menu_left a.mainlevel, #s5_component_wrap a, #s5_white_box .s5_h3_first {
+color:#4f6f11;
+}
+
+#s5_white_box .module_round_box-highlight .s5_h3_first {
+color:#FFFFFF;
+}
+
+#fontControls a {
+color:#101010;}
+
+#s5_footer_area1 .s5_h3_first, #s5_white_box .module_round_box-dark .s5_h3_first {
+color:#A3A3A3;
+}
+
+
+/* k2 stuff */
+div.itemHeader h2.itemTitle, div.catItemHeader h3.catItemTitle, h3.userItemTitle a, #comments-form p, #comments-report-form p, #comments-form span, #comments-form .counter, #comments .comment-author, #comments .author-homepage,
+#comments-form p, #comments-form #comments-form-buttons, #comments-form #comments-form-error, #comments-form #comments-form-captcha-holder {font-family: 'Arial',Helvetica,Arial,Sans-Serif ;} 
+	
+.s5_wrap{width:960px;}	
+</style>
+
+<body id="s5_body">
+
+<!-- Mobile version -->	
+<!-- End mobile version -->	
+
+<!-- PC version -->	
+
+<div id="s5_scrolltotop"></div>
+
+<!-- Top Vertex Calls -->
+<!-- Fixed Tabs -->	
+
+	<script type="text/javascript">//�![CDATA[
+
+	document.write('<style type="text/css">.s5_lr_tab_inner{-webkit-transform: rotate(270deg);-moz-transform: rotate(270deg);-o-transform: rotate(270deg);}</style>');
+
+	//]]�</script>
+
+
+
+
+
+
+
+<!-- Drop Down -->	
+
+
+
+
+	<!-- Header -->	
+	
+		<div id="s5_header_area1">		
+			<div id="s5_header_area1_inner" class="s5_wrap">	
+			
+									<div id="s5_logo" onclick="window.document.location.href='index.php'"></div>
+								
+									<div id="s5_search_wrap">
+								<div class="moduletable">
+
+			
+<script type="text/javascript">
+//�![CDATA[
+	window.addEvent('domready', function() {
+		var value;
+
+		// Set the input value if not already set.
+		if (!document.id('mod-finder-searchword').getProperty('value')) {
+			document.id('mod-finder-searchword').setProperty('value', 'Tìm kiếm nhanh...');
+		}
+
+		// Get the current value.
+		value = document.id('mod-finder-searchword').getProperty('value');
+
+		// If the current value equals the default value, clear it.
+		document.id('mod-finder-searchword').addEvent('focus', function() {
+			if (this.getProperty('value') == 'Tìm kiếm nhanh...') {
+				this.setProperty('value', '');
+			}
+		});
+
+		// If the current value is empty, set the previous value.
+		document.id('mod-finder-searchword').addEvent('blur', function() {
+			if (!this.getProperty('value')) {
+				this.setProperty('value', value);
+			}
+		});
+
+		document.id('mod-finder-searchform').addEvent('submit', function(e){
+			e = new Event(e);
+			e.stop();
+
+			// Disable select boxes with no value selected.
+			if (document.id('mod-finder-advanced') != null) {
+				document.id('mod-finder-advanced').getElements('select').each(function(s){
+					if (!s.getProperty('value')) {
+						s.setProperty('disabled', 'disabled');
+					}
+				});
+			}
+
+			document.id('mod-finder-searchform').submit();
+		});
+
+		/*
+		 * This segment of code sets up the autocompleter.
+		 */
+								var url = '/demo/cyan/index.php/component/finder/?task=suggestions.display&format=json&tmpl=component';
+			var ModCompleter = new Autocompleter.Request.JSON(document.id('mod-finder-searchword'), url, {'postVar': 'q'});
+			});
+//]]�
+</script>
+
+<form id="mod-finder-searchform" action="search.php" method="get">
+	<div class="finder">
+		<label for="mod-finder-searchword" class="finder">Tìm kiếm</label><br /><input type="text" name="q" id="mod-finder-searchword" class="inputbox" size="25" value="" />
+				<input type="hidden" name="Itemid" value="102" />	</div>
+</form>
+		</div>
+
+	
+
+					</div>
+								
+								
+					<div id="s5_social_wrap">
+					
+													<div id="s5_facebook" onclick="window.open('javascript:;')"></div>
+							
+													<div id="s5_google" onclick="window.open('javascript:;')"></div>
+							
+													<div id="s5_twitter" onclick="window.open('javascript:;')"></div>
+																			<div id="s5_linked_in" onclick="window.open('javascript:;')"></div>
+																			<div id="s5_rss" onclick="window.open('javascript:;')"></div>
+											
+					</div>
+				
+							
+			</div>
+		</div>
+		
+		<div id="s5_header_area2">		
+			<div id="s5_header_area2_inner" class="s5_wrap">	
+			
+									<div id="s5_menu_wrap">
+						<ul id='s5_nav' class='menu'>
+<li class='active'>
+<span class='s5_level1_span1'>
+<span class='s5_level1_span2'>
+<a href="index.php">Trang Chủ</a>
+<span onclick='window.document.location.href="http://www.shape5.com/demo/cyan/"' class='S5_parent_subtext'>Trở về nhà</span>
+</span></span>
+</li>
+<li >
+<span class='s5_level1_span1'>
+<span class='s5_level1_span2'>
+<a href="javascript:;">Diễn Đàn</a><span onclick='window.document.location.href="javascript:;"' class='S5_parent_subtext'>DangcapVn.net</span>
+</span>
+</span>
+<ul style='float:left;'>
+<li><span class='S5_submenu_item'><a href="#">Góc Nhỏ VBB</a>
+<span onclick='window.document.location.href="#"' class='S5_subtext'>Trợ Giúp VBB Skin</span></span></li>
+<li><span class='S5_submenu_item'><a href="#">Góc Nhỏ VBB</a>
+<span onclick='window.document.location.href="#"' class='S5_subtext'>Trợ Giúp VBB Skin</span></span></li>
+<li><span class='S5_submenu_item'><a href="#">Góc Nhỏ VBB</a>
+<span onclick='window.document.location.href="#"' class='S5_subtext'>Trợ Giúp VBB Skin</span></span></li>
+
+</ul>
+<ul style='float:left;'>
+<li><span class='S5_submenu_item'><a href="#">Tên menu</a><span onclick='window.document.location.href="#"' class='S5_subtext'>Optimize Your Site's Performance</span></span></li>
+<li><span class='S5_submenu_item'><a href="#">Tên menu</a><span onclick='window.document.location.href="#"' class='S5_subtext'>Optimize Your Site's Performance</span></span></li>
+<li><span class='S5_submenu_item'><a href="#">Tên menu</a><span onclick='window.document.location.href="#"' class='S5_subtext'>Optimize Your Site's Performance</span></span></li>
+</ul>
+</li>
+<li ><span class='s5_level1_span1'><span class='s5_level1_span2'><a href="#">Photoshop</a><span onclick='window.document.location.href="#"' class='S5_parent_subtext'>Photoshop Online</span></span></span>
+<ul style='float:left;'>
+<li>
+<span class='S5_submenu_item'>
+<span class="s5_img_span">
+<img src="cyan/images/stories/application_put.png" align="left" alt="sample-menu" /></span>
+<a href="javascript:;">Tên Menu</a>
+<span onclick='window.document.location.href="javascript:;"' class='S5_subtext'>Chú thích menu</span>
+</span>
+<ul style='float:left;'>
+<li><span class='S5_submenu_item'><a href="javascript:;">Dummy Item</a></span></li>
+<li><span class='S5_submenu_item'><a href="javascript:;">Dummy Item</a></span></li>
+<li><span class='S5_submenu_item'><a href="javascript:;">Dummy Item</a></span>
+<ul style='float:left;'>
+<li><span class='S5_submenu_item'><a href="javascript:;">Dummy Item</a></span></li>
+<li><span class='S5_submenu_item'><a href="javascript:;">Dummy Item</a></span></li>
+<li><span class='S5_submenu_item'><a href="javascript:;">Dummy Item</a></span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<span class='S5_submenu_item'>
+<span class="s5_img_span">
+<img src="cyan/images/stories/cog_edit.png" align="left" alt="menu-module-example" /></span>
+<a href="javascript:;">Menu giới thiệu</a>
+<span onclick='window.document.location.href="javascript:;"' class='S5_subtext'>Giới thiệu sản phẩm</span>
+</span>
+<div class='S5_menu_module_parent_group'>
+<div class='S5_menu_module_group'>
+<div style='width:100%;'>
+<div style='float:left; width:100%;'>		<div class="moduletable">
+					
+
+<div class="custom"  >
+	<div style="width:182px;font-size:0.85em">
+<div style="float:left;overflow:hidden;width:86px">
+<img style="height:58px" src="http://www.shape5.com/demo/images/multibox3.jpg" alt=""></img>
+</div>Thông tin sản phẩm Thông tin sản phẩm Thông tin sản phẩm Thông tin sản phẩm Thông tin sản phẩm Thông tin sản phẩm v Thông tin sản phẩm</div>
+</div>
+		</div>
+	</div>
+</div>
+<div style='clear:both;'></div></div></div>
+</li>
+</ul>
+<ul style='float:left;'>
+<li><span class='S5_submenu_item'>
+<span class="s5_img_span"><img src="cyan/images/stories/application_side_boxes.png" align="left" alt="sample-grouped-child-menu" />
+</span>
+<a href="javascript:;">Tên Menu</a>
+<span onclick='window.document.location.href="javascript:;"' class='S5_subtext'>Chú thích menu</span>
+</span>
+<div class='S5_grouped_child_item'>
+<span>
+<span class='S5_submenu_item'><a href="javascript:;">Dummy Sample Link 2</a></span></span>
+<span>
+<span class='S5_submenu_item'><a href="javascript:;">Dummy Sample Link 1</a></span></span>
+<span>
+<span class='S5_submenu_item'><a href="javascript:;">Dummy Sample Link 3</a></span></span>
+<span>
+<span class='S5_submenu_item'><a href="javascript:;">Dummy Sample Link 4</a></span></span>
+<span>
+<span class='S5_submenu_item'><a href="javascript:;">Dummy Sample Link 5</a></span></span>
+<span>
+<span class='S5_submenu_item'><a href="javascript:;">Dummy Sample Link 6</a></span></span>
+</div>
+</li>
+<li>
+<span class='S5_submenu_item'><a href="javascript:;">Menu With No Menu Icon</a>
+<span onclick='window.document.location.href="javascript:;"' class='S5_subtext'>Standard Sub Menu Link</span>
+</span>
+</li>
+</ul>
+</li>
+<li >
+<span class='s5_level1_span1'>
+<span class='s5_level1_span2'><a href="javascript:;">Vbulentin</a>
+<span onclick='window.document.location.href="javascript:;"' class='S5_parent_subtext'>Vbulentin Online</span>
+</span>
+</span>
+<ul style='float:left;'>
+<li>
+<span class='S5_submenu_item'>
+<span class="s5_img_span">
+<img src="cyan/images/stories/application_put.png" align="left" alt="shape-5-vertex-framework" />
+</span>
+<a href="#" target="_blank">S5 Vertex Framework</a>
+<span onclick='window.open("#")' class='S5_subtext'>Lear More About Vertex</span></span>
+</li>
+<li>
+<span class='S5_submenu_item'>
+<span class="s5_img_span">
+<img src="cyan/images/stories/color_wheel.png" align="left" alt="template-specific-features" />
+</span>
+<a href="#">Template Specific Features</a>
+<span onclick='window.document.location.href="#"' class='S5_subtext'>Options Specific To This Template</span>
+</span>
+</li>
+<li>
+<span class='S5_submenu_item'>
+<span class="s5_img_span">
+<img src="cyan/images/stories/application_split.png" align="left" alt="template-features" />
+</span>
+<a href="javascript:;">Vertex Template Features</a>
+<span onclick='window.document.location.href="javascript:;"' class='S5_subtext'>Powerful Template Settings</span>
+</span>
+
+</li>
+</ul>
+<ul style='float:left;'><li><span class='S5_submenu_item'><span class="s5_img_span"><img src="cyan/images/stories/joomla.png" align="left" alt="joomla-stuff-mainmenu-26" /></span>
+<a href="javascript:;">J! Stuff</a>
+<span onclick='window.document.location.href="javascript:;"' class='S5_subtext'>Default Joomla Items</span>
+</span>
+<ul style='float:left;'>
+<li>
+<span class='S5_submenu_item'>
+<a href="/demo/cyan/index.php/features-mainmenu-47/joomla-stuff-mainmenu-26/search-mainmenu-5">Search</a>
+</span>
+</li>
+<li><span class='S5_submenu_item'><a href="/demo/cyan/index.php/features-mainmenu-47/joomla-stuff-mainmenu-26/news-mainmenu-2">News</a>
+</span>
+</li>
+<li>
+<span class='S5_submenu_item'><a href="/demo/cyan/index.php/features-mainmenu-47/joomla-stuff-mainmenu-26/news-feeds-mainmenu-7">News Feeds</a>
+</span>
+</li>
+<li>
+<span class='S5_submenu_item'><a href="/demo/cyan/index.php/features-mainmenu-47/joomla-stuff-mainmenu-26/links-mainmenu-23">Links</a></span>
+</li>
+<li>
+<span class='S5_submenu_item'><a href="/demo/cyan/index.php/features-mainmenu-47/joomla-stuff-mainmenu-26/contact-us">Contact Us</a></span>
+</li>
+<li>
+<span class='S5_submenu_item'><a href="/demo/cyan/index.php/features-mainmenu-47/joomla-stuff-mainmenu-26/wrapper-mainmenu-8">Wrapper</a>
+</span>
+</li>
+</ul>
+</li>
+<li>
+<span class='S5_submenu_item'>
+<span class="s5_img_span">
+<img src="cyan/images/stories/help.png" align="left" alt="joomla-tutorials-12070" /></span>
+<a href="http://www.shape5.com/joomla_tutorials.html" target="_blank">Download Joomla Tutorials</a>
+<span onclick='window.open("http://www.shape5.com/joomla_tutorials.html")' class='S5_subtext'>Practical Help For Joomla</span>
+</span>
+</li>
+<li>
+<span class='S5_submenu_item'>
+<span class="s5_img_span">
+<img src="cyan/images/stories/application_view_tile.png" align="left" alt="style-and-layout-options" />
+</span>
+<a href="javascript:;">Continued Vertex Features</a>
+<span onclick='window.document.location.href="javascript:;"' class='S5_subtext'>More Great S5 Vertex Options</span>
+</span>
+
+</li>
+</ul>
+</li>
+<li >
+<span class='s5_level1_span1'>
+<span class='s5_level1_span2'>
+<a href="javascript:;">Tutorials</a>
+<span onclick='window.document.location.href="javascript:;"' class='S5_parent_subtext'>Hướng dẫn VBB</span>
+</span>
+</span>
+<ul style='float:left;'>
+<li>
+<span class='S5_submenu_item'>
+<a href="http://www.shape5.com/joomla_tutorials.html" target="_blank">Download Joomla Tutorials</a>
+<span onclick='window.open("http://www.shape5.com/joomla_tutorials.html")' class='S5_subtext'>Practical Help For Joomla</span>
+</span>
+</li>
+
+</ul>
+</li>
+</ul>					</div>
+							
+			</div>
+		</div>
+		
+		<div style="clear:both; height:0px"></div>	
+
+	<!-- End Header -->
+
+
+
+
+
+
+
+
+]]></template>
+		<template name="headinclude" templatetype="template" date="1364298950" username="diangucmau" version="4.2.0"><![CDATA[<meta http-equiv="Content-Type" content="text/html; charset={vb:stylevar charset}" />
+<meta id="e_vb_meta_bburl" name="vb_meta_bburl" content="{vb:raw vboptions.bburl}" />
+<base href="{vb:raw basepath}" /><!--[if IE]></base><![endif]-->
+<meta name="generator" content="vBulletin {vb:raw vboptions.templateversion}" />
+<vb:if condition="$stylevar['favicon']">
+	<link rel="Shortcut Icon" href="{vb:stylevar favicon}" type="image/x-icon" />
+</vb:if>
+
+
+<vb:if condition="$show['threadinfo']">
+
+<vb:elseif condition="$show['foruminfo']" />
+		<meta name="keywords" content="{vb:raw foruminfo.title_clean}, {vb:raw vboptions.keywords}" />
+		<meta name="description" content="<vb:if condition="$pagenumber > 1">{vb:rawphrase page_x, {vb:raw pagenumber}}-</vb:if>{vb:raw foruminfo.description_clean}" />
+<vb:else />
+		<meta name="keywords" content="{vb:raw vboptions.keywords}" />
+		<meta name="description" content="{vb:raw vboptions.description}" />
+</vb:if>
+
+<vb:if condition="$show['fb_opengraph']">
+	{vb:raw facebook_opengraph}
+</vb:if>
+
+<vb:if condition="$show['remoteyui']">
+	<vb:if condition="$show['remoteyuicombo']">
+		<script type="text/javascript" src="{vb:stylevar yuicombopath}?{vb:stylevar yuiversion}/build/yuiloader-dom-event/yuiloader-dom-event.js&amp;{vb:stylevar yuiversion}/build/connection/connection-min.js"></script>
+	<vb:else />
+		<script type="text/javascript" src="{vb:stylevar yuipath}/yuiloader-dom-event/yuiloader-dom-event.js"></script>
+	</vb:if>
+</vb:if>
+<script type="text/javascript">
+<!--
+	if (typeof YAHOO === 'undefined') // Load ALL YUI Local
+	{
+		document.write('<script type="text/javascript" src="clientscript/yui/yuiloader-dom-event/yuiloader-dom-event.js?v={vb:raw vboptions.simpleversion}"><\/script>');
+		document.write('<script type="text/javascript" src="clientscript/yui/connection/connection-min.js?v={vb:raw vboptions.simpleversion}"><\/script>');
+		var yuipath = 'clientscript/yui';
+		var yuicombopath = '';
+		var remoteyui = false;
+	}
+	else	// Load Rest of YUI remotely (where possible)
+	{
+		var yuipath = '{vb:stylevar yuipath}';
+		var yuicombopath = '{vb:stylevar yuicombopath}';
+		var remoteyui = true;
+		if (!yuicombopath)
+		{
+			document.write('<script type="text/javascript" src="{vb:stylevar yuipath}/connection/connection-min.js"><\/script>');
+		}
+	}
+	var SESSIONURL = "{vb:raw session.sessionurl_js}";
+	var SECURITYTOKEN = "{vb:raw bbuserinfo.securitytoken}";
+	var IMGDIR_MISC = "{vb:stylevar imgdir_misc}";
+	var IMGDIR_BUTTON = "{vb:stylevar imgdir_button}";
+	var vb_disable_ajax = parseInt("{vb:raw vboptions.disable_ajax}", 10);
+	var SIMPLEVERSION = "{vb:raw vboptions.simpleversion}";
+	var BBURL = "{vb:raw vboptions.bburl}";
+	var LOGGEDIN = {vb:raw bbuserinfo.userid} > 0 ? true : false;
+	var THIS_SCRIPT = "{vb:raw this_script}";
+	var RELPATH = "{vb:raw relpath}";
+	var PATHS = {
+		forum : "{vb:raw vboptions.vbforum_url}",
+		cms   : "{vb:raw vboptions.vbcms_url}",
+		blog  : "{vb:raw vboptions.vbblog_url}"
+	};
+	var AJAXBASEURL = "{vb:raw ajaxbaseurl}";
+// -->
+</script>
+<script type="text/javascript" src="{vb:raw vboptions.bburl}/clientscript/vbulletin-core.js?v={vb:raw vboptions.simpleversion}"></script>
+{vb:raw template_hook.headinclude_javascript}
+
+<vb:if condition="$vboptions['externalrss']">
+	<link rel="alternate" type="application/rss+xml" title="{vb:raw vboptions.bbtitle} {vb:rawphrase rss_feed}" href="{vb:raw vboptions.bburl}/external.php?type=RSS2" />
+	<vb:if condition="$show['foruminfo'] OR $show['threadinfo']">
+		<link rel="alternate" type="application/rss+xml" title="{vb:raw vboptions.bbtitle} - {vb:raw foruminfo.title_clean} - {vb:rawphrase rss_feed}" href="{vb:raw vboptions.bburl}/external.php?type=RSS2&amp;forumids={vb:raw foruminfo.forumid}" />
+	</vb:if>
+</vb:if>
+
+<vb:if condition="$vboptions['storecssasfile']">
+	{vb:cssfile main-rollup.css}
+        {vb:raw template_hook.custom_css_links}
+<vb:else />
+	{vb:cssfile bbcode.css,editor.css,popupmenu.css,reset-fonts.css,vbulletin.css,vbulletin-chrome.css,vbulletin-formcontrols.css{vb:raw template_hook.custom_css_list}}
+</vb:if>
+	<!--[if lt IE 8]>
+	{vb:cssfile popupmenu-ie.css,vbulletin-ie.css,vbulletin-chrome-ie.css,vbulletin-formcontrols-ie.css,editor-ie.css}
+	<![endif]-->
+{vb:raw template_hook.headinclude_css}]]></template>
+		<template name="options.css" templatetype="template" date="1364299097" username="diangucmau" version="4.2.0"><![CDATA[@charset "UTF-8";
+/* CSS Document */
+/* this might need to get renamed */
+/* wgo */
+.wgo_block {
+	display:block;
+	margin-top: {vb:math {vb:stylevar padding}*1.5};
+	-moz-border-radius-top{vb:stylevar right}: {vb:stylevar border_radius};
+	-moz-border-radius-top{vb:stylevar left}: {vb:stylevar border_radius};
+	-webkit-border-top-{vb:stylevar right}-radius: {vb:stylevar border_radius};
+	-webkit-border-top-{vb:stylevar left}-radius: {vb:stylevar border_radius};
+	border-top-{vb:stylevar right}-radius: {vb:stylevar border_radius};
+	border-top-{vb:stylevar left}-radius: {vb:stylevar border_radius};
+	-moz-box-shadow: -2px 2px 2px {vb:stylevar forumbits_shadow_color};
+	-webkit-box-shadow: -2px 2px 2px {vb:stylevar forumbits_shadow_color};
+	box-shadow: -2px 2px 2px {vb:stylevar forumbits_shadow_color};
+	margin-bottom: {vb:stylevar padding};
+-webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+
+}
+
+.wgo_block .blockbody {
+	border: {vb:stylevar secondarycontent_border};
+	background: {vb:stylevar secondarycontent_background};
+	_background-image: none;
+}
+
+.wgo_block .blockhead {
+	font-size:{vb:stylevar secondarycontent_header_font.fontSize}{vb:stylevar secondarycontent_header_font.units};
+	font-weight:{vb:stylevar secondarycontent_header_font.fontWeight};
+	color: {vb:stylevar secondarycontent_header_color};
+	background: {vb:stylevar secondarycontent_header_background};
+	_background-image: none;
+	border: {vb:stylevar secondarycontent_header_border};
+}
+
+.wgo_block .time {
+	color: {vb:stylevar secondarycontent_color};
+}
+
+.wgo_block .section {
+	display:block;
+	padding: 0 0 0.5em;
+	font: {vb:stylevar secondarycontent_font};
+	color: {vb:stylevar secondarycontent_color};
+	clear:both;
+	width: 100%;
+}
+
+.wgo_block .blocksubhead {
+	padding-{vb:stylevar left}: {vb:stylevar padding};
+	font: {vb:stylevar secondarycontent_subheader_fontSize};
+	color: {vb:stylevar secondarycontent_color};
+	background: transparent;
+	padding-bottom: {vb:math {vb:stylevar padding}/2};
+}
+
+.wgo_block .section:first-child .blocksubhead {
+	border-top: 0;
+}
+
+.wgo_block .section .blocksubhead img {
+	padding-{vb:stylevar right}: {vb:math {vb:stylevar padding}/2};
+}
+
+.wgo_block .section div, .wgo_block .section ol {
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar padding}*2};
+}
+
+.wgo_block .section div p {
+	padding-bottom: {vb:math {vb:stylevar padding}/2};
+}
+
+.wgo_block .section div ol {
+	padding-{vb:stylevar left}: 0;
+}
+
+.wgo_block .section dl dt {
+	display:inline;
+}
+
+.wgo_block .section dl dt:after {
+	content:":";
+}
+
+.wgo_block .section dl dd {
+	display: inline;
+	margin-{vb:stylevar right}:{vb:math {vb:stylevar padding}/2};
+}
+
+.wgo_block .section dl.icon_legends dt {
+	float: {vb:stylevar left};
+	clear: {vb:stylevar right};
+	margin-{vb:stylevar right}: {vb:math {vb:stylevar padding}/2};
+}
+
+.wgo_block .section dl.icon_legends dt:after {
+	content: "";
+}
+
+.wgo_block .section dl.icon_legends dd {
+	margin-bottom: {vb:math {vb:stylevar padding}/2};
+	display:block;
+}
+
+#wgo_onlineusers .commalist li {
+	margin-{vb:stylevar left}: 1px; 
+}
+
+#wgo_birthdays .commalist li { 
+	margin-{vb:stylevar left}: 1px; 
+}
+
+.forum_info {
+	margin-bottom: {vb:math {vb:stylevar padding}/2};
+	float: {vb:stylevar left};
+	width: 100%;
+	clear:both;
+	position: relative;
+	top: -{vb:stylevar padding};
+	color: {vb:stylevar secondarycontent_color};
+	font: {vb:stylevar secondarycontent_font};
+}
+
+.forum_info .blockhead {
+	font-size:{vb:stylevar secondarycontent_header_font.fontSize}{vb:stylevar secondarycontent_header_font.units};
+	font-weight:{vb:stylevar secondarycontent_header_font.fontWeight};
+	color: {vb:stylevar secondarycontent_header_color};
+	background: {vb:stylevar secondarycontent_header_background};
+	_background-image: none;
+	border: {vb:stylevar secondarycontent_header_border};
+	margin-top: {vb:math {vb:stylevar padding}/2};
+	-moz-box-shadow: -2px 0 2px {vb:stylevar shadow_color};
+	-webkit-box-shadow: -2px 0 2px {vb:stylevar shadow_color};
+	box-shadow: -2px 0 2px {vb:stylevar shadow_color};
+}
+
+.forum_info a.collapse {
+	position: absolute;
+	top: {vb:math {vb:math {vb:math {vb:stylevar padding}+{vb:math  {vb:stylevar foruminfo_header_font.fontSize}*{vb:stylevar line_height}}-13}/2}+1};
+}
+
+.forum_info .blockbody {
+	border-bottom: {vb:stylevar secondarycontent_border};
+	border-{vb:stylevar left}: {vb:stylevar secondarycontent_border};
+	border-{vb:stylevar right}: {vb:stylevar secondarycontent_border};
+	background: {vb:stylevar secondarycontent_background};
+	_background-image: none;
+	-moz-box-shadow: -2px 2px 2px {vb:stylevar shadow_color};
+	-webkit-box-shadow: -2px 2px 2px {vb:stylevar shadow_color};
+	box-shadow: -2px 2px 2px {vb:stylevar shadow_color};
+}
+
+.forum_info_subblock, .info_subblock {
+	padding: {vb:math {vb:stylevar padding}/2} {vb:stylevar padding};
+}
+
+.forum_info_form .options_input_wrapper {
+	float: {vb:stylevar right};
+	display: inline-block;
+}
+
+.forum_info_form .options_input_block {
+	float: {vb:stylevar left};
+	display:inline-block;
+	padding: {vb:stylevar padding} {vb:stylevar padding};
+}
+
+.forum_info_form .options_input_block .description {
+	display: none;
+}
+
+.forum_info_form .options_input_block label {
+	display:block;
+}
+
+.forum_info_form .options_input_block .checkradio li {
+	display:inline-block;
+	margin-{vb:stylevar right}: {vb:stylevar padding};
+}
+
+.forum_info_form .options_input_block .button {
+	position: relative;
+	margin-top: {vb:math {vb:stylevar font.fontSize}*{vb:stylevar line_height}}{vb:stylevar font.units};
+}
+
+.forum_info .options_block_container, .thread_info .options_block_container {
+	width: 100%;
+	float: {vb:stylevar left};
+	display:block;
+	position: relative;
+	top: 0;
+	padding-top:0;
+	margin-top: 0;
+}
+
+.forum_info .options_block, .thread_info .options_block, .forum_info .options_block2, .thread_info .options_block2 {
+	width: 49.5%;
+	float: {vb:stylevar left};
+	clear: {vb:stylevar right};
+	position: relative;
+}
+
+.forum_info .options_block2 {
+	margin-{vb:stylevar left}: 1%;
+}
+
+.thread_info .options_block2 {
+	margin-{vb:stylevar right}: 1%;
+}
+
+dl.icon_legends dt {
+	float: {vb:stylevar left};
+	clear: {vb:stylevar right};
+	margin-{vb:stylevar right}: {vb:math {vb:stylevar padding}/2};
+}
+
+dl.icon_legends dt:after {
+	content: "";
+}
+
+dl.icon_legends dd {
+	margin-bottom: {vb:math {vb:stylevar padding}/2};
+	display:block;
+}
+
+.info_subblock ul li {
+	margin-bottom: {vb:math {vb:stylevar padding}/5};
+}
+
+.bbcodeblock ul li a, .rules_link a {
+	font-weight:bold;
+}
+
+
+.thread_info {
+	margin-bottom: {vb:math {vb:stylevar padding}/2};
+	float: {vb:stylevar left};
+	width: 100%;
+	clear:both;
+	position: relative;
+	top: -{vb:stylevar padding};
+	margin-bottom: 0;
+	color: {vb:stylevar secondarycontent_color};
+	font: {vb:stylevar secondarycontent_font};
+}
+
+.thread_info a {
+	font-weight:{vb:stylevar secondarycontent_font.fontWeight};
+}
+
+.thread_info h4 {
+	font-size:{vb:stylevar secondarycontent_header_font.fontSize}{vb:stylevar secondarycontent_header_font.units};
+	font-weight:{vb:stylevar secondarycontent_header_font.fontWeight};
+	color: {vb:stylevar secondarycontent_header_color};
+	background: {vb:stylevar secondarycontent_header_background};
+	_background-image: none;
+	border: {vb:stylevar secondarycontent_header_border};
+	margin-top: {vb:math {vb:stylevar padding}/2};
+	-moz-box-shadow: -2px 2px 2px {vb:stylevar shadow_color};
+	-webkit-box-shadow: -2px 2px 2px {vb:stylevar shadow_color};
+	box-shadow: -2px 2px 2px {vb:stylevar shadow_color};
+}
+
+.thread_info h5 {
+	display: none;
+}
+
+.thread_info .blockbody {
+	border-bottom: {vb:stylevar secondarycontent_border};
+	border-{vb:stylevar left}: {vb:stylevar secondarycontent_border};
+	border-{vb:stylevar right}: {vb:stylevar secondarycontent_border};
+	background: {vb:stylevar secondarycontent_background};
+	_background-image: none;
+	-moz-box-shadow: -2px 2px 2px {vb:stylevar shadow_color};
+	-webkit-box-shadow: -2px 2px 2px {vb:stylevar shadow_color};
+	box-shadow: -2px 2px 2px {vb:stylevar shadow_color};
+}
+
+.thread_info .inner_block, .info_subblock {
+	padding: {vb:math {vb:stylevar padding}/2-1} {vb:stylevar padding};
+}
+
+ul.icon_list li {
+	display:block;
+	width: 100%;
+	margin-bottom: {vb:math {vb:stylevar padding}/2};
+}
+
+.inner_block .commalist {
+	margin-top: 5px;
+}
+
+#thread_info_block_1 {
+	width:34.9%;
+	float:{vb:stylevar left};
+}
+
+#thread_info_block_1 > * {
+	margin-{vb:stylevar right}:2px;
+}
+
+#thread_info_block_2 {
+	width:65%;
+	float:{vb:stylevar right};
+}
+
+#forumrules {
+	border: 0;
+	background: transparent;
+}
+
+/* Similar Threads */
+.similar_threads {
+	clear:both;
+}
+
+.similar_threads li {
+	padding:{vb:stylevar blockrow_padding};
+}
+
+ol.similar_threads li h6 a {
+	font: {vb:stylevar secondarycontent_font};
+}
+
+.similar_threads .starter_forum {
+	font-size:{vb:stylevar small_fontSize};
+}
+
+.similar_threads .titleblock {float:{vb:stylevar left}}
+.similar_threads .dateblock {float:{vb:stylevar right}; text-align:{vb:stylevar right}}]]></template>
+		<template name="reset-fonts.css" templatetype="template" date="1334137082" username="Địa Ngục Máu" version="4.1.8"><![CDATA[/*
+Copyright (c) 2009, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.7.0
+*/
+html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align: {vb:stylevar left};}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}body{font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}select,input,button,textarea,button{font:99% arial,helvetica,clean,sans-serif;}table{font-size:inherit;font:100%;}pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}]]></template>
+		<template name="vbulletin-chrome.css" templatetype="template" date="1334162882" username="Địa Ngục Máu" version="4.1.8"><![CDATA[@charset "UTF-8";
+/* CSS Document */
+
+/**
+* CHROME: HEADER, NAVBAR, BREADCRUMB, FOOTER
+*/
+
+/*************************************************/
+/* HEADER */
+
+.above_body {
+	background:{vb:stylevar header_background};
+	_background-image: none;
+	margin: {vb:stylevar bodyheader_margin};
+	padding: {vb:stylevar header_padding};
+	-moz-border-radius-bottom{vb:stylevar left}:{vb:stylevar border_radius};
+	-moz-border-radius-bottom{vb:stylevar right}:{vb:stylevar border_radius};
+	-webkit-border-bottom-{vb:stylevar left}-radius:{vb:stylevar border_radius};
+	-webkit-border-bottom-{vb:stylevar right}-radius:{vb:stylevar border_radius};
+	border-bottom-{vb:stylevar left}-radius:{vb:stylevar border_radius};
+	border-bottom-{vb:stylevar right}-radius:{vb:stylevar border_radius};
+}
+
+.doc_header {
+	_background-image:none;
+	border:{vb:stylevar header_border};
+	color:{vb:stylevar header_color};
+	font:{vb:stylevar header_font};
+	position:relative;
+	min-height:35px;
+	/*padding-bottom:{vb:math {vb:stylevar padding}/2};*/
+	/*margin-bottom:{vb:math 2 * {vb:stylevar navbar_tab_size.height}}px;*/
+}
+.doc_header a { color:{vb:stylevar header_link_color}; }
+.doc_header a:hover { color:{vb:stylevar header_linkhover_color}; }
+.doc_header hr { display: none; }
+.logo-image {
+        float: {vb:stylevar left};
+        clear: {vb:stylevar right};
+        min-height: 2em;
+        height: auto !important;
+        padding: {vb:stylevar titleimage_padding};
+}
+
+.toplinks {
+	position:absolute;
+	{vb:stylevar right}:{vb:math {vb:stylevar padding}*2};
+	top:0;
+	color:{vb:stylevar toplinks_link_color};
+	font: {vb:stylevar header_font};
+	text-align:{vb:stylevar right};
+	background:{vb:stylevar toplinks_background};
+}
+
+.toplinks ul.isuser li#fb_headerbox.hidden,
+.toplinks ul.nouser li#fb_headerbox.hidden {
+	display: none;
+}
+.toplinks ul.isuser li#fb_headerbox a,
+.toplinks ul.nouser li#fb_headerbox a {
+	padding-top: 0;
+	background: none;
+	cursor: pointer;
+}
+	li#fb_headerbox a#fb_link {
+		position: relative;
+	}
+	li#fb_headerbox a#fb_link #fb_squarepic{
+		position:absolute;
+		right:-6px;
+		top:5px;
+		z-index:1;
+		border:1px solid #B3CCE7;
+		padding:1px;
+	}
+	li#fb_headerbox a#fb_link #fb_icon{
+		position:absolute;
+		right:10px;
+		top:1px;
+		z-index:2;
+	}
+
+.toplinks ul.isuser, .toplinks ul.nouser {
+	display:block;
+	float: {vb:stylevar right};
+	clear: {vb:stylevar left};
+	list-style: none;
+}
+
+.toplinks ul.isuser li {
+	display:inline;
+	position: relative; 
+	color: {vb:stylevar header_color};
+	float: {vb:stylevar right};
+	clear: {vb:stylevar left};
+	padding-{vb:stylevar right}: 10px;
+        background:{vb:stylevar toplinks_background.backgroundColor};
+}
+
+.toplinks ul.isuser .popupbody li {
+	display:block;
+	float: none;
+	clear: none;
+	padding:0;
+	margin:0;
+}
+
+.toplinks ul.isuser li.welcomelink {
+	display: block;
+	float: {vb:stylevar right};
+	clear: {vb:stylevar left};
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-{vb:stylevar left}: 4px;
+	padding-{vb:stylevar right}: 4px;
+	color: {vb:stylevar toplinks_text};
+}
+
+.toplinks ul.isuser li.logoutlink {
+	top: 0;
+}
+
+.toplinks ul.isuser li a {
+	display: block;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-{vb:stylevar left}: 4px;
+	padding-{vb:stylevar right}: 4px;
+	font-weight:bold;
+	color:{vb:stylevar toplinks_link_color};
+}
+
+.toplinks ul.isuser li li a {
+	float: none;
+	margin-{vb:stylevar left}: 0;
+}
+
+.toplinks ul.isuser li.welcomelink a {
+	display:inline;
+	float: none;
+	clear: none;
+	margin-{vb:stylevar left}: 0;
+}
+
+.toplinks ul.isuser li a:hover {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-{vb:stylevar left}: 4px;
+	padding-{vb:stylevar right}: 4px;
+	background: {vb:stylevar navbar_tab_background.backgroundColor};
+	color:{vb:stylevar toplinks_linkhover_color};
+}
+
+.toplinks ul.nouser li {
+	display:inline;
+}
+
+.toplinks ul.nouser li a {
+	float:{vb:stylevar left};
+	clear:{vb:stylevar right};
+	color:{vb:stylevar toplinks_link_color};
+}
+
+.toplinks ul.nouser li a{
+	display: block;
+	float: {vb:stylevar right};
+	clear: {vb:stylevar left};
+	color:{vb:stylevar toplinks_link_color};
+	position: relative;
+	padding: 6px {vb:stylevar padding} 0 {vb:stylevar padding};
+	background: {vb:stylevar navbar_tab_background.backgroundColor};
+	-moz-border-radius-bottom{vb:stylevar left}: {vb:stylevar border_radius};
+	-webkit-border-bottom-{vb:stylevar left}-radius: {vb:stylevar border_radius};
+	border-bottom-{vb:stylevar left}-radius: {vb:stylevar border_radius};
+	-moz-border-radius-bottom{vb:stylevar right}:{vb:stylevar border_radius};
+	-webkit-border-bottom-{vb:stylevar right}-radius:{vb:stylevar border_radius};
+	border-bottom-{vb:stylevar right}-radius:{vb:stylevar border_radius};
+	height:{vb:math 8px + {vb:math {vb:stylevar font.fontSize}-1}};
+	font-weight:bold;
+	font-size:{vb:stylevar mid_fontSize};
+	margin-{vb:stylevar right}: 10px;
+}
+
+.toplinks ul.nouser li a:hover {
+	background: {vb:stylevar navbar_tab_background.backgroundColor};
+	color:{vb:stylevar toplinks_linkhover_color};
+}
+
+.toplinks ul.isuser li.popupmenu, .toplinks ul.isuser .notifications, .toplinks ul.isuser .nonotifications  {
+	color: {vb:stylevar navbar_selected_popup_body_a_Color};
+	position: relative;
+}
+
+.toplinks ul.isuser li.popupmenu ul li {
+	position: relative;
+	top: 0;
+	margin: 0;
+	text-align: {vb:stylevar left};
+}
+
+.toplinks ul.isuser .notifications .popupbody {
+	background: {vb:stylevar navbar_tab_background.backgroundColor};
+	border: 1px solid {vb:stylevar navbar_tab_background.backgroundColor}; /* makes it look consistent with the popup background */
+}
+
+.toplinks ul.isuser .notifications .popupbody li a{
+	color: {vb:stylevar navbar_selected_popup_body_a_Color};
+	padding: 0 {vb:math {vb:stylevar padding}/2};
+	font-weight: normal;
+	background:{vb:stylevar navbar_popup_link_background};
+	border-top:1px solid {vb:stylevar navbar_tab_background.backgroundColor}; /* makes it look consistent with the popup background */
+	/*position: relative;*/
+	text-align: {vb:stylevar left};
+	padding-{vb:stylevar left}: 30px;
+	line-height: {vb:stylevar navbar_tab_size.height}px;
+}
+
+.toplinks ul.isuser .notifications .popupbody li a span {
+	position: absolute;
+	line-height: {vb:stylevar navbar_tab_size.height}px;
+	{vb:stylevar left}: {vb:math {vb:stylevar padding}/2};
+}
+
+.toplinks ul.isuser .notifications .popupbody li a:hover {
+	background:{vb:stylevar imodhilite_backgroundColor};
+	color: {vb:stylevar navbar_selected_popup_body_a_Color};
+	text-decoration: underline;
+}
+
+.toplinks form {
+	min-width: 220px;
+	display:block;
+	margin-{vb:stylevar right}: 10px;
+	text-align: {vb:stylevar left};
+	float: {vb:stylevar right};
+	clear: {vb:stylevar left};
+	_width:20%;
+}
+
+.toplinks .logindetails {
+	padding: 0 {vb:stylevar padding};
+	text-align: center;
+	background: {vb:stylevar navbar_tab_background.backgroundColor};
+	-moz-border-radius-bottom{vb:stylevar left}: {vb:stylevar border_radius};
+	-webkit-border-bottom-{vb:stylevar left}-radius: {vb:stylevar border_radius};
+	border-bottom-{vb:stylevar left}-radius: {vb:stylevar border_radius};
+	-moz-border-radius-bottom{vb:stylevar right}:{vb:stylevar border_radius};
+	-webkit-border-bottom-{vb:stylevar right}-radius:{vb:stylevar border_radius};
+	border-bottom-{vb:stylevar right}-radius:{vb:stylevar border_radius};
+	height: {vb:stylevar navbar_tab_size.height}px;
+}
+
+.toplinks form input {
+	margin: 3px 0 0;
+	vertical-align: baseline;
+	font-size: {vb:math {vb:stylevar font.fontSize}-2}{vb:stylevar font.units};
+	padding: 1px;
+	border: 0;
+}
+
+.toplinks form input.textbox {
+	color: {vb:stylevar toplinks_form_input};
+}
+
+.toplinks form input.default-value {
+	color: {vb:stylevar toplinks_form_input_defaultValue.color};
+}
+
+.toplinks .remember {
+	margin: -{vb:math {vb:stylevar padding}/3} 0 0 {vb:math {vb:stylevar padding}*2};
+	font-size: {vb:math {vb:stylevar font.fontSize}-3}{vb:stylevar font.units};
+        color: {vb:stylevar toplinks_text};
+}
+
+.toplinks .remember input {
+	vertical-align: baseline;
+}
+
+.cb_cookieuser_navbar{
+	position: relative;
+	top: 2px;
+}
+
+.notifications a.popupctrl:link, .notifications a.popupctrl:visited,
+.toplinks a:link, .toplinks a:visited {
+	color: {vb:stylevar toplinks_link_color};
+	text-decoration:none;
+}
+
+.notifications>a:link, .notifications>a:visited {
+        /* ie6 hack: broke this rule out on its own: the > selector makes ie6 ignore rule entirely. */
+	color: {vb:stylevar toplinks_link_color};
+	text-decoration:none;
+}
+
+.notifications > a:hover,
+.notifications a.popupctrl:hover {
+	color: {vb:stylevar toplinks_linkhover_color};
+}
+
+.notifications {
+	font-size:{vb:stylevar small_fontSize};
+	color: {vb:stylevar toplinks_link_color};
+	-moz-border-radius-bottom{vb:stylevar left}: 5px;
+	-webkit-border-bottom-{vb:stylevar left}-radius: 5px;
+	border-bottom-{vb:stylevar left}-radius: 5px;
+	-moz-border-radius-bottom{vb:stylevar right}: 5px;
+	-webkit-border-bottom-{vb:stylevar right}-radius: 5px;
+	border-bottom-{vb:stylevar right}-radius: 5px;
+
+}
+
+.notifications a {
+	text-decoration:none;
+}
+
+.notifications .popupbody {
+	color:{vb:stylevar navbar_selected_popup_body_a_Color};
+}
+
+.header hr,
+.header h2 {
+	display:none;
+}
+
+/*************************************************/
+/* NAVBAR */
+
+.navbar {
+	position:relative;
+	height:{vb:math {vb:stylevar navbar_tab_border.borderWidth} + {vb:stylevar navbar_tab_size.height} * 2}px;
+	background:{vb:stylevar navbar_background};
+	margin:{vb:stylevar navbar_margin};
+	color:{vb:stylevar navbar_color};
+	font:{vb:stylevar navbar_font};
+	border:{vb:stylevar navbar_border};
+	-moz-border-radius-bottom{vb:stylevar left}:{vb:stylevar border_radius};
+	-moz-border-radius-bottom{vb:stylevar right}:{vb:stylevar border_radius};
+	-webkit-border-bottom-{vb:stylevar left}-radius:{vb:stylevar border_radius};
+	-webkit-border-bottom-{vb:stylevar right}-radius:{vb:stylevar border_radius};
+	border-bottom-{vb:stylevar left}-radius:{vb:stylevar border_radius};
+	border-bottom-{vb:stylevar right}-radius:{vb:stylevar border_radius};
+}
+.navbar a { color:{vb:stylevar navbar_link_color}; }
+.navbar a:hover { color:{vb:stylevar navbar_linkhover_color}; }
+
+.navtabs {
+	background:{vb:stylevar navbar_tab_background};
+	padding: {vb:stylevar navbar_padding};
+	height: {vb:stylevar navbar_tab_size.height}px;
+        _background-image:none;
+}
+
+.navtabs li:first-child {
+	border-{vb:stylevar left}: {vb:stylevar navbar_tab_border};
+}
+
+.navtabs ul {
+/*	background: {vb:stylevar navbar_background.backgroundColor}; */
+	position:absolute;
+	top:{vb:math {vb:stylevar navbar_tab_size.height}px + {vb:stylevar navbar_padding.paddingTop}};
+	{vb:stylevar left}:0px;
+	width:100%;
+        border-top:{vb:stylevar navbar_tab_border};
+	-moz-border-radius-bottom{vb:stylevar left}:{vb:stylevar border_radius};
+	-moz-border-radius-bottom{vb:stylevar right}:{vb:stylevar border_radius};
+	-webkit-border-bottom-{vb:stylevar left}-radius:{vb:stylevar border_radius};
+	-webkit-border-bottom-{vb:stylevar right}-radius:{vb:stylevar border_radius};
+	border-bottom-{vb:stylevar left}-radius:{vb:stylevar border_radius};
+	border-bottom-{vb:stylevar right}-radius:{vb:stylevar border_radius};
+	margin-{vb:stylevar right}:-{vb:stylevar navbar_tab_size.width}px;
+/* This is to fix RTL menu issue under Opera */
+	direction:ltr;
+}
+
+.navtabs li {
+	float:{vb:stylevar left};
+	border-{vb:stylevar right}: {vb:stylevar navbar_tab_border};
+}
+
+.navtabs ul li:first-child {
+	margin-{vb:stylevar left}: 20px;
+	border-{vb:stylevar left}: 0;
+}
+
+#navtabs .popupmenu ul li:first-child {
+	margin-{vb:stylevar left}: 0px;
+}
+
+.navtabs ul li {
+	border-{vb:stylevar right}: 0;
+	position: relative;
+}
+
+.navtabs li a {
+	height:{vb:stylevar navbar_tab_size.height}px;
+	line-height:{vb:stylevar navbar_tab_size.height}px;
+	padding:0 {vb:stylevar padding};
+}
+
+.navtabs li a.navtab {
+	border-top: {vb:stylevar navbar_tab_bevel};
+	border-{vb:stylevar left}: {vb:stylevar navbar_tab_bevel};
+	display:block;
+	background:{vb:stylevar navbar_tab_background};
+        _background-image:none;
+	min-width:{vb:math {vb:stylevar navbar_tab_size.width} - 2 * {vb:stylevar padding}};
+	width:auto !important;
+	width:{vb:math {vb:stylevar navbar_tab_size.width} - 2 * {vb:stylevar padding}};
+	_min-width:{vb:math {vb:stylevar navbar_tab_size.width} - 0.5 * {vb:stylevar padding}};
+	_width:auto !important;
+	_width:{vb:math {vb:stylevar navbar_tab_size.width} - 0.5 * {vb:stylevar padding}};
+	text-align:center;
+	color: {vb:stylevar navbar_tab_color};
+	font:{vb:stylevar navbar_tab_font};
+	text-decoration:none;
+	line-height:{vb:stylevar navbar_tab_size.height}px;
+}
+
+.navtabs li a.navtab:hover {
+	background:{vb:stylevar navbar_tab_selected_background} 0 -{vb:stylevar navbar_tab_selected_top_width}px;
+        _background-image:none;
+	/*color:{vb:stylevar linkhover_color};*/
+	color:{vb:stylevar navbar_tab_linkhover_color};
+}
+
+.navtabs li.selected {
+	height:{vb:stylevar navbar_tab_size.height}px;
+	color:{vb:stylevar navbar_tab_linkhover_color};
+}
+
+.navtabs li.selected a.navtab {
+	color:{vb:stylevar navbar_tab_linkhover_color};
+	background:{vb:stylevar navbar_tab_selected_background};
+        _background-image:none;
+	position:relative;
+	top:-{vb:stylevar navbar_tab_selected_top_width}px;
+	padding-top:{vb:stylevar navbar_tab_selected_top_width}px;
+	z-index:10;
+}
+.navtabs li.selected li a,
+.navbar_advanced_search li a {
+	text-decoration:none;
+	font:{vb:stylevar navbar_font};
+	line-height: {vb:stylevar navbar_tab_size.height}px;
+}
+.navtabs li.selected li a {
+	color:{vb:stylevar navbar_link_color};
+	padding:{vb:math {vb:stylevar padding}/5} {vb:math {vb:stylevar padding}/2};
+}
+
+.navbar_advanced_search li {
+	height: {vb:stylevar navbar_tab_size.height}px;
+	display:block;
+	clear:both;
+}
+
+.navbar_advanced_search li a {
+	color:{vb:stylevar navbar_link_color};
+}
+
+.navbar_advanced_search li a:hover {
+	color:{vb:stylevar navbar_linkhover_color};
+	text-decoration:{vb:stylevar linkhover_textDecoration};
+}
+
+.navtabs li.selected li a:hover {
+	color:{vb:stylevar navbar_linkhover_color};
+	text-decoration:{vb:stylevar linkhover_textDecoration};
+}
+
+.navtabs li.selected .popupbody li > a {
+	padding:{vb:stylevar popup_padding}px {vb:stylevar padding};
+	text-indent: 0;
+	color: {vb:stylevar navbar_selected_popup_body_a_Color};
+}
+
+.navtabs li.selected li a.popupctrl {
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;	
+	border-radius:3px;
+	border:solid {vb:stylevar lightweightbox_border.borderWidth}px transparent;
+	_border: none;
+	background:transparent url({vb:stylevar imgdir_misc}/arrow.png) no-repeat {vb:stylevar right} center;
+	padding-{vb:stylevar right}:15px;
+        _background-image:url('{vb:stylevar imgdir_misc}/arrow.gif');
+	color: {vb:stylevar navbar_link_color};
+}
+
+.toplinks .notifications a.popupctrl {	
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-{vb:stylevar left}: 4px;
+	padding-{vb:stylevar right}: 15px;
+	background: {vb:stylevar navbar_background_notify.backgroundColor} url({vb:stylevar imgdir_misc}/arrow.png) {vb:stylevar right} center no-repeat ;
+	-moz-border-radius-bottom{vb:stylevar left}: {vb:stylevar border_radius};
+	-moz-border-radius-bottom{vb:stylevar right}: {vb:stylevar border_radius};
+	-webkit-border-bottom-{vb:stylevar right}-radius:{vb:stylevar border_radius};
+	-webkit-border-bottom-{vb:stylevar left}-radius: {vb:stylevar border_radius};
+	border-bottom-{vb:stylevar right}-radius:{vb:stylevar border_radius};
+	border-bottom-{vb:stylevar left}-radius: {vb:stylevar border_radius};
+       _background-image:url('{vb:stylevar imgdir_misc}/arrow.gif');
+}
+
+.toplinks .nonotifications a.popupctrl {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-{vb:stylevar left}: 4px;
+	padding-{vb:stylevar right}: 15px;
+	background: transparent url({vb:stylevar imgdir_misc}/arrow.png) no-repeat {vb:stylevar right} center;
+        _background-image:url('{vb:stylevar imgdir_misc}/arrow.gif');
+}
+
+.toplinks .notifications a.popupctrl:hover, .toplinks .nonotifications a.popupctrl:hover, .toplinks .nonotifications a.popupctrl.active , .toplinks .notifications a.popupctrl.active{
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-{vb:stylevar left}: 4px;
+	padding-{vb:stylevar right}: 15px;
+	background: {vb:stylevar navbar_tab_background.backgroundColor} url({vb:stylevar imgdir_misc}/arrow.png) no-repeat {vb:stylevar right} center;
+        _background-image:url('{vb:stylevar imgdir_misc}/arrow.gif');
+}
+
+.toplinks .notifications a.popupctrl:hover {
+	padding-top: 3px;
+}
+
+.navtabs li.selected li:hover a.popupctrl {
+	border-color:{vb:stylevar navbar_background.backgroundColor};
+	background-color:{vb:stylevar navbar_tab_background.backgroundColor};
+	text-decoration:none;
+}
+
+.navtabs li.selected li:hover a.popupctrl.active,
+.navtabs li.selected li a.popupctrl.active {
+	border-color:{vb:stylevar navbar_tab_background.backgroundColor};
+	background-color:{vb:stylevar navbar_tab_background.backgroundColor};
+	color:{vb:stylevar navbar_link_color};
+	text-decoration:none;
+}
+
+.navtabs .popupbody {
+	border: 1px solid {vb:stylevar navbar_tab_background.backgroundColor};
+	background: {vb:stylevar navbar_tab_background.backgroundColor};
+	width: auto;
+}
+
+.navtabs .popupbody li {
+	float:none;
+	border-top: 1px solid {vb:stylevar navbar_tab_background.backgroundColor};
+}
+
+.navtabs .popupbody li a:hover {
+	background-color: {vb:stylevar imodhilite_backgroundColor};
+}
+
+.nonotifications div.popupbody {
+	min-width: 170px;
+	width: auto !important;
+	width: 170px;
+	background: {vb:stylevar navbar_tab_background.backgroundColor};
+	border: 1px solid {vb:stylevar navbar_tab_background.backgroundColor};
+}
+
+.nonotifications .popupbody p {
+	color: {vb:stylevar navbar_selected_popup_body_a_Color};
+	text-align: {vb:stylevar left};
+	background: {vb:stylevar navbar_popup_link_background};
+	border-top: 1px solid {vb:stylevar navbar_tab_background.backgroundColor};
+	padding: 0;
+	text-indent: {vb:math {vb:stylevar padding}/2};
+	line-height: {vb:stylevar navbar_tab_size.height}px;
+	display:block;
+}
+
+.toplinks .nonotifications .popupbody a {
+	background: {vb:stylevar navbar_popup_link_background};
+	color: {vb:stylevar navbar_selected_popup_body_a_Color};
+	float: none;
+	clear: none;
+	padding: 0 {vb:math {vb:stylevar padding}/2};
+	margin-{vb:stylevar left}: 0;
+	text-align: {vb:stylevar left};
+	line-height: {vb:stylevar navbar_tab_size.height}px;
+}
+
+.toplinks .nonotifications .popupbody a:hover {
+	background:{vb:stylevar imodhilite_backgroundColor};
+	color: {vb:stylevar navbar_selected_popup_body_a_Color};
+	text-decoration: {vb:stylevar linkhover_textDecoration};
+	padding: 0 {vb:math {vb:stylevar padding}/2};
+}
+
+.globalsearch {
+	position:absolute;
+	width:180px;
+	{vb:stylevar right}: {vb:math {vb:stylevar padding}*2};
+	top: {vb:stylevar navbar_padding.paddingTop}{vb:stylevar navbar_padding.units};
+	float: {vb:stylevar right};
+	clear: {vb:stylevar left};
+	text-align:{vb:stylevar right};
+	line-height: 1.0em;
+	display:block;
+}
+
+.navbar_search {
+	position:relative;
+	width:180px;
+	{vb:stylevar right}: -{vb:math {vb:stylevar padding}*2};
+	display:block;
+}
+
+.navbar_search input {
+	font-size: {vb:math {vb:stylevar font.fontSize}-2}{vb:stylevar font.units};
+	vertical-align:middle;
+	padding: 1px;
+	border:{vb:stylevar navbarsearch_borderWidth} solid {vb:stylevar navbarsearch_input_borderColor};
+}
+
+.globalsearch .textboxcontainer {
+	height: {vb:stylevar navbar_tab_size.height}px;
+	border-{vb:stylevar left}:{vb:stylevar navbar_tab_border};
+	display:inline-block;
+	float: {vb:stylevar left};
+	text-align:center;
+}
+
+.globalsearch .textboxcontainer span {
+	border-top: {vb:stylevar navbar_tab_bevel};
+	border-{vb:stylevar left}: {vb:stylevar navbar_tab_bevel};
+	display: inline-block;
+	height: {vb:math {vb:stylevar navbar_tab_size.height}-4}px;
+	padding-{vb:stylevar left}: 2px;
+	padding-{vb:stylevar right}: 2px;
+	padding-top: 3px;
+	margin-bottom: 1px;
+	width: 147px;
+        _width:140px; /* ie6 hack */
+}
+
+.globalsearch input.textbox {
+	width: 120px;
+}
+
+.toplinks form input.loginbutton {
+	font-size: {vb:math {vb:stylevar font.fontSize}-2}{vb:stylevar font.units};
+	padding: 0 {vb:math {vb:stylevar padding}/2};
+	background-color:  {vb:stylevar toplinks_input_login_backgroundColor};
+	border:solid 1px {vb:stylevar heavy_border.borderColor};
+}
+
+.globalsearch .buttoncontainer {
+	height: {vb:stylevar navbar_tab_size.height}px;
+	border-{vb:stylevar left}:{vb:stylevar navbar_tab_border};
+	display:inline-block;
+	border-{vb:stylevar right}:{vb:stylevar navbar_tab_border};
+	width: 25px;
+	overflow: hidden;
+	float: {vb:stylevar right};
+}
+
+.globalsearch .buttoncontainer span{
+	border-top: {vb:stylevar navbar_tab_bevel};
+	border-{vb:stylevar left}: {vb:stylevar navbar_tab_bevel};
+	height: {vb:math {vb:stylevar navbar_tab_size.height}-3}px;
+	padding-{vb:stylevar left}: 4px;
+	padding-top: {vb:math {vb:math {vb:stylevar navbar_tab_size.height}-21}/2}px;
+	display:inline-block;
+}
+
+.globalsearch .searchbutton {
+	border: 0;
+	padding: 0;
+	width: 22px;
+	margin-top: -2px;
+	margin-{vb:stylevar left}: -2px;
+}
+
+/*************************************************/
+/* BREADCRUMB */
+
+.breadcrumb .navbit {
+	float:{vb:stylevar left};
+	background-image:url({vb:stylevar imgdir_misc}/navbit-arrow-{vb:stylevar right}.png);
+	background-position:{vb:stylevar right} center;
+	background-repeat:no-repeat;
+	padding-{vb:stylevar right}:10px;
+	padding-{vb:stylevar left}:3px;
+}
+
+.breadcrumb .navbit:first-child {
+	padding-{vb:stylevar left}:0;
+}
+
+.breadcrumb .navbit.lastnavbit {
+	background: transparent;
+}
+
+.breadcrumb .navbit.lastnavbit span {
+	float:{vb:stylevar left};
+	background: transparent;
+	padding-{vb:stylevar right}:10px;
+	padding-{vb:stylevar left}:3px;
+}
+
+.breadcrumb .navbit > a, .breadcrumb .lastnavbit > span {
+	display:block;
+	padding:2px 4px;
+	float:{vb:stylevar left};
+	background-color:transparent;
+	border:1px solid transparent;
+	-moz-border-radius:{vb:stylevar border_radius};
+	-webkit-border-radius:{vb:stylevar border_radius};	
+	border-radius:{vb:stylevar border_radius};	
+}
+
+.breadcrumb .navbit a:hover {
+	border-color:{vb:stylevar lightweightbox_border.borderColor};
+	background-color:{vb:stylevar lightweightbox_background.backgroundColor};
+}
+
+.breadcrumb .navbit a {
+	text-decoration:none;
+}
+
+.breadcrumb .navbit a.popupctrl {
+	background-image:url({vb:stylevar imgdir_misc}/navbit-arrow-{vb:stylevar right}.png);
+	background-position:center center;
+	padding:2px 6px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+}
+
+.breadcrumb .navbit a.popupctrl:hover {
+	background-color:{vb:stylevar imodhilite_backgroundColor};
+	color:{vb:stylevar linkhover_color};
+}
+
+.breadcrumb hr {
+	display:none;
+}
+
+/*************************************************/
+/* PAGE TITLE */
+	
+#pagetitle {
+	padding:{vb:stylevar pagetitle_padding};
+	clear:both;
+	padding-top: {vb:math {vb:stylevar padding}/2};
+	background:{vb:stylevar pagetitle_background};
+	border:{vb:stylevar pagetitle_border};
+}
+#pagetitle a { color:{vb:stylevar pagetitle_link_color}; }
+#pagetitle a:hover { color:{vb:stylevar pagetitle_linkhover_color}; }
+
+#pagetitle h1 {
+	color: {vb:stylevar pagetitle_color};
+	font-size:{vb:stylevar pagetitle_font.fontSize}{vb:stylevar pagetitle_font.units};
+	font-weight:{vb:stylevar pagetitle_font.fontWeight};
+}
+
+#pagetitle .description {
+	color: {vb:stylevar pagetitle_description_color};
+	font-size: {vb:math {vb:stylevar font.fontSize}*0.85}{vb:stylevar font.units};
+}
+
+/*************************************************/
+/* NEW CONTENT LINK */
+.newcontent_textcontrol {
+	white-space:nowrap;padding:6px 12px 8px 28px;display:block;margin-right:5px;background:#C6C6C6 url(images/tag-icon.png) 8px 51% no-repeat;float:left;width:auto;margin-bottom:5px;color:#333;text-transform:uppercase;font-size:80%;text-shadow:1px 1px 0px #eee;font-weight:normal;letter-spacing:0;border-radius:20px;-moz-border-radius:20px;-webkit-border-radius:20px;border:1px solid #eee;border:1px solid rgba(255,255,255,0.7);line-height:100%;transition:background-color ease-in-out 0.15s;-moz-transition:background-color ease-in-out 0.15s;-webkit-transition:background-color ease-in-out 0.15s;
+}
+.newcontent_textcontrol span {
+	font-size:{vb:math {vb:stylevar big_fontSize}+1};
+	font-weight:bold;
+	display:inline;
+}
+.newcontent_textcontrol:hover {
+	background-color:black;
+       color:gray;
+}
+
+
+/*************************************************/
+/* FOOTER */
+
+.footer {
+	clear:both;
+	margin-top:{vb:math {vb:stylevar padding}*1.5};
+	text-align:{vb:stylevar right};
+	display:block;
+	/*width: 100%; VBIV-10173*/
+	-moz-box-shadow: -2px 2px 2px {vb:stylevar footer_moz_shadow_color};
+	-webkit-box-shadow: -2px 2px 2px {vb:stylevar footer_moz_shadow_color};
+	box-shadow: -2px 2px 2px {vb:stylevar footer_moz_shadow_color};
+	background:{vb:stylevar footer_background};
+	padding:{vb:stylevar footer_padding};
+	border:{vb:stylevar footer_border};
+	color:{vb:stylevar footer_color};
+	font:{vb:stylevar footer_font};
+}
+.footer a { color:{vb:stylevar footer_link_color}; }
+.footer a:hover { color:{vb:stylevar footer_linkhover_color}; }
+
+
+.footer_copyright,
+.footer_morecopyright {
+	padding-bottom:{vb:math {vb:stylevar padding}/2};
+	color:{vb:stylevar footer_copyright_color};
+	font:{vb:stylevar footer_copyright_font};
+	margin-top: {vb:stylevar padding};
+	text-align:center;
+	display:block;
+}
+
+.footer_time {
+	color:{vb:stylevar footer_copyright_color};
+	font:{vb:stylevar footer_copyright_font};
+	padding-top:{vb:stylevar padding};
+	text-align:center;
+}
+
+.footer_select {
+	float:{vb:stylevar left};
+	text-align:{vb:stylevar left};
+	margin-{vb:stylevar left}: {vb:stylevar padding};
+	margin-top: 0;
+}
+
+.footer_links {
+	margin-{vb:stylevar right}: {vb:stylevar padding};
+	margin-top: 2px;
+}
+
+.footer_links li {
+	display:inline;
+	margin-{vb:stylevar left}:{vb:math {vb:stylevar padding}/2};
+}
+
+.below_body .time {
+	color: {vb:stylevar footer_time_color};
+}
+
+.notices {
+	background: {vb:stylevar body_background.backgroundColor};
+	margin: {vb:math {vb:stylevar padding}/2} 0;
+}
+
+.notices li {
+	background: {vb:stylevar notices_background};
+	font-size: {vb:math {vb:stylevar font.fontSize}-1}{vb:stylevar font.units};
+	color: {vb:stylevar body_color};
+	padding:{vb:math {vb:stylevar padding}/2} {vb:stylevar padding};
+	margin-bottom:{vb:math {vb:stylevar padding}/2};
+	-moz-box-shadow: -2px 2px 2px {vb:stylevar notices_shadow_color};
+	-webkit-box-shadow: -2px 2px 2px {vb:stylevar notices_shadow_color};
+	box-shadow: -2px 2px 2px {vb:stylevar notices_shadow_color};
+	text-align: {vb:stylevar left};
+	clear:both;
+}
+
+.breadcrumb .navbithome {
+	float: {vb:stylevar left};
+	padding: {vb:math {vb:math {vb:stylevar font.fontSize}+6px-12px}/2} 0;
+}
+/* end styles for template: navbar */
+
+/*************************************************/
+/* ADS GLOBAL */
+.ad_global_header {
+}
+#ad_global_header1 {
+        float:{vb:stylevar left};
+        clear:{vb:stylevar right};
+        padding:{vb:stylevar ad_padding};
+        margin:{vb:stylevar ad_margin};
+}
+#ad_global_header2 {
+        float:{vb:stylevar left};
+        padding:{vb:stylevar ad_padding};
+        margin:{vb:stylevar ad_margin};
+}
+#ad_global_below_navbar {
+        width:100%;
+        padding:{vb:stylevar ad_padding};
+        margin:{vb:stylevar ad_margin};
+}
+#ad_global_above_footer {
+        width:100%;
+        padding:{vb:stylevar ad_padding};
+        margin:{vb:stylevar ad_margin};
+        text-align:{vb:stylevar left};
+        clear:both;
+}
+#ad_board_below_whats_going_on {
+        width:100%;
+        padding:{vb:stylevar ad_padding};
+        margin:{vb:stylevar ad_margin};
+        text-align:{vb:stylevar left};
+}
+#ad_thread_first_post_content {
+        float:{vb:stylevar right};
+        margin:{vb:stylevar ad_margin};
+}
+#ad_thread_last_post_content {
+        float:{vb:stylevar right};
+        margin:{vb:stylevar ad_margin};
+        z-index: 1000;
+}
+.google_adsense_footer {
+        clear:both;
+}]]></template>
+		<template name="vbulletin.css" templatetype="template" date="1334136504" username="Địa Ngục Máu" version="4.1.8"><![CDATA[@charset "UTF-8";
+/* CSS Document */
+
+/*THIS*/
+
+
+
+/* REVERSE SOME YUI RESET STUFF */
+em {}
+strong {}
+
+/* BASIC PAGE ELEMENTS */
+
+body {
+	width:{vb:stylevar doc_width};
+	min-width:{vb:stylevar doc_minWidth};
+	max-width:{vb:stylevar doc_maxWidth};
+	margin: {vb:stylevar doc_margin};
+	font-size:{vb:stylevar font.fontSize}{vb:stylevar font.units};
+	color:{vb:stylevar body_color};
+	line-height:{vb:stylevar line_height};
+}
+
+a:active, a:focus {
+	outline: 0;
+}
+
+body a {
+	color:{vb:stylevar link_color};
+	text-decoration:{vb:stylevar link_textDecoration};
+}
+body a:hover,
+body a:hover .time,
+body a:hover .shade,
+body a:hover .understate {
+	color:{vb:stylevar linkhover_color};
+	text-decoration:{vb:stylevar linkhover_textDecoration};
+}
+
+body a.understate,
+body a .understate {
+	color:inherit;
+	text-decoration:none;
+	*clear:expression(style.color = parentNode.currentStyle.color, style.clear = "none", 0);
+}
+
+.body_wrapper {
+	padding: {vb:stylevar body_padding};
+	background: {vb:stylevar body_background};
+	-moz-border-radius: {vb:stylevar border_radius};
+	-webkit-border-radius: {vb:stylevar border_radius};
+	border-radius: {vb:stylevar border_radius};
+}
+
+input,
+textarea,
+button,
+select {
+	font-family:{vb:stylevar control_font.fontFamily};
+}
+
+.button {
+	padding: {vb:math {vb:stylevar padding}/4} {vb:math {vb:stylevar padding}/2};
+	font: {vb:stylevar control_font};
+	border:{vb:stylevar button_control_border};
+	color:{vb:stylevar control_color};
+	background:{vb:stylevar control_background};
+	-moz-border-radius:{vb:stylevar popupmenu_border_radius};
+	-webkit-border-radius:{vb:stylevar popupmenu_border_radius};
+	border-radius:{vb:stylevar popupmenu_border_radius};
+}
+
+.button:hover {
+	background: {vb:stylevar control_hover_background};
+	color: {vb:stylevar control_color};
+}
+body,
+legend {
+	font-family:{vb:stylevar font.fontFamily};
+}
+
+.shade {
+	color:{vb:stylevar shade_color};
+}
+
+.time {
+	color:{vb:stylevar time_color};
+}
+
+.nocss_label {
+	display:none;
+}
+
+.normal {
+	font-size:{vb:stylevar font.fontSize}{vb:stylevar font.units};
+	font-weight:normal;
+}
+
+/* BLOCK STUFF */
+
+.block {
+	clear:both;
+	padding:{vb:stylevar block_padding};
+	color:{vb:stylevar block_color};
+	font:{vb:stylevar block_font};
+}
+
+.blockhead {
+	font:{vb:stylevar blockhead_font};
+	color:{vb:stylevar blockhead_color};
+	background:{vb:stylevar blockhead_background};
+	_background-image: none;
+	padding:{vb:stylevar blockhead_padding};
+	border:{vb:stylevar blockhead_border};
+	-moz-border-radius-top{vb:stylevar right}: {vb:stylevar border_radius};
+	-moz-border-radius-top{vb:stylevar left}: {vb:stylevar border_radius};
+	-webkit-border-top-{vb:stylevar right}-radius: {vb:stylevar border_radius};
+	-webkit-border-top-{vb:stylevar left}-radius: {vb:stylevar border_radius};
+	border-top-{vb:stylevar right}-radius: {vb:stylevar border_radius};
+	border-top-{vb:stylevar left}-radius: {vb:stylevar border_radius};
+}
+
+.blockhead h2 {
+	font-weight:bold;
+}
+
+.blockhead a { color:{vb:stylevar blockhead_link_color}; }
+.blockhead a:hover { color:{vb:stylevar blockhead_linkhover_color}; }
+
+.blockhead img {
+	margin-bottom: -{vb:stylevar blockhead_padding.paddingBottom}{vb:stylevar blockhead_padding.units};
+}
+
+.blocksubhead {
+	font:{vb:stylevar blocksubhead_font};
+	color:{vb:stylevar blocksubhead_color};
+	background:{vb:stylevar blocksubhead_background};
+	padding:{vb:stylevar blocksubhead_padding};
+	border-top:{vb:stylevar blocksubhead_border};
+}
+
+
+
+.blocksubhead img {
+	vertical-align:middle;
+}
+
+.blocksubhead a { color:{vb:stylevar blocksubhead_link_color}; text-decoration:none; }
+.blocksubhead a:hover { color:{vb:stylevar blocksubhead_linkhover_color}; }
+
+.blockhead_info, .blocksubhead_info {
+	float:{vb:stylevar right};
+	font-weight:normal;
+}
+
+/*.blockhead + */.blockbody { /* not sure why I had this .blockhead + .blockbody selector... need to look out for breakage */
+	background:{vb:stylevar blockbody_background};
+	padding-{vb:stylevar left}:{vb:stylevar blockbody_padding.paddingLeft}px;
+	padding-{vb:stylevar right}:{vb:stylevar blockbody_padding.paddingRight}px;
+}
+
+.blockrow {
+	background:{vb:stylevar blockrow_background};
+	padding:{vb:stylevar blockrow_padding};
+	border:{vb:stylevar blockrow_border};
+	color:{vb:stylevar blockrow_color};
+	font:{vb:stylevar blockrow_font};
+}
+.blockrow a { color:{vb:stylevar blockrow_link_color}; }
+.blockrow a:hover { color:{vb:stylevar blockrow_linkhover_color}; }
+
+.blockfoot, .blocksubfoot {
+	display:block;
+	clear:both;
+	background:{vb:stylevar blockfoot_background};
+	padding:{vb:stylevar blockfoot_padding};
+	border:{vb:stylevar blockfoot_border};
+	color:{vb:stylevar blockfoot_color};
+	font:{vb:stylevar blockfoot_font};
+
+}
+.blockfoot a { color:{vb:stylevar blockfoot_link_color}; }
+.blockfoot a:hover { color:{vb:stylevar blockfoot_linkhover_color}; }
+
+.blockfoot,
+.blocksubfoot {
+	padding:{vb:stylevar blockfoot_padding};
+}
+
+.blocksubfoot {
+	text-align:{vb:stylevar right};
+}
+/* END BLOCK STUFF */
+
+/* WYSIWYG */
+.wysiwyg_block {
+	margin-bottom: {vb:stylevar padding};
+}
+
+.wysiwyg_block .blockrow:first-child {
+	background: transparent url({vb:stylevar wysiwyg_block_background_image}) repeat-x top {vb:stylevar left};
+}
+
+.wysiwyg_block .formcontrols .blockrow {
+	border-top: 0;
+}
+
+/* CSS TABLE STUFF */
+.table { display:table; table-layout:fixed; }
+.thead { width:100%; padding:0; display: table-row; }
+.tr    { display:table-row; }
+.td    { display:table-cell; }
+
+/* PAGINATION LINKS */
+
+.pagination span {
+	display: block;
+	float: {vb:stylevar left};
+	clear: {vb:stylevar right};
+}
+
+.pagination span a {
+	font:{vb:stylevar pagination_font};
+	border: {vb:stylevar pagination_border};
+	height: {vb:math {vb:stylevar pagination_font.fontSize}{vb:stylevar pagination_font.units}*{vb:stylevar line_height}};
+	padding: 2px 4px;
+	margin-{vb:stylevar left}: 1px;
+	background:{vb:stylevar pagination_background};
+	text-decoration:none;
+	color: {vb:stylevar pagination_color};
+}
+
+.pagination span a:hover {
+	border: {vb:stylevar pagination_hover_border};
+}
+
+.pagination span.prev_next a, .pagination span.first_last a {
+	position: relative;
+	top: -2px;
+}
+
+.pagination span.prev_next a img, .pagination span.first_last a img {
+	position: relative;
+	display: inline;
+	top: 3px;
+}
+.pagination dt.label {
+	display:none;
+}
+
+.pagination span.selected a {
+	background: {vb:stylevar pagination_current_background};
+	color: {vb:stylevar pagination_current_color};
+	border: {vb:stylevar pagination_current_border};
+	height: {vb:math {vb:stylevar pagination_font.fontSize}{vb:stylevar pagination_font.units}*{vb:stylevar line_height}};
+	font-weight:bold;
+	padding: 2px 4px;
+	margin-{vb:stylevar left}: 1px;
+}
+
+.pagination .separator,
+.pagination .elipsis {
+	background: none;
+	border: 0;
+}
+
+.pagination .separator:hover {
+	border: 0;
+}
+
+.pagination li.jumptopage {
+	text-align:center;
+}
+
+
+.pagination span a.popupctrl {
+	height: {vb:math {vb:stylevar pagination_font.fontSize}{vb:stylevar pagination_font.units}*{vb:stylevar line_height}};
+	background: {vb:stylevar pagination_background.backgroundColor} url({vb:stylevar imgdir_misc}/black_downward_arrow.png) no-repeat center {vb:stylevar left};
+	padding-{vb:stylevar right}: 4px;
+	padding-{vb:stylevar left}: 18px;
+}
+
+.pagination .popupmenu:hover a.popupctrl {
+	border: {vb:stylevar pagination_hover_border};
+	color: {vb:stylevar body_color};
+}
+
+/* TEXT CONTROLS */
+
+.cke_skin_kama .cke_dialog_contents a.cke_dialog_ui_button_ok,
+.cke_skin_kama .cke_dialog_contents a.cke_dialog_ui_button_cancel,
+.textcontrols a,
+a.textcontrol {
+	position:relative;
+	padding: 3px {vb:math {vb:stylevar padding}/2};
+	font: {vb:stylevar control_font};
+	line-height: {vb:stylevar line_height};
+	text-decoration:none;
+	border: {vb:stylevar control_border};
+	color: {vb:stylevar control_color};
+	background:{vb:stylevar control_background};
+	-moz-border-radius:{vb:stylevar popupmenu_border_radius};
+	-webkit-border-radius:{vb:stylevar popupmenu_border_radius};
+	border-radius:{vb:stylevar popupmenu_border_radius};
+}
+
+.textcontrols a img,
+a.textcontrol img {
+	position:absolute;
+	bottom:2px;
+	{vb:stylevar left}:-2px;
+}
+
+.textcontrols a:hover img,
+a:hover.textcontrol img {
+	position: absolute;
+	bottom:2px;
+	{vb:stylevar left}:-2px;
+}
+
+.textcontrols a:hover,
+a:hover.textcontrol {
+	background:{vb:stylevar control_hover_background};
+	text-decoration:none;
+	color: {vb:stylevar control_hover_color};
+}
+
+.textcontrols a:hover,
+a:hover.textcontrol {
+	text-decoration:none;
+}
+
+.blockhead a.textcontrol {
+	float:{vb:stylevar right};
+	font:{vb:stylevar control_font};
+	margin-top: -{vb:math {vb:math {vb:math {vb:stylevar control_font.fontSize} + {vb:math 3px*2} + {vb:math {vb:stylevar control_border.borderWidth}*2}} - {vb:math {vb:stylevar blockhead_font.fontsize} + {vb:stylevar blockhead_padding.paddingTop}{vb:stylevar blockhead_padding.units} + {vb:stylevar blockhead_padding.paddingBottom}{vb:stylevar blockhead_padding.units}+{vb:math {vb:stylevar blockhead_border.borderWidth}*2}}}/2};
+	text-transform: none;
+}
+
+.blockhead a.textcontrol:hover {
+	color: {vb:stylevar control_hover_color};
+}
+
+/* FORUMJUMP (navpopup) */
+
+.navpopupmenu {
+	text-align:{vb:stylevar right};
+	float: {vb:stylevar right};
+	display:block;
+	padding: 0;
+	padding-top: {vb:math {vb:math {vb:stylevar pagination_font.fontSize}{vb:stylevar pagination_font.units} + {vb:math {vb:stylevar padding}/2} - {vb:stylevar mid_fontSize}}/2};
+	clear: {vb:stylevar left};
+	margin-{vb:stylevar left}: {vb:stylevar padding};
+	font-size: {vb:stylevar mid_fontSize};
+	margin-top: 0;
+}
+
+* html .navpopupmenu.popupmenu.nohovermenu a.textcontrol, .navpopupmenu a.textcontrol, .navpopupmenu a.popupctrl, .navpopupmenu.popupmenu.nohovermenu a.textcontrol, .navpopupmenu.popupmenu.nohovermenu a.popupctrl {
+	text-decoration:none;
+	color: {vb:stylevar control_color};
+	border: {vb:stylevar control_border};
+	background: {vb:stylevar control_background};
+	_background-image: none;
+	font: {vb:stylevar control_font};
+	padding: {vb:math {vb:stylevar padding}/3} {vb:math {vb:stylevar padding}/1.5};
+	-moz-border-radius: {vb:stylevar popupmenu_border_radius};
+	-webkit-border-radius: {vb:stylevar popupmenu_border_radius};
+	border-radius: {vb:stylevar popupmenu_border_radius};
+}
+
+.navpopupmenu a.textcontrol:hover, .navpopupmenu a.popupctrl:hover, .navpopupmenu.popupmenu.nohovermenu a.textcontrol:hover, .navpopupmenu.popupmenu.nohovermenu a.popupctrl:hover {
+        background: {vb:stylevar control_hover_background};
+        color: {vb:stylevar control_hover_color};
+        _background-image: none;
+}
+
+.navpopupmenu .popupctrl .ctrlcontainer {
+	background: transparent url({vb:stylevar imgdir_misc}/black_downward_arrow.png) no-repeat center {vb:stylevar left};
+	padding-{vb:stylevar left}: 15px;
+	white-space:nowrap;
+}
+
+.navpopupbody {
+	width:auto;
+	max-height:350px;
+	text-align:{vb:stylevar left};
+	*overflow:auto;
+	overflow-y:scroll;
+	{vb:stylevar left}:auto;
+	{vb:stylevar right}:0;
+}
+
+.navpopupbody li {
+	overflow:hidden;
+	min-width: 200px;
+}
+
+.navpopupbody li.optionlabel {
+	text-align:center;
+	font-weight:bold;
+	color: {vb:stylevar popupmenu_label_color};
+}
+
+/**
+* Not pretty, but it works...
+*/
+.navpopupbody .d1  a, option.d1  { text-indent:{vb:math 1  * {vb:stylevar padding} * 2}; }
+.navpopupbody .d2  a, option.d2  { text-indent:{vb:math 2  * {vb:stylevar padding} * 2}; }
+.navpopupbody .d3  a, option.d3  { text-indent:{vb:math 3  * {vb:stylevar padding} * 2}; }
+.navpopupbody .d4  a, option.d4  { text-indent:{vb:math 4  * {vb:stylevar padding} * 2}; }
+.navpopupbody .d5  a, option.d5  { text-indent:{vb:math 5  * {vb:stylevar padding} * 2}; }
+.navpopupbody .d6  a, option.d6  { text-indent:{vb:math 6  * {vb:stylevar padding} * 2}; }
+.navpopupbody .d7  a, option.d7  { text-indent:{vb:math 7  * {vb:stylevar padding} * 2}; }
+.navpopupbody .d8  a, option.d8  { text-indent:{vb:math 8  * {vb:stylevar padding} * 2}; }
+.navpopupbody .d9  a, option.d9  { text-indent:{vb:math 9  * {vb:stylevar padding} * 2}; }
+.navpopupbody .d10 a, option.d10 { text-indent:{vb:math 10 * {vb:stylevar padding} * 2}; }
+.navpopupbody .d11 a, option.d11 { text-indent:{vb:math 11 * {vb:stylevar padding} * 2}; }
+.navpopupbody .d12 a, option.d12 { text-indent:{vb:math 12 * {vb:stylevar padding} * 2}; }
+.navpopupbody .d13 a, option.d13 { text-indent:{vb:math 13 * {vb:stylevar padding} * 2}; }
+.navpopupbody .d14 a, option.d14 { text-indent:{vb:math 14 * {vb:stylevar padding} * 2}; }
+.navpopupbody .d15 a, option.d15 { text-indent:{vb:math 15 * {vb:stylevar padding} * 2}; }
+.navpopupbody .d16 a, option.d16 { text-indent:{vb:math 16 * {vb:stylevar padding} * 2}; }
+.navpopupbody .d17 a, option.d17 { text-indent:{vb:math 17 * {vb:stylevar padding} * 2}; }
+.navpopupbody .d18 a, option.d18 { text-indent:{vb:math 18 * {vb:stylevar padding} * 2}; }
+.navpopupbody .d19 a, option.d19 { text-indent:{vb:math 19 * {vb:stylevar padding} * 2}; }
+.navpopupbody .d20 a, option.d20 { text-indent:{vb:math 20 * {vb:stylevar padding} * 2}; }
+
+/* LEFT / RIGHT DT+DD */
+
+dl.stats.totals {
+	float:{vb:stylevar right};
+	padding:{vb:math {vb:stylevar padding}/2};
+}
+
+dl.stats dt {
+	display:inline;
+	color:{vb:stylevar shade_color};
+}
+dl.stats dt:after {
+	content:":";
+}
+dl.stats dd {
+	display:inline;
+}
+
+/* BLOCK STATS */
+dl.statsblock dt {
+	display:block;
+	float:{vb:stylevar left};
+	clear:{vb:stylevar left};
+	width:25%;
+}
+
+dl.statsblock dd {
+	display:block;
+	float:{vb:stylevar left};
+	margin-{vb:stylevar left}:{vb:stylevar padding};
+}
+
+/* LIGHT-TABS */
+
+dl.tabslight {
+	border-bottom:solid {vb:stylevar tabslight_border.borderWidth}px {vb:stylevar mid_border.borderColor};
+	padding-{vb:stylevar left}:{vb:math {vb:stylevar padding} * 2};
+	margin-bottom:1em;
+	height:{vb:math {vb:stylevar tabslight_size.height} + {vb:stylevar tabslight_border.borderWidth}}px;
+	margin-top:{vb:math {vb:stylevar padding}*1.5};
+}
+
+dl.tabslight dt {
+	display:none;
+}
+
+dl.tabslight dd {
+	float:{vb:stylevar left};
+}
+
+dl.tabslight dd a {
+	font-size:{vb:stylevar small_fontSize};
+	font-weight:bold;
+	color:{vb:stylevar body_color};
+	text-decoration:none;
+	text-align:center;
+
+	padding:0 {vb:stylevar padding};
+	min-width:{vb:stylevar tabslight_size.width};
+	height:{vb:stylevar tabslight_size.height};
+	line-height:{vb:stylevar tabslight_size.height}px;
+	display:block;
+
+	border:{vb:stylevar tabslight_border};
+	background-color:{vb:stylevar blocksubhead_background.backgroundColor};
+
+	margin-{vb:stylevar left}:-{vb:stylevar tabslight_border.borderWidth}{vb:stylevar tabslight_border.unit};
+	margin-bottom:-{vb:stylevar tabslight_border.borderWidth}{vb:stylevar tabslight_border.unit};
+
+	-moz-border-radius-top{vb:stylevar left}:5px;
+	-moz-border-radius-top{vb:stylevar right}:11px;
+	-webkit-border-top-{vb:stylevar left}-radius:3px;
+	-webkit-border-top-{vb:stylevar right}-radius:11px;
+	border-top-{vb:stylevar left}-radius:3px;
+	border-top-{vb:stylevar right}-radius:11px;
+}
+
+html>/**/body dl.tabslight dd.selected a,
+html>/**/body dl.tabslight dd.selected a:hover {
+	position:relative;
+	border-bottom: {vb:stylevar tabslight_border.borderWidth}{vb:stylevar tabslight_border.units} {vb:stylevar tabslight_border.borderStyle} transparent;
+	background:{vb:stylevar tabslight_selected_background};
+}
+* dl.tabslight dd.selected a, * dl.tabslight dd.selected a:hover {
+	border-bottom: {vb:stylevar tabslight_border.borderWidth}{vb:stylevar tabslight_border.units} {vb:stylevar tabslight_border.borderStyle} transparent;
+	background:{vb:stylevar tabslight_selected_background};
+}
+
+dl.tabslight dd a:hover {
+	color:{vb:stylevar linkhover_color};
+	background:{vb:stylevar navbar_tab_selected_background.backgroundColor} {vb:stylevar navbar_tab_selected_background.backgroundImage} repeat-x 0 -{vb:stylevar navbar_tab_selected_top_width}px;
+}
+
+/* COLUMN SORT LINKS */
+
+.columnsort a,
+.columnsort span {
+	display:block;
+	text-decoration:none;
+	white-space:nowrap;
+	text-align: {vb:stylevar left};
+}
+
+.columnsort a:hover {
+	background-color:{vb:stylevar imodhilite_backgroundColor};
+	text-decoration:none;
+	color:inherit;
+}
+
+tr.columnsort th {
+	white-space:nowrap;
+}
+
+/* MISC */
+
+div.collapse {
+	position:relative;
+}
+
+a.collapse {
+	float:{vb:stylevar right};
+	{vb:stylevar right}:{vb:stylevar padding};
+	top:{vb:math {vb:stylevar padding}*2};
+	position:absolute;
+}
+
+.blockhead a.collapse {
+	top: {vb:stylevar padding};
+}
+
+#forumrules {
+	margin-bottom: {vb:stylevar padding};
+	border-bottom: {vb:stylevar secondarycontent_border};
+	border-{vb:stylevar left}: {vb:stylevar secondarycontent_border};
+	border-{vb:stylevar right}: {vb:stylevar secondarycontent_border};
+	border-top: 1px solid {vb:stylevar secondarycontent_background.backgroundColor};
+	background: {vb:stylevar secondarycontent_background};
+}
+
+#forumrules ul.youcandoblock {
+	float:{vb:stylevar left};
+	width:55%;
+	overflow:hidden;
+	margin: 0 {vb:stylevar padding} {vb:stylevar padding} 0;
+}
+
+#forumrules ul.bbcodeblock {
+	float:{vb:stylevar right};
+	width:42%;
+	text-align:{vb:stylevar right};
+	overflow:hidden;
+}
+
+#forumrules .rules_link {
+	margin-top: {vb:stylevar padding};
+	width: 42%;
+	padding-{vb:stylevar left}: 55%;
+}
+
+.errorblock ul.blockrow.error > li {
+	border-bottom:solid 1px {vb:stylevar light_border.borderColor};
+	padding-bottom:{vb:stylevar padding};
+	margin-bottom:{vb:stylevar padding};
+}
+
+.errorblock ul.blockrow.error li:last-child {
+	border-bottom:none;
+	padding-bottom:0;
+	margin-bottom:0;
+}
+
+blockquote.preview {
+	font:{vb:stylevar content_msg_font};
+}
+
+blockquote.preview.forumcontent,
+blockquote.preview ul, blockquote.preview ol, blockquote.preview dl {
+	margin:0 40px;
+}
+
+blockquote.preview.forumcontent {
+	font:{vb:stylevar forum_msg_font};
+}
+
+blockquote.preview .bbcode_container div.bbcode_code,
+blockquote.preview .bbcode_container pre.bbcode_code {
+	margin:0;
+	padding:6px;
+	border:1px inset;
+	text-align:{vb:stylevar left};
+	overflow:auto;
+	direction:ltr;
+	background:{vb:stylevar content3_background.backgroundColor} {vb:stylevar content3_background.backgroundImage} repeat-x;
+	/*height:{vb:stylevar bbcode_codeheight};*/
+	font-size:{vb:stylevar mid_fontSize};
+}
+
+blockquote.preview .bbcode_container code.bbcode_code {
+	margin:0;
+	text-align:{vb:stylevar left};
+	direction:ltr;
+	font-size:{vb:stylevar mid_fontSize};
+}
+
+blockquote.preview .bbcode_container code.bbcode_code code {
+	white-space:nowrap;
+}
+
+blockquote.preview fieldset.postattachlist {
+	background:{vb:stylevar formrow_background};
+	border-top:solid 1px {vb:stylevar light_border.borderColor};
+	padding-bottom:1em;
+}
+
+blockquote.preview .bbcode_container div.bbcode_quote {
+	margin:0 {vb:stylevar padding};
+	margin-bottom: {vb:stylevar padding};
+	-moz-border-radius: {vb:stylevar border_radius};
+	-webkit-border-radius: {vb:stylevar border_radius};
+	background: {vb:stylevar bbcode_quote_background};
+	border-radius: {vb:stylevar border_radius};
+	border: {vb:stylevar bbcode_quote_border};
+	font: {vb:stylevar bbcode_quote_font};
+	position: relative;
+	top: 0;
+}
+
+
+blockquote.preview .bbcode_container .bbcode_quote_container {
+	background: transparent url({vb:stylevar imgdir_misc}/quote-{vb:stylevar left}.png) no-repeat {vb:stylevar top} {vb:stylevar left};
+	display:block;
+	width: 9px;
+	height: 13px;
+	position: absolute;
+	top: 5;
+	{vb:stylevar left}: -9px;
+}
+
+blockquote.preview .bbcode_quote div.quote_container {
+	border-top: 1px solid {vb:stylevar postbit_background.backgroundColor};
+	-moz-border-radius: {vb:stylevar border_radius};
+	-webkit-border-radius: {vb:stylevar border_radius};
+	border-radius: {vb:stylevar border_radius};
+	padding: {vb:stylevar bbcode_quote_padding};
+}
+
+.attachments {
+	border: {vb:stylevar postbit_boxed_border};
+	background: {vb:stylevar postbit_boxed_background};
+	margin: 20px {vb:math {vb:stylevar bbcode_quote_padding.paddingLeft}+20px};
+	-moz-border-radius: {vb:stylevar border_radius};
+	-webkit-border-radius: {vb:stylevar border_radius};
+	border-radius: {vb:stylevar border_radius};
+	padding: {vb:stylevar postbit_boxed_padding};
+	font-size: {vb:stylevar postbit_boxed_fontSize};
+}
+
+.attachments fieldset {
+	margin: {vb:stylevar bbcode_quote_padding.paddingTop}{vb:stylevar bbcode_quote_padding.units} 0;
+}
+
+.attachments img.inlineimg {
+	position: relative;
+	top: 2px;
+}
+
+
+blockquote.preview .signature {
+	margin-top:1.5em;
+	border-top:solid 1px {vb:stylevar shade_deep_color};
+	padding-top:0.5em;
+}
+
+.commalist li {
+	display:inline;
+}
+
+.standard_error {
+	max-width:600px;
+	margin:0 auto;
+	padding:4em 0 6em;
+}
+
+.hidden {
+	display: none !important;
+}
+
+/* Auto-clearing of floats */
+.floatcontainer:after,
+.formcontrols .blockrow:after,
+dl.stats:after {
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden;
+}
+.floatcontainer,
+.formcontrols .blockrow,
+dl.stats {
+	display:inline-block;
+	font-weight:normal;
+}
+/* IE-Mac hide \*/
+* html .floatcontainer,
+.formcontrols .blockrow,
+dl.stats {
+	height:1%;
+}
+.floatcontainer,
+.formcontrols .blockrow,
+dl.stats {
+	display:block;
+}
+.floatcontainer.hidden {
+	display:none;
+}
+/* End IE-Mac hide */
+
+
+/* INLINEMOD */
+
+#inlinemod_formctrls {
+	float:{vb:stylevar right};
+}
+
+#inlinemod_formctrls .popupctrl {
+	top: -5px;
+	position: inherit;
+	text-decoration:none;
+	background: {vb:stylevar control_background};
+	padding-{vb:stylevar right}: 0;
+	color: {vb:stylevar control_color};
+	border: {vb:stylevar control_border};
+	font: {vb:stylevar control_font};
+	float: {vb:stylevar left};
+	-moz-border-radius:{vb:stylevar popupmenu_border_radius};
+	-webkit-border-radius:{vb:stylevar popupmenu_border_radius};
+	border-radius:{vb:stylevar popupmenu_border_radius};
+}
+
+#inlinemod_formctrls a.popupctrl:hover {
+	background: {vb:stylevar control_hover_background};
+	color: {vb:stylevar control_hover_color};
+}
+
+#inlinemod_formctrls a.popupctrl span.ctrlcontainer {
+	display:inline-block;
+	background: transparent url({vb:stylevar imgdir_misc}/black_downward_arrow.png) no-repeat center {vb:stylevar left};
+	padding-top: {vb:math {vb:stylevar padding}/3};
+	padding-{vb:stylevar right}: {vb:math {vb:stylevar padding}/2};
+	padding-bottom: {vb:math {vb:stylevar padding}/3};
+	padding-{vb:stylevar left}: {vb:math {vb:stylevar padding}+5};
+	font-size: {vb:stylevar small_fontSize};
+	float: {vb:stylevar left};
+}
+
+#inlinemod_formctrls .popupbody {
+	{vb:stylevar left}:auto;
+	{vb:stylevar right}:0px;
+}
+
+
+/* FORUM DISABLED */
+div.forum_disabled {
+	text-align:center;
+	color:red;
+	background-color:white;
+	padding:{vb:stylevar padding};
+	font-size:{vb:math {vb:stylevar giant_fontSize}+2};
+}
+
+/**
+* UN-RESET
+*
+* These definitions are designed to undo the effects of YUI Reset, but only when contained within a *.reset element.
+* Code is based on YUI Base
+*/
+
+/*
+Copyright (c) 2009, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.7.0
+*/
+/**
+ * YUI Base
+ * @module base
+ * @namespace yui-
+ * @requires reset, fonts
+*/
+
+.restore body {
+	/* For breathing room between content and viewport. */
+	margin:10px;
+}
+
+.restore h1 {
+	/* 18px via YUI Fonts CSS foundation. */
+	font-size: 138.5%;
+}
+
+.restore h2 {
+	/* 16px via YUI Fonts CSS foundation. */
+	font-size: 123.1%;
+}
+
+.restore h3 {
+	/* 14px via YUI Fonts CSS foundation. */
+	font-size: 108%;
+}
+
+.restore h1,
+.restore h2,
+.restore h3 {
+	/* Top & bottom margin based on font size. */
+	margin: 1em 0;
+}
+
+.restore h1,
+.restore h2,
+.restore h3,
+.restore h4,
+.restore h5,
+.restore h6,
+.restore strong,
+.restore dt {
+	/* Bringing boldness back to headers and the strong element. */
+	font-weight: bold;
+}
+.restore optgroup {
+	font-weight:normal;
+}
+
+.restore abbr,
+.restore acronym {
+	/* Indicating to users that more info is available. */
+	border-bottom: 1px dotted #000;
+	cursor: help;
+}
+
+.restore em {
+	/* Bringing italics back to the em element. */
+	font-style: italic;
+}
+
+.restore del {
+	/* Striking deleted phrases. */
+	text-decoration: line-through;
+}
+
+.restore blockquote,
+.restore ul,
+.restore ol,
+.restore dl {
+	/* Giving blockquotes and lists room to breath. */
+	margin: 1em;
+}
+
+.restore ol,
+.restore ul,
+.restore dl {
+	/* Bringing lists on to the page with breathing room. */
+	margin-{vb:stylevar left}: 2em;
+}
+
+.restore ol > li,
+.restore ol.decimal > li {
+	list-style:decimal outside;
+}
+
+.restore ol.upper-roman > li {
+	list-style:upper-roman outside;
+}
+
+.restore ol.lower-roman > li {
+	list-style:lower-roman outside;
+}
+
+.restore ol.upper-alpha > li {
+	list-style:upper-alpha outside;
+}
+
+.restore ol.lower-alpha > li {
+	list-style:lower-alpha outside;
+}
+
+.restore ul > li {
+	/* Giving UL's LIs generated disc markers. */
+	list-style: disc outside;
+}
+
+.restore dl dd {
+	/* Giving UL's LIs generated numbers. */
+	margin-{vb:stylevar left}: 1em;
+}
+
+.restore th,
+.restore td {
+	/* Borders and padding to make the table readable. */
+	border: {vb:stylevar restore};
+	padding: {vb:stylevar restore_padding};
+}
+
+.restore th {
+	/* Distinguishing table headers from data cells. */
+	font-weight: bold;
+	text-align: center;
+}
+
+.restore caption {
+	/* Coordinated margin to match cell's padding. */
+	margin-bottom: .5em;
+	/* Centered so it doesn't blend in to other content. */
+	text-align: center;
+}
+
+.restore sup {
+	/* to preserve line-height and selector appearance */
+	vertical-align: super;
+}
+
+.restore sub {
+	/* to preserve line-height and selector appearance */
+	vertical-align: sub;
+}
+
+.restore p,
+.restore fieldset,
+.restore table,
+.restore pre {
+	/* So things don't run into each other. */
+	margin-bottom: 1em;
+}
+/* Opera requires 1px of passing to render with contemporary native chrome */
+.restore button,
+.restore input[type="checkbox"],
+.restore input[type="radio"],
+.restore input[type="reset"],
+.restore input[type="submit"] {
+	padding:1px;
+}
+
+.restore li > p {
+	margin-bottom: 0em;
+}
+
+.unread {
+	font-weight:bold;
+}
+
+/* Cloud tags */
+li.tag {
+	display:inline;
+	margin-{vb:stylevar right}:{vb:math {vb:stylevar padding} / 2}px;
+}
+
+li.tag label.mine {
+	font-weight:bold;
+}
+
+li.tag a {
+	text-decoration:none;
+}
+
+li.taglevel1 {
+	font-size:{vb:stylevar tiny_fontSize};
+}
+
+li.taglevel2 {
+	font-size:{vb:stylevar mid_fontSize};
+}
+
+li.taglevel3 {
+	font-size:{vb:math {vb:stylevar big_fontSize}+1};
+}
+
+li.taglevel4 {
+	font-size:{vb:stylevar giant_fontSize};
+}
+
+li.taglevel5 {
+	font-size: {vb:math {vb:stylevar giant_fontSize}+3};
+}
+
+li.tag.option {
+	padding:{vb:stylevar padding};
+}
+
+/* Tag Controls */
+/* Tagging Controls */
+
+#thread_tags_list input#tag_add_input {
+	display:block;
+	width:90%;
+	margin-top:2px;
+	margin-bottom:0.5em;
+}
+
+#thread_tags_list  .description {
+	color:{vb:stylevar shade_color};
+}
+
+#thread_tags_list  .actionbuttons {
+	text-align:{vb:stylevar right};
+	margin-bottom:1em;
+}
+
+#tag_edit_list {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+#tag_edit_list li {
+	float:{vb:stylevar left};
+	display:block;
+	width:100px;
+}
+
+#tag_edit_list li.mine {
+	font-weight:bold;
+}
+
+/* We don't use class="inlineimg" in vB4
+img.inlineimg {
+	padding:0 {vb:stylevar padding};
+}
+*/
+
+
+/* Social Bookmarks */
+
+#social_bookmarks_list li {
+	display:block;
+	float:{vb:stylevar left};
+	padding-{vb:stylevar left}:{vb:stylevar padding};
+}
+
+/* Imagereg */
+#imagereg {
+	vertical-align:middle;
+	margin-bottom:{vb:math {vb:stylevar padding}/2};
+}
+
+
+#wol_navpopup.navpopupmenu {
+	margin-bottom:6px;
+}
+.navlinks {
+	background: {vb:stylevar navlinks_background};
+	border-top: {vb:stylevar navlinks_border_top};
+	padding: {vb:stylevar padding} 0;
+	text-align: center;
+	color: {vb:stylevar navlinks_color};
+	font-size: {vb:stylevar font.fontSize}{vb:stylevar font.units};
+        margin-top: 20px;
+        margin-bottom: 20px;
+width:100%;
+clear:both;
+}
+
+.clear, .cleardiv {
+	clear: both;
+}
+
+#ajax_post_errors {
+	position:absolute;
+	width:420px;
+	z-index:500;
+	padding:2px;
+	background-color:#FFFFFF;
+	-moz-border-radius-top{vb:stylevar right}:{vb:stylevar border_radius};
+	-moz-border-radius-top{vb:stylevar left}:{vb:stylevar border_radius};
+	-webkit-border-top-{vb:stylevar right}-radius:{vb:stylevar border_radius};
+	-webkit-border-top-{vb:stylevar left}-radius:{vb:stylevar border_radius};
+	border-top-{vb:stylevar right}-radius:{vb:stylevar border_radius};
+	border-top-{vb:stylevar left}-radius:{vb:stylevar border_radius};
+}
+
+#ajax_post_errors .blockrow {
+	border-bottom:{vb:stylevar forumbits_border};
+	border-{vb:stylevar left}:{vb:stylevar forumbits_border};
+	border-{vb:stylevar right}:{vb:stylevar forumbits_border};
+}
+#ajax_post_errors .blockfoot {
+	text-align:center;
+}
+
+#ajax_post_errors_message ol {
+	margin:1em;
+	margin-{vb:stylevar left}:2em;
+}
+
+#ajax_post_errors_message ol.numeric li,
+#ajax_post_errors_message ol li {
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:decimal;
+}
+
+
+
+/* Facebook Section */
+label#fb_pulishlabel {
+	font-size:{vb:stylevar mid_fontSize};
+	font-weight: normal;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+#fb_likeframe {
+	border: none;
+	overflow: hidden;
+	height: 27px;
+	width: 260px;
+	vertical-align: text-bottom;
+}
+#pagetitle #fb_likeframe {
+	float: {vb:stylevar right};
+}
+.blogbit #fb_likeframe {
+	margin-top: 7px;
+}
+
+/* Fix for Facebook Connect rtl scrollbar */
+<vb:if condition="$stylevar['textdirection'] == 'rtl'">
+#FB_HiddenContainer { left: 0; right: -10000px; <vb:if condition="is_browser('firefox')">display: none;</vb:if> }
+</vb:if>
+
+#recaptcha_area {
+	direction:ltr;
+	display:inline;
+}
+
+#recaptcha_widget_div {
+	float:{vb:stylevar left};
+}
+
+.member_blockrow .error 
+{ 
+        padding:{vb:stylevar blocksubhead_padding}; 
+}  
+
+div.cms_table {
+	overflow:auto;
+	overflow-y:hidden;
+	padding:1px;
+}
+
+table.cms_table_grid,
+table.wysiwyg_cms_table_grid {
+	border-collapse: collapse;
+	margin-bottom:0;
+}
+
+td.cms_table_grid_td,
+td.wysiwyg_cms_table_grid_td {
+	border: {vb:stylevar vbcms_wysiwyg_table_borderSize} solid {vb:stylevar vbcms_wysiwyg_table_borderColor};
+}
+
+table.cms_table_outer_border,
+table.wysiwyg_cms_table_outer_border {
+	border-collapse: collapse;
+	border: {vb:stylevar vbcms_wysiwyg_table_borderSize} solid {vb:stylevar vbcms_wysiwyg_table_borderColor};
+}
+
+td.cms_table_td,
+td.cms_table_outer_border_td {
+	border:none;
+}]]></template>
+	</templategroup>
+	<stylevardfns>
+	</stylevardfns>
+	<stylevars>
+		<stylevar name="blockhead_background" value="YTo2OntzOjU6InVuaXRzIjtzOjA6IiI7czo1OiJjb2xvciI7czo3OiIjMkYyRjJGIjtzOjU6ImltYWdlIjtzOjA6IiI7czo2OiJyZXBlYXQiO3M6ODoicmVwZWF0LXgiO3M6MToieCI7czowOiIiO3M6MToieSI7czowOiIiO30=" />
+		<stylevar name="blockhead_border" value="YTo0OntzOjU6InVuaXRzIjtzOjI6InB4IjtzOjU6IndpZHRoIjtzOjE6IjEiO3M6NToic3R5bGUiO3M6NToic29saWQiO3M6NToiY29sb3IiO3M6NzoiIzJGMkYyRiI7fQ==" />
+		<stylevar name="doc_background" value="YTo2OntzOjU6InVuaXRzIjtzOjA6IiI7czo1OiJjb2xvciI7czoxMToidHJhbnNwYXJlbnQiO3M6NToiaW1hZ2UiO3M6MDoiIjtzOjY6InJlcGVhdCI7czowOiIiO3M6MToieCI7czowOiIiO3M6MToieSI7czowOiIiO30=" />
+		<stylevar name="doc_margin" value="YTo2OntzOjU6InVuaXRzIjtzOjI6InB4IjtzOjM6InRvcCI7czoxOiIwIjtzOjU6InJpZ2h0IjtzOjE6IjAiO3M6NjoiYm90dG9tIjtzOjE6IjAiO3M6NDoibGVmdCI7czoxOiIwIjtzOjQ6InNhbWUiO3M6MToiMCI7fQ==" />
+		<stylevar name="footer_background" value="YTo2OntzOjU6InVuaXRzIjtzOjA6IiI7czo1OiJjb2xvciI7czo3OiIjMkYyRjJGIjtzOjU6ImltYWdlIjtzOjA6IiI7czo2OiJyZXBlYXQiO3M6MDoiIjtzOjE6IngiO3M6MDoiIjtzOjE6InkiO3M6MDoiIjt9" />
+		<stylevar name="footer_border" value="YTo0OntzOjU6InVuaXRzIjtzOjI6InB4IjtzOjU6IndpZHRoIjtzOjE6IjEiO3M6NToic3R5bGUiO3M6NToic29saWQiO3M6NToiY29sb3IiO3M6MTE6InRyYW5zcGFyZW50Ijt9" />
+		<stylevar name="forumhead_background" value="YTo2OntzOjU6InVuaXRzIjtzOjA6IiI7czo1OiJjb2xvciI7czo3OiIjMkYyRjJGIjtzOjU6ImltYWdlIjtzOjA6IiI7czo2OiJyZXBlYXQiO3M6ODoicmVwZWF0LXgiO3M6MToieCI7czowOiIiO3M6MToieSI7czowOiIiO30=" />
+		<stylevar name="forumhead_border" value="YTo0OntzOjU6InVuaXRzIjtzOjI6InB4IjtzOjU6IndpZHRoIjtzOjE6IjEiO3M6NToic3R5bGUiO3M6NToic29saWQiO3M6NToiY29sb3IiO3M6NzoiIzJGMkYyRiI7fQ==" />
+		<stylevar name="forumhead_top_corner_radius" value="YToyOntzOjU6InVuaXRzIjtzOjI6InB4IjtzOjQ6InNpemUiO3M6MToiMCI7fQ==" />
+		<stylevar name="forumrow_background" value="YTo2OntzOjU6InVuaXRzIjtzOjA6IiI7czo1OiJjb2xvciI7czoxODoicmdiKDI1NSwgMjU1LCAyNTUpIjtzOjU6ImltYWdlIjtzOjMzOiJ1cmwoaW1hZ2VzL3VyYmFuYS9jb250ZW50X2JnLmdpZikiO3M6NjoicmVwZWF0IjtzOjY6InJlcGVhdCI7czoxOiJ4IjtzOjQ6ImxlZnQiO3M6MToieSI7czo2OiJib3R0b20iO30=" />
+		<stylevar name="forumrow_firstentry_background" value="YTo2OntzOjU6InVuaXRzIjtzOjA6IiI7czo1OiJjb2xvciI7czoxODoicmdiKDI1NSwgMjU1LCAyNTUpIjtzOjU6ImltYWdlIjtzOjMzOiJ1cmwoaW1hZ2VzL3VyYmFuYS9jb250ZW50X2JnLmdpZikiO3M6NjoicmVwZWF0IjtzOjY6InJlcGVhdCI7czoxOiJ4IjtzOjQ6ImxlZnQiO3M6MToieSI7czo2OiJib3R0b20iO30=" />
+		<stylevar name="link_color" value="YToxOntzOjU6ImNvbG9yIjtzOjE1OiJyZ2IoNTEsIDUxLCA1MSkiO30=" />
+		<stylevar name="linkhover_color" value="YToxOntzOjU6ImNvbG9yIjtzOjE1OiJyZ2IoNTEsIDUxLCA1MSkiO30=" />
+		<stylevar name="postbithead_background" value="YTo2OntzOjU6InVuaXRzIjtzOjA6IiI7czo1OiJjb2xvciI7czoxNToicmdiKDM3LCAzNywgMzcpIjtzOjU6ImltYWdlIjtzOjM3OiJ1cmwoaW1hZ2VzL2J1dHRvbnMvbmV3YnRuX21pZGRsZS5wbmcpIjtzOjY6InJlcGVhdCI7czo4OiJyZXBlYXQteCI7czoxOiJ4IjtzOjA6IiI7czoxOiJ5IjtzOjA6IiI7fQ==" />
+		<stylevar name="postbithead_border" value="YTo0OntzOjU6InVuaXRzIjtzOjI6InB4IjtzOjU6IndpZHRoIjtzOjE6IjEiO3M6NToic3R5bGUiO3M6NToic29saWQiO3M6NToiY29sb3IiO3M6MTU6InJnYig1MSwgNTEsIDUxKSI7fQ==" />
+		<stylevar name="secondarycontent_background" value="YTo2OntzOjU6InVuaXRzIjtzOjA6IiI7czo1OiJjb2xvciI7czoxODoicmdiKDI1NSwgMjU1LCAyNTUpIjtzOjU6ImltYWdlIjtzOjMzOiJ1cmwoaW1hZ2VzL3VyYmFuYS9jb250ZW50X2JnLmdpZikiO3M6NjoicmVwZWF0IjtzOjY6InJlcGVhdCI7czoxOiJ4IjtzOjA6IiI7czoxOiJ5IjtzOjA6IiI7fQ==" />
+		<stylevar name="secondarycontent_header_background" value="YTo2OntzOjU6InVuaXRzIjtzOjA6IiI7czo1OiJjb2xvciI7czo3OiIjMkYyRjJGIjtzOjU6ImltYWdlIjtzOjA6IiI7czo2OiJyZXBlYXQiO3M6ODoicmVwZWF0LXgiO3M6MToieCI7czowOiIiO3M6MToieSI7czowOiIiO30=" />
+		<stylevar name="secondarycontent_header_border" value="YTo0OntzOjU6InVuaXRzIjtzOjI6InB4IjtzOjU6IndpZHRoIjtzOjE6IjEiO3M6NToic3R5bGUiO3M6NToic29saWQiO3M6NToiY29sb3IiO3M6NzoiIzJGMkYyRiI7fQ==" />
+	</stylevars>
+</style>

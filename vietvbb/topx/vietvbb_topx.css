@@ -1,0 +1,7 @@
+ul{ margin: 0; padding: 0;}
+.tabs { padding-bottom: 26px; margin-bottom: 15px; background: #E8F3FD; border-top: 1px solid #FFF; border-bottom: 1px solid #CAD9EA; }
+.tabs li { list-style: none;float: left; line-height: 27px; border-right: 1px solid #CAD9EA; height: 27px; font-size: 11px; }
+.tabs li.current { background: #FFF; height: 27px; font-weight: bold; }
+.mainbox { background: #FFF; border: 1px solid #9DB3C5; padding: 1px; margin-bottom: 6px; }
+.mainbox table { width: 100%; }
+#dhtmltooltip { BORDER-RIGHT: black 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: black 1px solid; PADDING-LEFT: 2px; Z-INDEX: 999; FILTER: progid:DXImageTransform.Microsoft.Shadow(color=gray,direction=135); LEFT: -300px; VISIBILITY: hidden; PADDING-BOTTOM: 2px; BORDER-LEFT: black 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: black 1px solid; POSITION: absolute; BACKGROUND-COLOR: White }

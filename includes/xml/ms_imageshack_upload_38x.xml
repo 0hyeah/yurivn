@@ -1,0 +1,1060 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Imageshack, MEGAUPLOAD & Photobucket Uploader v3.8.005: $Author: mosh $, $Date: 2009-11-06 13:39:28 +1100 (Fri, 06 Nov 2009) $, $Rev: 81 $ -->
+<product productid="ms_imageshack_upload_38x" active="1">
+	<title><![CDATA[Imageshack, MEGAUPLOAD & Photobucket Uploader]]></title>
+	<description>This will enable you to host your images/files on Imageshack, MEGAUPLOAD or Photobucket directly from within your post editor.</description>
+	<version>3.8.005</version>
+	<url><![CDATA[http://www.vbulletin.org/forum/misc.php?do=producthelp&pid=ms_imageshack_upload_38x]]></url>
+	<versioncheckurl><![CDATA[http://www.vbulletin.org/forum/misc.php?do=productcheck&pid=ms_imageshack_upload_38x]]></versioncheckurl>
+	<svn><![CDATA[Imageshack, MEGAUPLOAD & Photobucket Uploader v3.8.005: $Author: mosh $, $Date: 2009-11-06 13:39:28 +1100 (Fri, 06 Nov 2009) $, $Rev: 81 $]]></svn>
+	<dependencies>
+	</dependencies>
+	<codes>
+		<code version="*">
+			<installcode><![CDATA[$nomsisupermissions = true;
+$columns_exist = $db->query_read("SHOW COLUMNS FROM " . TABLE_PREFIX . "usergroup");
+while ($fieldlist = $db->fetch_array($columns_exist))
+{
+    if ($fieldlist['Field'] == 'ms_imageshack_upload_permissions') $nomsisupermissions = false;
+}
+if ($nomsisupermissions)
+{
+	echo "<br />";
+	echo "<center>Adding <strong>ms_imageshack_upload_permissions</strong> column to the <strong>usergroup</strong> table in the database.";
+	echo "<br />";
+	vbflush(); 
+	$db->query_write("ALTER TABLE " . TABLE_PREFIX . "usergroup ADD ms_imageshack_upload_permissions INT(10) UNSIGNED DEFAULT 0 NOT NULL");
+}]]></installcode>
+			<uninstallcode><![CDATA[$nomsisupermissions = false;
+$columns_exist = $db->query_read("SHOW COLUMNS FROM " . TABLE_PREFIX . "usergroup");
+while ($fieldlist = $db->fetch_array($columns_exist))
+{
+    if ($fieldlist['Field'] == 'ms_imageshack_upload_permissions') $nomsisupermissions = true;
+}
+if ($nomsisupermissions)
+{
+	echo "<br />";
+	echo "<center>Un-installing <strong>Imageshack, MEGAUPLOAD & Photobucket Uploader</strong>.</center>";
+	echo "<br />";
+	echo "<center>Removing <strong>ms_imageshack_upload_permissions</strong> column from the <strong>usergroup</strong> table in the database.";
+	echo "<br />";
+	vbflush(); 
+	$db->query_write("ALTER TABLE " . TABLE_PREFIX . "usergroup DROP ms_imageshack_upload_permissions");
+}]]></uninstallcode>
+		</code>
+		<code version="*">
+			<installcode><![CDATA[// Old Hack Detection and Removal - code by Paul Marsden, copyright 2008 //
+$pidlist = array(
+'jd_20070405',
+'ms_imageshack_upload',
+'Photobucket_Uploader',
+);
+echo "<br />";
+echo "<center>Installing or upgrading <strong>Imageshack, MEGAUPLOAD & Photobucket Uploader</strong>.</center>";
+echo "<br />";
+echo "<center>Please remember to <strong>Mark as Installed</strong> at vBulletin.org to recieve support.</center>";
+echo "<br />";
+echo "<center>Install Information</center>";
+echo "<br />";
+vbflush(); 
+if (!empty($pidlist))
+{
+	foreach ($pidlist as $oldpid)
+	{
+		$check = $db->query_first_slave("
+			SELECT version FROM ".TABLE_PREFIX."product WHERE productid = '".$db->escape_string($oldpid)."'
+		");
+		if ($check['version'])
+		{
+			delete_product($oldpid);
+			echo "<center><font color='red'>A previous version of this hack has been detected and automatically been removed : pid = $oldpid</font></center>";
+			echo "<br />";
+			vbflush(); 
+			sleep(2);
+		}
+	}
+}
+$info['url'] = 'http://www.vbulletin.org/forum/misc.php?do=producthelp&pid='.$info['productid'];
+$info['versioncheckurl'] = 'http://www.vbulletin.org/forum/misc.php?do=productcheck&pid='.$info['productid'];
+// End of Old Hack Detection and Removal code //
+]]></installcode>
+			<uninstallcode />
+		</code>
+		<code version="3.8.004">
+			<installcode><![CDATA[
+$nomsisupermissions2 = true;
+$columns_exist2 = $db->query_read("SHOW COLUMNS FROM " . TABLE_PREFIX . "usergroup");
+while ($fieldlist2 = $db->fetch_array($columns_exist2))
+{
+    if ($fieldlist2['Field'] == 'ms_megaupload_upload_permissions') $nomsisupermissions2 = false;
+}
+if ($nomsisupermissions2)
+{
+	echo "<br />";
+	echo "<center>Adding <strong>ms_megaupload_upload_permissions</strong> column to the <strong>usergroup</strong> table in the database.";
+	echo "<br />";
+	vbflush(); 
+	$db->query_write("ALTER TABLE " . TABLE_PREFIX . "usergroup ADD ms_megaupload_upload_permissions INT(10) UNSIGNED DEFAULT 0 NOT NULL");
+}
+$nomsisupermissions3 = true;
+$columns_exist3 = $db->query_read("SHOW COLUMNS FROM " . TABLE_PREFIX . "usergroup");
+while ($fieldlist3 = $db->fetch_array($columns_exist3))
+{
+    if ($fieldlist3['Field'] == 'ms_photobucket_upload_permissions') $nomsisupermissions3 = false;
+}
+if ($nomsisupermissions3)
+{
+	echo "<br />";
+	echo "<center>Adding <strong>ms_photobucket_upload_permissions</strong> column to the <strong>usergroup</strong> table in the database.";
+	echo "<br />";
+	vbflush(); 
+	$db->query_write("ALTER TABLE " . TABLE_PREFIX . "usergroup ADD ms_photobucket_upload_permissions INT(10) UNSIGNED DEFAULT 0 NOT NULL");
+}]]></installcode>
+			<uninstallcode><![CDATA[$nomsisupermissions2 = false;
+$columns_exist2 = $db->query_read("SHOW COLUMNS FROM " . TABLE_PREFIX . "usergroup");
+while ($fieldlist2 = $db->fetch_array($columns_exist2))
+{
+    if ($fieldlist2['Field'] == 'ms_megaupload_upload_permissions') $nomsisupermissions2 = true;
+}
+if ($nomsisupermissions2)
+{
+	echo "<br />";
+	echo "<center>Un-installing <strong>Imageshack, MEGAUPLOAD & Photobucket Uploader</strong>.</center>";
+	echo "<br />";
+	echo "<center>Removing <strong>ms_megaupload_upload_permissions</strong> column to the <strong>usergroup</strong> table in the database.";
+	echo "<br />";
+	vbflush(); 
+	$db->query_write("ALTER TABLE " . TABLE_PREFIX . "usergroup DROP ms_megaupload_upload_permissions");
+}
+$nomsisupermissions3 = false;
+$columns_exist3 = $db->query_read("SHOW COLUMNS FROM " . TABLE_PREFIX . "usergroup");
+while ($fieldlist3 = $db->fetch_array($columns_exist3))
+{
+    if ($fieldlist3['Field'] == 'ms_photobucket_upload_permissions') $nomsisupermissions3 = true;
+}
+if ($nomsisupermissions3)
+{
+	echo "<br />";
+	echo "<center>Un-installing <strong>Imageshack, MEGAUPLOAD & Photobucket Uploader</strong>.</center>";
+	echo "<br />";
+	echo "<center>Removing <strong>ms_photobucket_upload_permissions</strong> column to the <strong>usergroup</strong> table in the database.";
+	echo "<br />";
+	vbflush(); 
+	$db->query_write("ALTER TABLE " . TABLE_PREFIX . "usergroup DROP ms_photobucket_upload_permissions");
+}]]></uninstallcode>
+		</code>
+	</codes>
+	<templates>
+		<template name="imageshack" templatetype="template" date="1255947374" username="Mosh" version="3.8.004"><![CDATA[<!-- Photobucket Image Uploader v $vbphrase[imageshack_version], (c) 2007, Mosh Shigdar & Dannyloski -->
+<if condition="$show['imageshack_pb']">
+	<style type="text/css">
+		.viewable {display: block;}
+		.viewable a {line-height: 16px; font-size: 14px; font-weight: bold; font-family: sans-serif; color: {$vbulletin->options['photobucket_displaycolor']};}
+		.viewable a:hover {color: {$vbulletin->options['photobucket_displayhovercolor']}; cursor: pointer; text-decoration: underline;}
+		.hidden {display: none;}
+	</style>
+	<script type="text/javascript" language="JavaScript">
+		<!--
+		function view()
+		{
+			fetch_object('hidelink').className = "viewable";
+			fetch_object('viewlink').className = "hidden";
+			fetch_object('photobucket').className = "viewable";
+			fetch_object('jwidget').src = "http://photobucket.com/svc/jwidget.php?width={$vbulletin->options['photobucket_width']}&height={$vbulletin->options['photobucket_height']}&largeThumb=false&pbaffsite=272&bg={$vbulletin->options['photobucket_bgcolor']}&border=false&bordercolor=%23000000&url=&linkType=img&textcolor={$vbulletin->options['photobucket_color']}&linkcolor={$vbulletin->options['photobucket_linkcolor']}&media=both&btntxt=&searchenabled=true&searchlinkcolor=&searchbgcolor="
+			return false;
+		}
+		function hide()
+		{
+			fetch_object('hidelink').className = "hidden";
+			fetch_object('viewlink').className = "viewable";
+			fetch_object('photobucket').className = "hidden";
+			return false;
+		}
+		//-->
+	</script>
+	<fieldset class="fieldset">
+     	<legend>$vbphrase[imageshack_upload_to_photobucket]</legend>
+     	<div style="padding:$stylevar[formspacer]px">
+			<span id="viewlink" class="viewable">
+				<nobr><a href="javascript:{}" onclick="view();">$vbphrase[imageshack_photobucket_form_view]</a></nobr>
+			</span>
+			<span id="hidelink" class="hidden">
+				<nobr><a href="javascript:{}" onclick="hide();">$vbphrase[imageshack_photobucket_form_hide]</a><br>
+					<div id="photobucket" class="hidden" align="center">
+						<iframe name="jwidget" id="jwidget" src="http://photobucket.com/svc/jwidget.php?width={$vbulletin->options['photobucket_width']}&height={$vbulletin->options['photobucket_height']}&largeThumb=false&pbaffsite=272&bg={$vbulletin->options['photobucket_bgcolor']}&border=false&bordercolor=%23000000&url=&linkType=img&textcolor={$vbulletin->options['photobucket_color']}&linkcolor={$vbulletin->options['photobucket_linkcolor']}&media=both&btntxt=&searchenabled=true&searchlinkcolor=&searchbgcolor=" bgcolor="transparent" width="{$vbulletin->options['photobucket_width']}" height="{$vbulletin->options['photobucket_height']}" frameborder="0" scrolling="no">You must have an iframe-compatable browser to view the Photobucket Upload form.</iframe>
+					</div>
+				</nobr>
+			</span>
+     	</div>
+	</fieldset>
+</if>
+<!-- / End of Photobucket Image Uploader -->
+<!-- MEGAUPLOAD File Uploader v $vbphrase[imageshack_version], (c) 2008, Mosh Shigdar 2008 -->
+<if condition="$show['imageshack_mu']">
+	<fieldset class="fieldset">
+     	<legend>$vbphrase[imageshack_upload_to_megaupload]</legend>
+     	<div style="padding:$stylevar[formspacer]px">
+          	<embed src="http://www.megaupload.com/filebox/?t={$vbulletin->options['megaupload_size']}&c={$vbulletin->options['megaupload_colour']}&u={$vbulletin->options['megaupload_key']}" type="application/x-shockwave-flash" width="{$megaupload_width}" height="{$megaupload_height}" wmode="transparent"></embed>
+     	</div>
+	</fieldset>
+</if>
+<!-- / End of MEGAUPLOAD File Uploader -->
+<!-- Imageshack Image Upload v $vbphrase[imageshack_version], (c) 2007, Mosh Shigdar -->
+<if condition="$show['imageshack_is']">
+	<fieldset class="fieldset">
+		<legend>$vbphrase[imageshack_upload_to_imageshack]</legend>
+		<div style="padding:$stylevar[formspacer]px">
+       		<iframe src="http://imageshack.us/iframe.php?txtcolor={$vbulletin->options['imageshack_color']}&type=forum&size={$vbulletin->options['imageshack_size']}" scrolling="no" allowtransparency="true" frameborder="0" width="{$vbulletin->options['imageshack_width']}" height="{$vbulletin->options['imageshack_height']}"> You must have an iframe-compatable browser to view the ImageShack.us upload form.</iframe>
+		</div>
+	</fieldset>
+</if>
+<!-- / End of Imageshack Image Upload -->]]></template>
+		<template name="imageshack_pm_newpm" templatetype="template" date="1255946948" username="Mosh" version="3.8.004"><![CDATA[<form action="private.php?do=insertpm&amp;pmid=$pm[pmid]" method="post" name="vbform"<if condition="!is_browser('webtv')"> onsubmit="return vB_Editor['$editorid'].prepare_submit(this.title.value, 0)"</if>>
+
+$postpreview
+
+<table class="tborder" cellpadding="$stylevar[cellpadding]" cellspacing="$stylevar[cellspacing]" border="0" width="100%" align="center">
+<tr>
+	<td class="tcat">$vbphrase[post_new_private_message]</td>
+</tr>
+
+<tr>
+	<td class="panelsurround" align="center">
+	<div class="panel">
+		<div align="$stylevar[left]" style="max-width:$stylevar[formwidth]; width:auto !important; width:$stylevar[formwidth_usercp]">
+
+		<!-- recipients field -->
+		<fieldset class="fieldset">
+			<legend>$vbphrase[recipients]</legend>
+			<table cellpadding="0" cellspacing="$stylevar[formspacer]" border="0">
+			<tr>
+				<td>
+					<if condition="$show['popups']">
+					<script type="text/javascript" src="clientscript/vbulletin_ajax_namesugg.js?v=$vboptions[simpleversion]"></script>
+					</if>
+					<div>$vbphrase[recipient_usernames]</div>
+					<div id="pmrecips"><textarea id="pmrecips_txt" name="recipients" rows="<if condition="is_browser('mozilla')">1<else />2</if>" cols="50" tabindex="1">$pm[recipients]</textarea></div>
+					<if condition="$show['popups']">
+						<div class="vbmenu_popup" id="pmrecips_menu" style="display:none; z-index:50"></div>
+						<script type="text/javascript">
+						<!--
+						vbmenu_register('pmrecips', true);
+						recip_sugg = new vB_AJAX_NameSuggest('recip_sugg', 'pmrecips_txt', 'pmrecips');
+						<if condition="$show['sendmultiple']">recip_sugg.allow_multiple = true;</if>
+						//-->
+						</script>
+					</if>
+					<if condition="$show['sendmultiple']">
+						<span style="display:none" onclick="return swapbcc(this);" id="bccspan1">[<a href="#">$vbphrase[bcc]</a>]</span>
+						<span id="bccspan2">$vbphrase[bcc] $vbphrase[recipient_usernames]<br /></span>
+						<div id="bccpmrecips"><textarea id="bccpmrecips_txt" name="bccrecipients" rows="<if condition="is_browser('mozilla')">1<else />2</if>" cols="50" tabindex="1">$pm[bccrecipients]</textarea></div>
+						<if condition="$show['popups']">
+							<div class="vbmenu_popup" id="bccpmrecips_menu" style="display:none; z-index:50"></div>
+							<script type="text/javascript">
+							<!--
+							vbmenu_register('bccpmrecips', true);
+							bccrecip_sugg = new vB_AJAX_NameSuggest('bccrecip_sugg', 'bccpmrecips_txt', 'bccpmrecips');
+							bccrecip_sugg.allow_multiple = true;
+							<if condition="$show['bcclink']">
+							fetch_object('bccpmrecips').style.display = 'none';
+							fetch_object('bccspan2').style.display = 'none';
+							fetch_object('bccspan1').style.display = '';
+							function swapbcc(obj)
+							{
+								obj.style.display = 'none';
+								fetch_object('bccpmrecips').style.display = '';
+								fetch_object('bccspan2').style.display = '';
+								return false;
+							}
+							</if>
+							//-->
+							</script>
+						</if>
+					</if>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<if condition="$show['sendmax']"><div><phrase 1="$permissions[pmsendmax]">$vbphrase[may_send_to_x_people]</phrase></div></if>
+					<if condition="$show['sendmultiple']"><div>$vbphrase[separate_multiple_names]</div></if>
+				</td>
+			</tr>
+			</table>
+		</fieldset>
+		<!-- / recipients field -->
+
+		<!-- subject field -->
+		<table cellpadding="0" cellspacing="0" border="0" class="fieldset">
+		<tr>
+			<td class="smallfont" colspan="3">$vbphrase[title]:</td>
+		</tr>
+		<tr>
+			<td><input type="text" class="bginput" name="title" value="$pm[title]" size="50" maxlength="85" tabindex="1" /></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><img id="display_posticon" src="$selectedicon[src]" alt="$selectedicon[alt]" /></td>
+		</tr>
+		</table>
+		<!-- / subject field -->
+
+		<!-- message area -->
+		<div class="smallfont">$vbphrase[message]:</div>
+		$messagearea
+		<!-- / message area -->
+
+		$posticons
+
+		</div>
+	</div>
+
+	<div style="margin-top:$stylevar[cellpadding]px">
+		<input type="hidden" name="s" value="$session[sessionhash]" />
+		<input type="hidden" name="securitytoken" value="$bbuserinfo[securitytoken]" />
+		<input type="hidden" name="do" value="insertpm" />
+		<input type="hidden" name="pmid" value="$pm[pmid]" />
+		<input type="hidden" name="forward" value="$pm[forward]" />
+		<input type="submit" class="button" name="sbutton" id="{$editorid}_save" value="$vbphrase[submit_message]" accesskey="s" tabindex="1" />
+		<input type="submit" class="button" value="$vbphrase[preview_message]" accesskey="r" name="preview" tabindex="1" />
+	</div>
+	</td>
+</tr>
+</table>
+
+<br />
+
+<table class="tborder" cellpadding="$stylevar[cellpadding]" cellspacing="$stylevar[cellspacing]" border="0" width="100%" align="center">
+<thead>
+	<tr>
+		<td class="tcat">
+ 			<a name="options" style="float:$stylevar[right]" href="#top" onclick="return toggle_collapse('newpost_options')"><img id="collapseimg_newpost_options" src="$stylevar[imgdir_button]/collapse_tcat$vbcollapse[collapseimg_newpost_options].gif" alt="" border="0" /></a>
+ 			$vbphrase[additional_options]
+ 		</td>
+	</tr>
+</thead>
+<tbody id="collapseobj_newpost_options" style="$vbcollapse[collapseobj_newpost_options]">
+	<tr valign="top">
+		<td class="panelsurround" align="center">
+		<div class="panel">
+			<div align="$stylevar[left]" style="max-width:$stylevar[formwidth]; width:auto !important; width:$stylevar[formwidth_usercp]">
+
+				<if condition="$show['receivepmbuddies']">
+				<fieldset class="fieldset">
+					<legend>$vbphrase[pm_non_contacts_heading]</legend>
+					<table cellpadding="0" cellspacing="$stylevar[formspacer]" border="0" width="100%">
+					<tr>
+						<td><phrase 1="$session[sessionurl]">$vbphrase[pm_non_contact_option_description]</phrase></td>
+					</tr>
+					<tr>
+						<td><label for="cb_anyway"><input type="checkbox" name="sendanyway" id="cb_anyway" value="1" $anywaychecked />$vbphrase[pm_non_contact_option]</label></td>
+					</tr>
+					</table>
+				</fieldset>
+				</if>
+
+				<fieldset class="fieldset">
+					<legend>$vbphrase[miscellaneous_options]</legend>
+					<div style="padding:$stylevar[formspacer]px">
+						<if condition="$show['trackpm']"><div><label for="cb_receipt"><input type="checkbox" name="receipt" value="1" id="cb_receipt" $checked[receipt] />$vbphrase[request_receipt_for_message]</label></div></if>
+						<div><label for="cb_savecopy"><input type="checkbox" name="savecopy" value="1" id="cb_savecopy" tabindex="1" $checked[savecopy] /><phrase 1="private.php?$session[sessionurl]folderid=-1">$vbphrase[save_copy_in_sent_items_folder]</phrase></label></div>
+						<if condition="$bbuserinfo['signature']"><div><label for="cb_signature"><input type="checkbox" name="signature" value="1" id="cb_signature" tabindex="1" $checked[signature] />$vbphrase[show_your_signature]</label></div></if>
+						<if condition="$show['parseurl']"><div><label for="cb_parseurl"><input type="checkbox" name="parseurl" value="1" id="cb_parseurl" tabindex="1" $checked[parseurl] />$vbphrase[automatically_parse_links_in_text]</label></div></if>
+						$disablesmiliesoption
+					</div>
+				</fieldset>
+
+				<!-- Photobucket Image Uploader v $vbphrase[imageshack_version], (c) 2007, Mosh Shigdar & Dannyloski -->
+				<if condition="$show['imageshack_pbpm']">
+					<style type="text/css">
+						.viewable {display: block;}
+						.viewable a {line-height: 16px; font-size: 14px; font-weight: bold; font-family: sans-serif; color: {$vbulletin->options['photobucket_displaycolor']};}
+						.viewable a:hover {color: {$vbulletin->options['photobucket_displayhovercolor']}; cursor: pointer; text-decoration: underline;}
+						.hidden {display: none;}
+					</style>
+					<script type="text/javascript" language="JavaScript">
+						<!--
+						function view()
+						{
+							fetch_object('hidelink').className = "viewable";
+							fetch_object('viewlink').className = "hidden";
+							fetch_object('photobucket').className = "viewable";
+							fetch_object('jwidget').src = "http://photobucket.com/svc/jwidget.php?width={$vbulletin->options['photobucket_width']}&height={$vbulletin->options['photobucket_height']}&largeThumb=false&pbaffsite=272&bg={$vbulletin->options['photobucket_bgcolor']}&border=false&bordercolor=%23000000&url=&linkType=img&textcolor={$vbulletin->options['photobucket_color']}&linkcolor={$vbulletin->options['photobucket_linkcolor']}&media=both&btntxt=&searchenabled=true&searchlinkcolor=&searchbgcolor="
+							return false;
+						}
+						function hide()
+						{
+							fetch_object('hidelink').className = "hidden";
+							fetch_object('viewlink').className = "viewable";
+							fetch_object('photobucket').className = "hidden";
+							return false;
+						}
+						//-->
+					</script>
+					<fieldset class="fieldset">
+     					<legend>$vbphrase[imageshack_upload_to_photobucket]</legend>
+     					<div style="padding:$stylevar[formspacer]px">
+							<span id="viewlink" class="viewable">
+									<nobr><a href="javascript:{}" onclick="view();">$vbphrase[imageshack_photobucket_form_view]</a></nobr>
+							</span>
+							<span id="hidelink" class="hidden">
+								<nobr><a href="javascript:{}" onclick="hide();">$vbphrase[imageshack_photobucket_form_hide]</a><br>
+									<div id="photobucket" class="hidden" align="center">
+										<iframe name="jwidget" id="jwidget" src="http://photobucket.com/svc/jwidget.php?width={$vbulletin->options['photobucket_width']}&height={$vbulletin->options['photobucket_height']}&largeThumb=false&pbaffsite=272&bg={$vbulletin->options['photobucket_bgcolor']}&border=false&bordercolor=%23000000&url=&linkType=img&textcolor={$vbulletin->options['photobucket_color']}&linkcolor={$vbulletin->options['photobucket_linkcolor']}&media=both&btntxt=&searchenabled=true&searchlinkcolor=&searchbgcolor=" bgcolor="transparent" width="{$vbulletin->options['photobucket_width']}" height="{$vbulletin->options['photobucket_height']}" frameborder="0" scrolling="no">You must have an iframe-compatable browser to view the Photobucket Upload form.</iframe>
+									</div>
+								</nobr>
+							</span>
+     					</div>
+					</fieldset>
+				</if>
+				<!-- / End of Photobucket Image Uploader -->
+				<!-- MEGAUPLOAD File Uploader v $vbphrase[imageshack_version], (c) 2008, Mosh Shigdar 2008 -->
+				<if condition="$show['imageshack_mupm']">
+					<fieldset class="fieldset">
+     					<legend>$vbphrase[imageshack_upload_to_megaupload]</legend>
+     					<div style="padding:$stylevar[formspacer]px">
+          					<embed src="http://www.megaupload.com/filebox/?t={$vbulletin->options['megaupload_size']}&c={$vbulletin->options['megaupload_colour']}&u={$vbulletin->options['megaupload_key']}" type="application/x-shockwave-flash" width="{$megaupload_width}" height="{$megaupload_height}" wmode="transparent"></embed>
+     					</div>
+					</fieldset>
+				</if>
+				<!-- / End of MEGAUPLOAD File Uploader -->
+				<!-- Imageshack Image Upload v $vbphrase[imageshack_version], (c) 2007, Mosh Shigdar -->
+				<if condition="$show['imageshack_ispm']">
+					<fieldset class="fieldset">
+						<legend>$vbphrase[imageshack_upload_to_imageshack]</legend>
+						<div style="padding:$stylevar[formspacer]px">
+       						<iframe src="http://imageshack.us/iframe.php?txtcolor={$vbulletin->options['imageshack_color']}&type=forum&size={$vbulletin->options['imageshack_size']}" scrolling="no" allowtransparency="true" frameborder="0" width="{$vbulletin->options['imageshack_width']}" height="{$vbulletin->options['imageshack_height']}"> You must have an iframe-compatable browser to view the ImageShack.us upload form.</iframe>
+						</div>
+					</fieldset>
+				</if>
+				<!-- / End of Imageshack Image Upload -->
+
+			</div>
+		</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+
+</form>
+
+<br />
+
+$forumrules]]></template>
+		<template name="imageshack_pm_quickreply" templatetype="template" date="1255946827" username="Mosh" version="3.8.004"><![CDATA[<if condition="$show['editor_toolbar']">
+<div id="{$editorid}_controls" class="controlbar">
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+		<td><div class="imagebutton" id="{$editorid}_cmd_removeformat"><img src="$stylevar[imgdir_editor]/removeformat.gif" width="21" height="20" alt="$vbphrase[remove_text_formatting]" /></div></td>
+	<if condition="$show['basic_bbcode']">
+		<td><img src="$stylevar[imgdir_editor]/separator.gif" width="6" height="20" alt="" /></td>
+		<td><div class="imagebutton" id="{$editorid}_cmd_bold"><img src="$stylevar[imgdir_editor]/bold.gif" width="21" height="20" alt="$vbphrase[bold]" /></div></td>
+		<td><div class="imagebutton" id="{$editorid}_cmd_italic"><img src="$stylevar[imgdir_editor]/italic.gif" width="21" height="20" alt="$vbphrase[italic]" /></div></td>
+		<td><div class="imagebutton" id="{$editorid}_cmd_underline"><img src="$stylevar[imgdir_editor]/underline.gif" width="21" height="20" alt="$vbphrase[underline]" /></div></td>
+	</if>
+	<if condition="$show['color_bbcode']">
+		<td><img src="$stylevar[imgdir_editor]/separator.gif" width="6" height="20" alt="" /></td>
+		<td><div class="imagebutton" id="{$editorid}_popup_forecolor" title="$vbphrase[colors]">
+			<table cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td id="{$editorid}_color_out"><img src="$stylevar[imgdir_editor]/color.gif" width="21" height="16" alt="" /><br /><img src="$vboptions[cleargifurl]" id="{$editorid}_color_bar" alt="" style="background-color:black" width="21" height="4" /></td>
+				<td class="alt_pickbutton"><img src="$stylevar[imgdir_editor]/menupop.gif" alt="" width="11" height="16" /></td>
+			</tr>
+			</table>
+		</div></td>
+	</if>
+	<if condition="$show['url_bbcode'] OR $show['img_bbcode']">
+		<td><img src="$stylevar[imgdir_editor]/separator.gif" width="6" height="20" alt="" /></td>
+	</if>
+	<if condition="$show['url_bbcode']">
+		<td><div class="imagebutton" id="{$editorid}_cmd_createlink"><img src="$stylevar[imgdir_editor]/createlink.gif" width="21" height="20" alt="$vbphrase[insert_link]" /></div></td>
+	</if>
+	<if condition="$show['img_bbcode']">
+		<td><div class="imagebutton" id="{$editorid}_cmd_insertimage"><img src="$stylevar[imgdir_editor]/insertimage.gif" width="21" height="20" alt="$vbphrase[insert_image]" /></div></td>
+	</if>
+	<if condition="$show['quote_bbcode']">
+		<td><img src="$stylevar[imgdir_editor]/separator.gif" width="6" height="20" alt="" /></td>
+		<td><div class="imagebutton" id="{$editorid}_cmd_wrap0_quote"><img src="$stylevar[imgdir_editor]/quote.gif" width="21" height="20" alt="$vbphrase[wrap_quote_tags]" /></div></td>
+	</if>
+	<td width="100%">&nbsp;</td>
+	<if condition="is_browser('ie')">
+		<td><div class="imagebutton" id="{$editorid}_cmd_spelling"><img src="$stylevar[imgdir_editor]/spelling.gif" width="21" height="20" alt="$vbphrase[check_spelling]" /></div></td>
+	</if>
+		<td>
+			<div class="imagebutton" id="{$editorid}_cmd_resize_0_99"><img src="$stylevar[imgdir_editor]/resize_0.gif" width="21" height="9" alt="$vbphrase[decrease_size]" /></div>
+			<div class="imagebutton" id="{$editorid}_cmd_resize_1_99"><img src="$stylevar[imgdir_editor]/resize_1.gif" width="21" height="9" alt="$vbphrase[increase_size]" /></div>
+		</td>
+	<if condition="$show['wysiwyg_compatible']">
+		<td><div class="imagebutton" id="{$editorid}_cmd_switchmode"><img src="$stylevar[imgdir_editor]/switchmode.gif" width="21" height="20" alt="$vbphrase[switch_editor_mode]" /></div></td>
+	</if>
+	</tr>
+	</table>
+</div>
+</if>
+<div class="controlbar" style="padding-$stylevar[right]:8px">
+	<fieldset style="border:0px; padding:0px; margin:0px">
+	<textarea name="message" id="{$editorid}_textarea" rows="10" cols="60" style="width:100%; height:{$editor_height}px" tabindex="1" dir="$stylevar[textdirection]">$newpost[message]</textarea>
+	</fieldset>
+	<!--width:$stylevar[messagewidth]-->
+</div>
+
+<!-- Photobucket Image Uploader v $vbphrase[imageshack_version], (c) 2007, Mosh Shigdar & Dannyloski -->
+<if condition="$show['imageshack_pbpmqr']">
+	<style type="text/css">
+		.viewable {display: block;}
+		.viewable a {line-height: 16px; font-size: 14px; font-weight: bold; font-family: sans-serif; color: {$vbulletin->options['photobucket_displaycolor']};}
+		.viewable a:hover {color: {$vbulletin->options['photobucket_displayhovercolor']}; cursor: pointer; text-decoration: underline;}
+		.hidden {display: none;}
+	</style>
+	<script type="text/javascript" language="JavaScript">
+		<!--
+		function view()
+		{
+			fetch_object('hidelink').className = "viewable";
+			fetch_object('viewlink').className = "hidden";
+			fetch_object('photobucket').className = "viewable";
+			fetch_object('jwidget').src = "http://photobucket.com/svc/jwidget.php?width={$vbulletin->options['photobucket_width']}&height={$vbulletin->options['photobucket_height']}&largeThumb=false&pbaffsite=272&bg={$vbulletin->options['photobucket_bgcolor']}&border=false&bordercolor=%23000000&url=&linkType=img&textcolor={$vbulletin->options['photobucket_color']}&linkcolor={$vbulletin->options['photobucket_linkcolor']}&media=both&btntxt=&searchenabled=true&searchlinkcolor=&searchbgcolor="
+			return false;
+		}
+		function hide()
+		{
+			fetch_object('hidelink').className = "hidden";
+			fetch_object('viewlink').className = "viewable";
+			fetch_object('photobucket').className = "hidden";
+			return false;
+		}
+		//-->
+	</script>
+	<fieldset class="fieldset">
+     	<legend>$vbphrase[imageshack_upload_to_photobucket]</legend>
+     	<div style="padding:$stylevar[formspacer]px">
+			<span id="viewlink" class="viewable">
+				<nobr><a href="javascript:{}" onclick="view();">$vbphrase[imageshack_photobucket_form_view]</a></nobr>
+			</span>
+			<span id="hidelink" class="hidden">
+				<nobr><a href="javascript:{}" onclick="hide();">$vbphrase[imageshack_photobucket_form_hide]</a><br>
+					<div id="photobucket" class="hidden" align="center">
+						<iframe name="jwidget" id="jwidget" src="http://photobucket.com/svc/jwidget.php?width={$vbulletin->options['photobucket_width']}&height={$vbulletin->options['photobucket_height']}&largeThumb=false&pbaffsite=272&bg={$vbulletin->options['photobucket_bgcolor']}&border=false&bordercolor=%23000000&url=&linkType=img&textcolor={$vbulletin->options['photobucket_color']}&linkcolor={$vbulletin->options['photobucket_linkcolor']}&media=both&btntxt=&searchenabled=true&searchlinkcolor=&searchbgcolor=" bgcolor="transparent" width="{$vbulletin->options['photobucket_width']}" height="{$vbulletin->options['photobucket_height']}" frameborder="0" scrolling="no">You must have an iframe-compatable browser to view the Photobucket Upload form.</iframe>
+					</div>
+				</nobr>
+			</span>
+     	</div>
+	</fieldset>
+</if>
+<!-- / End of Photobucket Image Uploader -->
+<!-- MEGAUPLOAD File Uploader v $vbphrase[imageshack_version], (c) 2008, Mosh Shigdar 2008 -->
+<if condition="$show['imageshack_mupmqr']">
+	<fieldset class="fieldset">
+    	<legend>$vbphrase[imageshack_upload_to_megaupload]</legend>
+     	<div style="padding:$stylevar[formspacer]px">
+        	<embed src="http://www.megaupload.com/filebox/?t={$vbulletin->options['megaupload_size']}&c={$vbulletin->options['megaupload_colour']}&u={$vbulletin->options['megaupload_key']}" type="application/x-shockwave-flash" width="{$megaupload_width}" height="{$megaupload_height}" wmode="transparent"></embed>
+     	</div>
+	</fieldset>
+</if>
+<!-- / End of MEGAUPLOAD File Uploader -->
+<!-- Imageshack Image Upload v $vbphrase[imageshack_version], (c) 2007, Mosh Shigdar -->
+<if condition="$show['imageshack_ispmqr']">
+	<fieldset class="fieldset">
+		<legend>$vbphrase[imageshack_upload_to_imageshack]</legend>
+		<div style="padding:$stylevar[formspacer]px">
+       		<iframe src="http://imageshack.us/iframe.php?txtcolor={$vbulletin->options['imageshack_color']}&type=forum&size={$vbulletin->options['imageshack_size']}" scrolling="no" allowtransparency="true" frameborder="0" width="{$vbulletin->options['imageshack_width']}" height="{$vbulletin->options['imageshack_height']}"> You must have an iframe-compatable browser to view the ImageShack.us upload form.</iframe>
+		</div>
+	</fieldset>
+</if>
+<!-- / End of Imageshack Image Upload -->
+
+<input type="hidden" name="wysiwyg" id="{$editorid}_mode" value="$editortype" />
+<input type="hidden" name="styleid" value="$session[styleid]" />
+
+<script type="text/javascript">
+<!--
+vB_Editor['$editorid'] = new vB_Text_Editor('$editorid', $editortype, '$forumid', '$parsesmilie');
+var QR_EditorID = '$editorid';
+//-->
+</script>]]></template>
+	</templates>
+	<plugins>
+		<plugin active="1" executionorder="5">
+			<title><![CDATA[Imageshack, MEGAUPLOAD & Photobucket Uploader (1)]]></title>
+			<hookname>cache_templates</hookname>
+			<phpcode><![CDATA[if (in_array(THIS_SCRIPT, array('newthread', 'newreply', 'showthread', 'showpost', 'editpost', 'private')))
+{
+    $globaltemplates[] = 'imageshack';
+    $globaltemplates[] = 'imageshack_postbit_quickedit';
+    $globaltemplates[] = 'imageshack_pm_newpm';
+    $globaltemplates[] = 'imageshack_pm_quickreply';
+}]]></phpcode>
+		</plugin>
+		<plugin active="1" executionorder="5">
+			<title><![CDATA[Imageshack, MEGAUPLOAD & Photobucket Uploader (4)]]></title>
+			<hookname>editpost_edit_start</hookname>
+			<phpcode><![CDATA[if ($vbulletin->userinfo['permissions']['ms_imageshack_upload_permissions'] & $vbulletin->bf_ugp['ms_imageshack_upload_permissions']['imageshack_editpost'] || $vbulletin->userinfo['permissions']['ms_megaupload_upload_permissions'] & $vbulletin->bf_ugp['ms_megaupload_upload_permissions']['megaupload_editpost'] || $vbulletin->userinfo['permissions']['ms_photobucket_upload_permissions'] & $vbulletin->bf_ugp['ms_photobucket_upload_permissions']['photobucket_editpost'])
+{
+    $show['imageshack_is'] = false;
+    $show['imageshack_mu'] = false;
+    $show['imageshack_pb'] = false;
+    $imageshack_ep = 0;
+    if ($vbulletin->options['megaupload_size'] == 0)
+    {
+        $megaupload_width = 232;
+        $megaupload_height = 143;
+    }
+    elseif ($vbulletin->options['megaupload_size'] == 1)
+    {
+        $megaupload_width = 350;
+        $megaupload_height = 143;
+    }
+    elseif ($vbulletin->options['megaupload_size'] == 2)
+    {
+        $megaupload_width = 350;
+        $megaupload_height = 90;
+    }
+    if($vbulletin->userinfo['permissions']['ms_imageshack_upload_permissions'] & $vbulletin->bf_ugp['ms_imageshack_upload_permissions']['imageshack_editpost'])
+    {
+        $imageshack_ep = 1;
+        $show['imageshack_is'] = true;
+    }
+    if($vbulletin->userinfo['permissions']['ms_megaupload_upload_permissions'] & $vbulletin->bf_ugp['ms_megaupload_upload_permissions']['megaupload_editpost'])
+    {
+        $imageshack_ep = 1;
+        $show['imageshack_mu'] = true;
+    }
+    if($vbulletin->userinfo['permissions']['ms_photobucket_upload_permissions'] & $vbulletin->bf_ugp['ms_photobucket_upload_permissions']['photobucket_editpost'])
+    {
+        $imageshack_ep = 1;
+        $show['imageshack_pb'] = true;
+    }
+    if ($imageshack_ep == 1)
+	{
+            $imageshack_ep_search_text = '$attachmentoption'; 
+	    $vbulletin->templatecache['editpost'] = str_replace($imageshack_ep_search_text,$imageshack_ep_search_text.fetch_template('imageshack'),$vbulletin->templatecache['editpost']);
+	}
+}]]></phpcode>
+		</plugin>
+		<plugin active="1" executionorder="5">
+			<title><![CDATA[Imageshack, MEGAUPLOAD & Photobucket Uploader (3)]]></title>
+			<hookname>newreply_form_start</hookname>
+			<phpcode><![CDATA[if ($vbulletin->userinfo['permissions']['ms_imageshack_upload_permissions'] & $vbulletin->bf_ugp['ms_imageshack_upload_permissions']['imageshack_newpost'] || $vbulletin->userinfo['permissions']['ms_megaupload_upload_permissions'] & $vbulletin->bf_ugp['ms_megaupload_upload_permissions']['megaupload_newpost'] || $vbulletin->userinfo['permissions']['ms_photobucket_upload_permissions'] & $vbulletin->bf_ugp['ms_photobucket_upload_permissions']['photobucket_newpost'])
+{
+    $show['imageshack_is'] = false;
+    $show['imageshack_mu'] = false;
+    $show['imageshack_pb'] = false;
+    $imageshack_np = 0;
+    if ($vbulletin->options['megaupload_size'] == 0)
+    {
+        $megaupload_width = 232;
+        $megaupload_height = 143;
+    }
+    elseif ($vbulletin->options['megaupload_size'] == 1)
+    {
+        $megaupload_width = 350;
+        $megaupload_height = 143;
+    }
+    elseif ($vbulletin->options['megaupload_size'] == 2)
+    {
+        $megaupload_width = 350;
+        $megaupload_height = 90;
+    }
+    if($vbulletin->userinfo['permissions']['ms_imageshack_upload_permissions'] & $vbulletin->bf_ugp['ms_imageshack_upload_permissions']['imageshack_newpost'])
+    {
+        $imageshack_np = 1;
+        $show['imageshack_is'] = true;
+    }
+    if($vbulletin->userinfo['permissions']['ms_megaupload_upload_permissions'] & $vbulletin->bf_ugp['ms_megaupload_upload_permissions']['megaupload_newpost'])
+    {
+        $imageshack_np = 1;
+        $show['imageshack_mu'] = true;
+    }
+    if($vbulletin->userinfo['permissions']['ms_photobucket_upload_permissions'] & $vbulletin->bf_ugp['ms_photobucket_upload_permissions']['photobucket_newpost'])
+    {
+        $imageshack_np = 1;
+        $show['imageshack_pb'] = true;
+    }
+    if ($imageshack_np == 1)
+	{
+            $imageshack_np_search_text = '$attachmentoption'; 
+   	    $vbulletin->templatecache['newreply'] = str_replace($imageshack_np_search_text,$imageshack_np_search_text.fetch_template('imageshack'),$vbulletin->templatecache['newreply']);
+	}
+}]]></phpcode>
+		</plugin>
+		<plugin active="1" executionorder="5">
+			<title><![CDATA[Imageshack, MEGAUPLOAD & Photobucket Uploader (2)]]></title>
+			<hookname>newthread_form_start</hookname>
+			<phpcode><![CDATA[if ($vbulletin->userinfo['permissions']['ms_imageshack_upload_permissions'] & $vbulletin->bf_ugp['ms_imageshack_upload_permissions']['imageshack_newthread'] || $vbulletin->userinfo['permissions']['ms_megaupload_upload_permissions'] & $vbulletin->bf_ugp['ms_megaupload_upload_permissions']['megaupload_newthread'] || $vbulletin->userinfo['permissions']['ms_photobucket_upload_permissions'] & $vbulletin->bf_ugp['ms_photobucket_upload_permissions']['photobucket_newthread'])
+{
+    $show['imageshack_is'] = false;
+    $show['imageshack_mu'] = false;
+    $show['imageshack_pb'] = false;
+    $imageshack_nt = 0;
+    if ($vbulletin->options['megaupload_size'] == 0)
+    {
+        $megaupload_width = 232;
+        $megaupload_height = 143;
+    }
+    elseif ($vbulletin->options['megaupload_size'] == 1)
+    {
+        $megaupload_width = 350;
+        $megaupload_height = 143;
+    }
+    elseif ($vbulletin->options['megaupload_size'] == 2)
+    {
+        $megaupload_width = 350;
+        $megaupload_height = 90;
+    }
+    if($vbulletin->userinfo['permissions']['ms_imageshack_upload_permissions'] & $vbulletin->bf_ugp['ms_imageshack_upload_permissions']['imageshack_newthread'])
+    {
+        $imageshack_nt = 1;
+        $show['imageshack_is'] = true;
+    }
+    if($vbulletin->userinfo['permissions']['ms_megaupload_upload_permissions'] & $vbulletin->bf_ugp['ms_megaupload_upload_permissions']['megaupload_newthread'])
+    {
+        $imageshack_nt = 1;
+        $show['imageshack_mu'] = true;
+    }
+    if($vbulletin->userinfo['permissions']['ms_photobucket_upload_permissions'] & $vbulletin->bf_ugp['ms_photobucket_upload_permissions']['photobucket_newthread'])
+    {
+        $imageshack_nt = 1;
+        $show['imageshack_pb'] = true;
+    }
+    if ($imageshack_nt == 1)
+    {
+        $imageshack_nt_search_text = '$attachmentoption'; 
+        $vbulletin->templatecache['newthread'] = str_replace($imageshack_nt_search_text,$imageshack_nt_search_text.fetch_template('imageshack'),$vbulletin->templatecache['newthread']);
+    }
+}]]></phpcode>
+		</plugin>
+		<plugin active="1" executionorder="5">
+			<title><![CDATA[Imageshack, MEGAUPLOAD & Photobucket Uploader (6)]]></title>
+			<hookname>private_newpm_blank</hookname>
+			<phpcode><![CDATA[if ($vbulletin->userinfo['permissions']['ms_imageshack_upload_permissions'] & $vbulletin->bf_ugp['ms_imageshack_upload_permissions']['imageshack_pm'] || $vbulletin->userinfo['permissions']['ms_megaupload_upload_permissions'] & $vbulletin->bf_ugp['ms_megaupload_upload_permissions']['megaupload_pm'] || $vbulletin->userinfo['permissions']['ms_photobucket_upload_permissions'] & $vbulletin->bf_ugp['ms_photobucket_upload_permissions']['photobucket_pm'])
+{
+    $show['imageshack_ispm'] = false;
+    $show['imageshack_mupm'] = false;
+    $show['imageshack_pbpm'] = false;
+    $imageshack_qe = 0;
+    if ($vbulletin->options['megaupload_size'] == 0)
+    {
+        $megaupload_width = 232;
+        $megaupload_height = 143;
+    }
+    elseif ($vbulletin->options['megaupload_size'] == 1)
+    {
+        $megaupload_width = 350;
+        $megaupload_height = 143;
+    }
+    elseif ($vbulletin->options['megaupload_size'] == 2)
+    {
+        $megaupload_width = 350;
+        $megaupload_height = 90;
+    }
+    if($vbulletin->userinfo['permissions']['ms_imageshack_upload_permissions'] & $vbulletin->bf_ugp['ms_imageshack_upload_permissions']['imageshack_pm'])
+    {
+        $imageshack_qe = 1;
+        $show['imageshack_ispm'] = true;
+    }
+    if($vbulletin->userinfo['permissions']['ms_megaupload_upload_permissions'] & $vbulletin->bf_ugp['ms_megaupload_upload_permissions']['megaupload_pm'])
+    {
+        $imageshack_qe = 1;
+        $show['imageshack_mupm'] = true;
+    }
+    if($vbulletin->userinfo['permissions']['ms_photobucket_upload_permissions'] & $vbulletin->bf_ugp['ms_photobucket_upload_permissions']['photobucket_pm'])
+    {
+        $imageshack_qe = 1;
+        $show['imageshack_pbpm'] = true;
+    }
+    if ($imageshack_qe == 1)
+    {
+	$vbulletin->templatecache['pm_newpm'] = $vbulletin->templatecache['imageshack_pm_newpm'];
+    }
+}]]></phpcode>
+		</plugin>
+		<plugin active="1" executionorder="5">
+			<title><![CDATA[Imageshack, MEGAUPLOAD & Photobucket Uploader (8)]]></title>
+			<hookname>private_newpm_start</hookname>
+			<phpcode><![CDATA[if ($vbulletin->userinfo['permissions']['ms_imageshack_upload_permissions'] & $vbulletin->bf_ugp['ms_imageshack_upload_permissions']['imageshack_pmr'] || $vbulletin->userinfo['permissions']['ms_megaupload_upload_permissions'] & $vbulletin->bf_ugp['ms_megaupload_upload_permissions']['megaupload_pmr'] || $vbulletin->userinfo['permissions']['ms_photobucket_upload_permissions'] & $vbulletin->bf_ugp['ms_photobucket_upload_permissions']['photobucket_pmr'])
+{
+    $show['imageshack_ispm'] = false;
+    $show['imageshack_mupm'] = false;
+    $show['imageshack_pbpm'] = false;
+    $imageshack_r = 0;
+    if ($vbulletin->options['megaupload_size'] == 0)
+    {
+        $megaupload_width = 232;
+        $megaupload_height = 143;
+    }
+    elseif ($vbulletin->options['megaupload_size'] == 1)
+    {
+        $megaupload_width = 350;
+        $megaupload_height = 143;
+    }
+    elseif ($vbulletin->options['megaupload_size'] == 2)
+    {
+        $megaupload_width = 350;
+        $megaupload_height = 90;
+    }
+    if($vbulletin->userinfo['permissions']['ms_imageshack_upload_permissions'] & $vbulletin->bf_ugp['ms_imageshack_upload_permissions']['imageshack_pmr'])
+    {
+        $imageshack_r = 1;
+        $show['imageshack_ispm'] = true;
+    }
+    if($vbulletin->userinfo['permissions']['ms_megaupload_upload_permissions'] & $vbulletin->bf_ugp['ms_megaupload_upload_permissions']['megaupload_pmr'])
+    {
+        $imageshack_r = 1;
+        $show['imageshack_mupm'] = true;
+    }
+    if($vbulletin->userinfo['permissions']['ms_photobucket_upload_permissions'] & $vbulletin->bf_ugp['ms_photobucket_upload_permissions']['photobucket_pmr'])
+    {
+        $imageshack_r = 1;
+        $show['imageshack_pbpm'] = true;
+    }
+    if ($imageshack_r == 1)
+    {
+	$vbulletin->templatecache['pm_newpm'] = $vbulletin->templatecache['imageshack_pm_newpm'];
+    }
+}]]></phpcode>
+		</plugin>
+		<plugin active="1" executionorder="5">
+			<title><![CDATA[Imageshack, MEGAUPLOAD & Photobucket Uploader (7)]]></title>
+			<hookname>private_showpm_start</hookname>
+			<phpcode><![CDATA[if ($vbulletin->userinfo['permissions']['ms_imageshack_upload_permissions'] & $vbulletin->bf_ugp['ms_imageshack_upload_permissions']['imageshack_pmqr'] || $vbulletin->userinfo['permissions']['ms_megaupload_upload_permissions'] & $vbulletin->bf_ugp['ms_megaupload_upload_permissions']['megaupload_pmqr'] || $vbulletin->userinfo['permissions']['ms_photobucket_upload_permissions'] & $vbulletin->bf_ugp['ms_photobucket_upload_permissions']['photobucket_pmqr'])
+{
+    $show['imageshack_ispmqr'] = false;
+    $show['imageshack_mupmqr'] = false;
+    $show['imageshack_pbpmqr'] = false;
+    $imageshack_qe = 0;
+    if ($vbulletin->options['megaupload_size'] == 0)
+    {
+        $megaupload_width = 232;
+        $megaupload_height = 143;
+    }
+    elseif ($vbulletin->options['megaupload_size'] == 1)
+    {
+        $megaupload_width = 350;
+        $megaupload_height = 143;
+    }
+    elseif ($vbulletin->options['megaupload_size'] == 2)
+    {
+        $megaupload_width = 350;
+        $megaupload_height = 90;
+    }
+    if($vbulletin->userinfo['permissions']['ms_imageshack_upload_permissions'] & $vbulletin->bf_ugp['ms_imageshack_upload_permissions']['imageshack_pmqr'])
+    {
+        $imageshack_qe = 1;
+        $show['imageshack_ispmqr'] = true;
+    }
+    if($vbulletin->userinfo['permissions']['ms_megaupload_upload_permissions'] & $vbulletin->bf_ugp['ms_megaupload_upload_permissions']['megaupload_pmqr'])
+    {
+        $imageshack_qe = 1;
+        $show['imageshack_mupmqr'] = true;
+    }
+    if($vbulletin->userinfo['permissions']['ms_photobucket_upload_permissions'] & $vbulletin->bf_ugp['ms_photobucket_upload_permissions']['photobucket_pmqr'])
+    {
+        $imageshack_qe = 1;
+        $show['imageshack_pbpmqr'] = true;
+    }
+    if ($imageshack_qe == 1)
+    {
+	$vbulletin->templatecache['pm_quickreply'] = $vbulletin->templatecache['imageshack_pm_quickreply'];
+    }
+}]]></phpcode>
+		</plugin>
+		<plugin active="1" executionorder="10">
+			<title><![CDATA[Imageshack, MEGAUPLOAD & Photobucket Uploader (5)]]></title>
+			<hookname>showthread_complete</hookname>
+			<phpcode><![CDATA[if ($vbulletin->userinfo['permissions']['ms_imageshack_upload_permissions'] & $vbulletin->bf_ugp['ms_imageshack_upload_permissions']['imageshack_quickreply'] || $vbulletin->userinfo['permissions']['ms_megaupload_upload_permissions'] & $vbulletin->bf_ugp['ms_megaupload_upload_permissions']['megaupload_quickreply'] || $vbulletin->userinfo['permissions']['ms_photobucket_upload_permissions'] & $vbulletin->bf_ugp['ms_photobucket_upload_permissions']['photobucket_quickreply'])
+{
+    $show['imageshack_is'] = false;
+    $show['imageshack_mu'] = false;
+    $show['imageshack_pb'] = false;
+    $imageshack_qr = 0;
+    if ($vbulletin->options['megaupload_size'] == 0)
+    {
+        $megaupload_width = 232;
+        $megaupload_height = 143;
+    }
+    elseif ($vbulletin->options['megaupload_size'] == 1)
+    {
+        $megaupload_width = 350;
+        $megaupload_height = 143;
+    }
+    elseif ($vbulletin->options['megaupload_size'] == 2)
+    {
+        $megaupload_width = 350;
+        $megaupload_height = 90;
+    }
+    if($vbulletin->userinfo['permissions']['ms_imageshack_upload_permissions'] & $vbulletin->bf_ugp['ms_imageshack_upload_permissions']['imageshack_quickreply'])
+    {
+        $imageshack_qr = 1;
+        $show['imageshack_is'] = true;
+    }
+    if($vbulletin->userinfo['permissions']['ms_megaupload_upload_permissions'] & $vbulletin->bf_ugp['ms_megaupload_upload_permissions']['megaupload_quickreply'])
+    {
+        $imageshack_qr = 1;
+        $show['imageshack_mu'] = true;
+    }
+    if($vbulletin->userinfo['permissions']['ms_photobucket_upload_permissions'] & $vbulletin->bf_ugp['ms_photobucket_upload_permissions']['photobucket_quickreply'])
+    {
+        $imageshack_qr = 1;
+        $show['imageshack_pb'] = true;
+    }
+    if ($imageshack_qr == 1)
+    {
+        $imageshack_qr_search_text = '</fieldset>'; 
+        $vbulletin->templatecache['SHOWTHREAD'] = str_replace($imageshack_qr_search_text,fetch_template('imageshack').$imageshack_qr_search_text,$vbulletin->templatecache['SHOWTHREAD']);
+    }
+}]]></phpcode>
+		</plugin>
+	</plugins>
+	<phrases>
+		<phrasetype name="GLOBAL" fieldname="global">
+			<phrase name="imageshack_upload_to_imageshack" date="1255925486" username="Mosh" version="3.8.004"><![CDATA[Upload your images to ImageShack]]></phrase>
+			<phrase name="imageshack_upload_to_megaupload" date="1255925538" username="Mosh" version="3.8.004"><![CDATA[Upload your files to MEGAUPLOAD]]></phrase>
+			<phrase name="imageshack_upload_to_photobucket" date="1255925584" username="Mosh" version="3.8.004"><![CDATA[Upload your files to Photobucket]]></phrase>
+			<phrase name="imageshack_version" date="1226659385" username="Mosh" version="3.8.002"><![CDATA[3.8.005]]></phrase>
+			<phrase name="ms_imageshack_iep" date="1227047682" username="Mosh" version="3.8.002"><![CDATA[Imageshack - Enable Edit Post Display ?]]></phrase>
+			<phrase name="ms_imageshack_inp" date="1227047650" username="Mosh" version="3.8.002"><![CDATA[Imageshack - Enable New Post Display ?]]></phrase>
+			<phrase name="ms_imageshack_int" date="1227047521" username="Mosh" version="3.8.002"><![CDATA[Imageshack - Enable New Thread Display ?]]></phrase>
+			<phrase name="ms_imageshack_ipm" date="1227047779" username="Mosh" version="3.8.002"><![CDATA[Imageshack - Enable Private Message Display ?]]></phrase>
+			<phrase name="ms_imageshack_ipmqr" date="1227047802" username="Mosh" version="3.8.002"><![CDATA[Imageshack - Enable Private Message Quick Reply Display ?]]></phrase>
+			<phrase name="ms_imageshack_ipmr" date="1257471802" username="Mosh" version="3.8.005"><![CDATA[Imageshack - Enable Private Message Reply Display ?]]></phrase>
+			<phrase name="ms_imageshack_iqr" date="1227047735" username="Mosh" version="3.8.002"><![CDATA[Imageshack - Enable Quick Reply Display ?]]></phrase>
+			<phrase name="ms_imageshack_mep" date="1227047886" username="Mosh" version="3.8.002"><![CDATA[MEGAUPLOAD - Enable Edit Post Display ?]]></phrase>
+			<phrase name="ms_imageshack_mnp" date="1227047863" username="Mosh" version="3.8.002"><![CDATA[MEGAUPLOAD - Enable New Post Display ?]]></phrase>
+			<phrase name="ms_imageshack_mnt" date="1227047841" username="Mosh" version="3.8.002"><![CDATA[MEGAUPLOAD - Enable New Thread Display ?]]></phrase>
+			<phrase name="ms_imageshack_mpm" date="1227047953" username="Mosh" version="3.8.002"><![CDATA[MEGAUPLOAD - Enable Private Message Display ?]]></phrase>
+			<phrase name="ms_imageshack_mpmqr" date="1227047974" username="Mosh" version="3.8.002"><![CDATA[MEGAUPLOAD - Enable Private Message Quick Reply Display ?]]></phrase>
+			<phrase name="ms_imageshack_mpmr" date="1257471802" username="Mosh" version="3.8.005"><![CDATA[MEGAUPLOAD - Enable Private Message Reply Display ?]]></phrase>
+			<phrase name="ms_imageshack_mqr" date="1227047933" username="Mosh" version="3.8.002"><![CDATA[MEGAUPLOAD - Enable Quick Reply Display ?]]></phrase>
+			<phrase name="ms_imageshack_pep" date="1227047886" username="Mosh" version="3.8.004"><![CDATA[Photobucket - Enable Edit Post Display ?]]></phrase>
+			<phrase name="ms_imageshack_pnp" date="1227047863" username="Mosh" version="3.8.004"><![CDATA[Photobucket - Enable New Post Display ?]]></phrase>
+			<phrase name="ms_imageshack_pnt" date="1227047841" username="Mosh" version="3.8.004"><![CDATA[Photobucket - Enable New Thread Display ?]]></phrase>
+			<phrase name="ms_imageshack_ppm" date="1227047953" username="Mosh" version="3.8.004"><![CDATA[Photobucket - Enable Private Message Display ?]]></phrase>
+			<phrase name="ms_imageshack_ppmqr" date="1227047974" username="Mosh" version="3.8.004"><![CDATA[Photobucket - Enable Private Message Quick Reply Display ?]]></phrase>
+			<phrase name="ms_imageshack_ppmr" date="1257471802" username="Mosh" version="3.8.005"><![CDATA[Photobucket - Enable Private Message Reply Display ?]]></phrase>
+			<phrase name="ms_imageshack_pqr" date="1227047933" username="Mosh" version="3.8.004"><![CDATA[Photobucket - Enable Quick Reply Display ?]]></phrase>
+			<phrase name="ms_imageshack_upload_permissions" date="1227047578" username="Mosh" version="3.8.002"><![CDATA[Imageshack, MEGAUPLOAD & Photobucket Uploader - Imageshack Permissions]]></phrase>
+			<phrase name="ms_megaupload_upload_permissions" date="1227047578" username="Mosh" version="3.8.002"><![CDATA[Imageshack, MEGAUPLOAD & Photobucket Uploader - MEGAUPLOAD Permissions]]></phrase>
+			<phrase name="ms_photobucket_upload_permissions" date="1227047578" username="Mosh" version="3.8.002"><![CDATA[Imageshack, MEGAUPLOAD & Photobucket Uploader - Photobucket Permissions]]></phrase>
+		</phrasetype>
+		<phrasetype name="Postbit" fieldname="postbit">
+			<phrase name="imageshack_photobucket_form_hide" date="1255947152" username="Mosh" version="3.8.004"><![CDATA[Hide the upload form from Photobucket]]></phrase>
+			<phrase name="imageshack_photobucket_form_view" date="1255947096" username="Mosh" version="3.8.004"><![CDATA[Display the upload form from Photobucket]]></phrase>
+		</phrasetype>
+		<phrasetype name="vBulletin Settings" fieldname="vbsettings">
+			<phrase name="setting_imageshack_color_desc" date="1226653650" username="Mosh" version="3.8.001"><![CDATA[Specify the text color of the Imageshack iFrame. This needs to be a <u>valid</u> 6 digit hexadecimal number between <b>000000</b> (black) and <b>FFFFFF</b> (white).]]></phrase>
+			<phrase name="setting_imageshack_color_title" date="1226653650" username="Mosh" version="3.8.001"><![CDATA[Imageshack - Text Color]]></phrase>
+			<phrase name="setting_imageshack_height_desc" date="1226653650" username="Mosh" version="3.8.001"><![CDATA[Specify the height of the Imageshack iFrame.]]></phrase>
+			<phrase name="setting_imageshack_height_title" date="1226653650" username="Mosh" version="3.8.001"><![CDATA[Imageshack - iFrame Height]]></phrase>
+			<phrase name="setting_imageshack_size_desc" date="1226653650" username="Mosh" version="3.8.001"><![CDATA[Specify the size of the Imageshack upload input field (between <b>1</b> and <b>99</b>). This is where the path to the file you want to upload is manually entered or browsed. You will have to adjust the iFrame Width field below if number of charachers you specify cut off the <b>Browse...</b> button.]]></phrase>
+			<phrase name="setting_imageshack_size_title" date="1226653650" username="Mosh" version="3.8.001"><![CDATA[Imageshack - iFrame Upload Field Size]]></phrase>
+			<phrase name="setting_imageshack_width_desc" date="1226653650" username="Mosh" version="3.8.001"><![CDATA[Specify the width of the Imageshack iFrame.]]></phrase>
+			<phrase name="setting_imageshack_width_title" date="1226653650" username="Mosh" version="3.8.001"><![CDATA[Imageshack - iFrame Width]]></phrase>
+			<phrase name="setting_megaupload_colour_desc" date="1241484465" username="Mosh" version="3.8.003"><![CDATA[The colour of the embedded MEGAUPLOAD box to be displayed.]]></phrase>
+			<phrase name="setting_megaupload_colour_title" date="1241484465" username="Mosh" version="3.8.003"><![CDATA[MEGAUPLOAD - Embedded Colour]]></phrase>
+			<phrase name="setting_megaupload_key_desc" date="1241484557" username="Mosh" version="3.8.003"><![CDATA[<b>Only</b> change the license key value here if this a Premium account, otherwise, leave the key value as it is.]]></phrase>
+			<phrase name="setting_megaupload_key_title" date="1241484557" username="Mosh" version="3.8.003"><![CDATA[MEGAUPLOAD -  License Key]]></phrase>
+			<phrase name="setting_megaupload_size_desc" date="1241484479" username="Mosh" version="3.8.003"><![CDATA[The size of the embedded MEGAUPLOAD box to be displayed.]]></phrase>
+			<phrase name="setting_megaupload_size_title" date="1241484479" username="Mosh" version="3.8.003"><![CDATA[MEGAUPLOAD - Embedded Size]]></phrase>
+			<phrase name="setting_photobucket_bgcolor_desc" date="1255892245" username="Mosh" version="3.8.004"><![CDATA[Specify the background color of the Photobucket iFrame. This needs to be a <u>valid</u> 6 digit hexadecimal number between <b>000000</b> (black) and <b>FFFFFF</b> (white).]]></phrase>
+			<phrase name="setting_photobucket_bgcolor_title" date="1255892245" username="Mosh" version="3.8.004"><![CDATA[Photobucket - iFrame Background Color]]></phrase>
+			<phrase name="setting_photobucket_color_desc" date="1255892224" username="Mosh" version="3.8.004"><![CDATA[Specify the text color of the Photobucket iFrame. This needs to be a <u>valid</u> 6 digit hexadecimal number between <b>000000</b> (black) and <b>FFFFFF</b> (white).]]></phrase>
+			<phrase name="setting_photobucket_color_title" date="1255892224" username="Mosh" version="3.8.004"><![CDATA[Photobucket - iFrame Text Color]]></phrase>
+			<phrase name="setting_photobucket_displaycolor_desc" date="1255947547" username="Mosh" version="3.8.004"><![CDATA[Specify the color of the Display Text. This needs to be a <u>valid</u> 6 digit hexadecimal number between <b>000000</b> (black) and <b>FFFFFF</b> (white).]]></phrase>
+			<phrase name="setting_photobucket_displaycolor_title" date="1255947547" username="Mosh" version="3.8.004"><![CDATA[Photobucket - Display Text Color]]></phrase>
+			<phrase name="setting_photobucket_displayhovercolor_desc" date="1255947559" username="Mosh" version="3.8.004"><![CDATA[Specify the color of the Display Text when hovered. This needs to be a <u>valid</u> 6 digit hexadecimal number between <b>000000</b> (black) and <b>FFFFFF</b> (white).]]></phrase>
+			<phrase name="setting_photobucket_displayhovercolor_title" date="1255947559" username="Mosh" version="3.8.004"><![CDATA[Photobucket - Display Text Hover Color]]></phrase>
+			<phrase name="setting_photobucket_height_desc" date="1255892363" username="Mosh" version="3.8.004"><![CDATA[Specify the height of the Photobucket iFrame.]]></phrase>
+			<phrase name="setting_photobucket_height_title" date="1255892363" username="Mosh" version="3.8.004"><![CDATA[Photobucket - iFrame Height]]></phrase>
+			<phrase name="setting_photobucket_linkcolor_desc" date="1255892235" username="Mosh" version="3.8.004"><![CDATA[Specify the link color of the Photobucket iFrame. This needs to be a <u>valid</u> 6 digit hexadecimal number between <b>000000</b> (black) and <b>FFFFFF</b> (white).]]></phrase>
+			<phrase name="setting_photobucket_linkcolor_title" date="1255892235" username="Mosh" version="3.8.004"><![CDATA[Photobucket - iFrame Link Color]]></phrase>
+			<phrase name="setting_photobucket_width_desc" date="1255892350" username="Mosh" version="3.8.004"><![CDATA[Specify the width of the Photobucket iFrame.]]></phrase>
+			<phrase name="setting_photobucket_width_title" date="1255892350" username="Mosh" version="3.8.004"><![CDATA[Photobucket - iFrame Width]]></phrase>
+			<phrase name="settinggroup_imageshack_group" date="1226653650" username="Mosh" version="3.8.001"><![CDATA[Imageshack, MEGAUPLOAD & Photobucket Uploader]]></phrase>
+		</phrasetype>
+	</phrases>
+	<options>
+		<settinggroup name="imageshack_group" displayorder="2601">
+			<setting varname="imageshack_size" displayorder="10">
+				<datatype>number</datatype>
+				<validationcode><![CDATA[return $data != NULL && $data >= 1 && $data <= 100;]]></validationcode>
+				<defaultvalue>30</defaultvalue>
+			</setting>
+			<setting varname="imageshack_width" displayorder="20">
+				<datatype>number</datatype>
+				<validationcode><![CDATA[return $data != NULL && $data > 0;]]></validationcode>
+				<defaultvalue>285</defaultvalue>
+			</setting>
+			<setting varname="imageshack_height" displayorder="30">
+				<datatype>number</datatype>
+				<validationcode><![CDATA[return $data != NULL && $data > 0;]]></validationcode>
+				<defaultvalue>75</defaultvalue>
+			</setting>
+			<setting varname="imageshack_color" displayorder="40">
+				<datatype>free</datatype>
+				<validationcode><![CDATA[return preg_match('/^[0-9A-F]{6}$/i', $data);]]></validationcode>
+				<defaultvalue>111111</defaultvalue>
+			</setting>
+			<setting varname="megaupload_key" displayorder="100">
+				<datatype>free</datatype>
+				<defaultvalue>13178909.3b6dda5d12</defaultvalue>
+			</setting>
+			<setting varname="megaupload_size" displayorder="110">
+				<datatype>number</datatype>
+				<optioncode>select:piped
+0|Small
+1|Large
+2|Tiny</optioncode>
+				<defaultvalue>2</defaultvalue>
+			</setting>
+			<setting varname="megaupload_colour" displayorder="120">
+				<datatype>number</datatype>
+				<optioncode>select:piped
+0|Orange
+1|Grey
+2|Blue
+3|Green
+4|Red
+5|Gold/Brown</optioncode>
+				<defaultvalue>2</defaultvalue>
+			</setting>
+			<setting varname="photobucket_width" displayorder="130">
+				<datatype>number</datatype>
+				<validationcode><![CDATA[return $data != NULL && $data > 0;]]></validationcode>
+				<defaultvalue>500</defaultvalue>
+			</setting>
+			<setting varname="photobucket_height" displayorder="140">
+				<datatype>number</datatype>
+				<validationcode><![CDATA[return $data != NULL && $data > 0;]]></validationcode>
+				<defaultvalue>400</defaultvalue>
+			</setting>
+			<setting varname="photobucket_color" displayorder="150">
+				<datatype>free</datatype>
+				<validationcode><![CDATA[return preg_match('/^[0-9A-F]{6}$/i', $data);]]></validationcode>
+				<defaultvalue>000000</defaultvalue>
+			</setting>
+			<setting varname="photobucket_linkcolor" displayorder="160">
+				<datatype>free</datatype>
+				<validationcode><![CDATA[return preg_match('/^[0-9A-F]{6}$/i', $data);]]></validationcode>
+				<defaultvalue>0000FF</defaultvalue>
+			</setting>
+			<setting varname="photobucket_bgcolor" displayorder="170">
+				<datatype>free</datatype>
+				<validationcode><![CDATA[return preg_match('/^[0-9A-F]{6}$/i', $data);]]></validationcode>
+				<defaultvalue>FFFFFF</defaultvalue>
+			</setting>
+			<setting varname="photobucket_displaycolor" displayorder="180">
+				<datatype>free</datatype>
+				<validationcode><![CDATA[return preg_match('/^[0-9A-F]{6}$/i', $data);]]></validationcode>
+				<defaultvalue>0000FF</defaultvalue>
+			</setting>
+			<setting varname="photobucket_displayhovercolor" displayorder="190">
+				<datatype>free</datatype>
+				<validationcode><![CDATA[return preg_match('/^[0-9A-F]{6}$/i', $data);]]></validationcode>
+				<defaultvalue>440022</defaultvalue>
+			</setting>
+		</settinggroup>
+	</options>
+	<helptopics>
+	</helptopics>
+	<cronentries>
+	</cronentries>
+	<faqentries>
+	</faqentries>
+</product>

@@ -1,0 +1,53 @@
+<!-- Page Title: "Add New Itemtype - Detail Information" End Page Title-->
+<table class="tborder" width="100%" align="center" border="0" cellpadding="6" cellspacing="1">
+<tbody><tr>
+	<td class="tcat">
+		<a href="{$url_prefix}index">Help Index</a>
+		> <a href="{$url_prefix}add_itemtype#add_itemtype_003">Add New Itemtype</a>
+		> <a href="{$url_prefix}add_itemtype_003">Detail Information</a>
+	</td>
+</tr>
+<tr>
+	<td class="alt1">
+		If you choose <em>announce</em> itemtype, it has 2 settings:<br/>
+		<center><img border="1" src="{$image_url}add_itemtype/add_itemtype_003_01_announce.png" alt="Add New Itemtype"/></center><br/>
+		<ul>
+			<li>Text Max: The maximum character for announcement. If member enter longer text, it will be cut off!</li>
+			<li>Duration Step Price: This setting also can be found in other itemtypes. Because our items have an active duration so the longer active duration the more expensive! Number of days for each duration step can be found in kBank Item Settings (click <strong>Edit Settings</strong> under <strong>kBank Item</strong>)
+		</ul><br/>
+		
+		This is what will be showed if you choose <em>customize_userinfo</em>:<br/>
+		<center><img border="1" src="{$image_url}add_itemtype/add_itemtype_003_01_customize_userinfo.png" alt="Add New Itemtype"/></center><br/>
+		<ul>
+			<li>Username Max: The maximum character for customized username. Leave blank or enter 0 (zero) to disable this itemtype from changing username. You can create an itemtype that only can change username and an itemtype that only can change usertitle. There are a lot of combinations!</li>
+			<li>Username Smilies: The maximum smilies (from vBulletin system) can be display. If more than this limitation smilies have been found, all of them won't be processed!</li>
+			<li>Username Color list: Enter list of colors member can choose (color name like "red", "green" or color html code like "#00FFFF" or "#22CC00")</li>
+			<li>Can Use Bold Username: Read the description</li>
+			<li>Usertitle Max: The same as Username Max</li>
+			<li>Usertitle Color list: The same as Username's</li>
+			<li>Reveal Other Username: Enable this setting will give the member who use this item the ability to view real username of other members. This ability can not be disable by member</li>
+			<li>Reveal Other Usertitle: The same as Username's</li>
+			<li>Can See Invisible Member: Member can see invisible member accessing vBulletin board (in posts, in Online list,.v.v.)</li>
+			<li>Duration Step Price: The same as above</li>
+		</ul><br/>
+		
+		And for <em>profile_images</em>:<br/>
+		<center><img border="1" src="{$image_url}add_itemtype/add_itemtype_003_01_profile_images.png" alt="Add New Itemtype"/></center><br/>
+		<ul>
+			<li>Avatar Enabled: This settings is not work with vBulletin 3.7. Administrator must enable Avatar System (with small avatar size) to allow avatar show in posts</li>
+			<li>Animated Avatar Enabled: Allow member upload animated avatar even he/she don't have this permission</li>
+			<li>Avatar Max Width, Avatar Max Height, Avatar Max Size: Nothing more to say</li>
+			<li>Signature Picture Enabled, Animated Signature Picture Enabled, Signature Picture Max Width, Signature Picture Max Height, Signature Picture Max Size: The same as Avatar's</li>
+			<li>Duration Step Price: The same as above</li>
+			<li><strong>Note</strong>: After active duration of item, if member don't have other activated item with enough abilities, Avatar/Signature Picture will be remove or resized to match user default permissions</li>
+		</ul><br/>
+		
+		The last, the most interesting itemtype: <em>pack</em><br/>
+		<center><img border="1" src="{$image_url}add_itemtype/add_itemtype_006.png" alt="Add New Itemtype"/></center><br/>
+		<ul>
+			<li>Itemtype(s): Enter itemtypeid of itemtypes that you want to be included. If you want this pack contains 2 or more items of the same itemtype just repeat it's itemtypeid. For example: "<em>1,2,2,3,3,3</em>"</li>
+			<li>Duration Step Price: All itemtypes included will have the same active duration as the pack</li>
+		</ul><br/>
+	</td>
+</tr>
+</tbody></table>

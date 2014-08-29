@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<navgroups product="vbulletin">
+	<navgroup text="IShop Settings">
+	
+		<navoption displayorder="1">
+			<text>Main Settings</text>
+			<link>options.php?dogroup=ishop&amp;sdo=options</link>
+		</navoption>
+
+	
+		<navoption displayorder="3">
+			<text>Add New Item</text>
+			<link>ishop_control.php?act=add</link>
+		</navoption>
+		
+		<navoption displayorder="4">
+			<text>Control Items</text>
+			<link>ishop_control.php?act=main</link>
+		</navoption>
+		
+		<navoption displayorder="5">
+			<text>Mass Restock Items</text>
+			<link>ishop_control.php?act=mass_restock</link>
+		</navoption>
+		
+		<navoption displayorder="6">
+			<text>Mass Item Sold Stat Fix</text>
+			<link>ishop_control.php?act=mass_item_fix</link>
+		</navoption>
+		
+		<navoption displayorder="7">
+			<text>Add New Category</text>
+			<link>ishop_control.php?act=addcat</link>
+		</navoption>
+		
+		<navoption displayorder="8">
+			<text>Control Categories</text>
+			<link>ishop_control.php?act=cat</link>
+		</navoption>
+		
+		<navoption displayorder="9">
+			<text>Recount Category Statistics</text>
+			<link>ishop_control.php?act=cStats</link>
+		</navoption>
+				
+	</navgroup>			
+</navgroups>

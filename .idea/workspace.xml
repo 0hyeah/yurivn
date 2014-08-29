@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2a58aec9-2bf3-42d1-91a3-41b8c0892d83" name="Default" comment="" />
+    <ignored path="yurivn.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="yurivn" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="vietsubmanga.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yrms/vietsubmanga.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="44" column="31" selection-start="1323" selection-end="1323" vertical-scroll-proportion="-13.333333" vertical-offset="432" max-vertical-offset="9414">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vietsubmanga.class.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/yrms/class/vietsubmanga.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="581" column="36" selection-start="29398" selection-end="29398" vertical-scroll-proportion="0.6283367" vertical-offset="10152" max-vertical-offset="23166">
+              <folding>
+                <marker date="1405509724469" expanded="false" signature="16393:16409" placeholder="..." />
+                <marker date="1405509724469" expanded="true" signature="16411:16764" placeholder="..." />
+                <marker date="1405509724469" expanded="false" signature="16500:16541" placeholder="..." />
+                <marker date="1405509724469" expanded="false" signature="16704:16717" placeholder="..." />
+                <marker date="1405509724469" expanded="false" signature="20879:20895" placeholder="..." />
+                <marker date="1405509724469" expanded="true" signature="20897:21262" placeholder="..." />
+                <marker date="1405509724469" expanded="false" signature="20990:21031" placeholder="..." />
+                <marker date="1405509724469" expanded="false" signature="21198:21211" placeholder="..." />
+                <marker date="1405509724469" expanded="true" signature="30555:30679" placeholder="..." />
+                <marker date="1405509724469" expanded="true" signature="30928:30970" placeholder="..." />
+                <marker date="1405509724469" expanded="true" signature="31752:32348" placeholder="..." />
+                <marker date="1405509724469" expanded="true" signature="33066:33933" placeholder="..." />
+                <marker date="1405509724469" expanded="true" signature="34008:34179" placeholder="..." />
+                <marker date="1405509724469" expanded="true" signature="36103:36601" placeholder="..." />
+                <marker date="1405509724469" expanded="true" signature="37348:37472" placeholder="..." />
+                <marker date="1405509724469" expanded="true" signature="37816:38359" placeholder="..." />
+                <marker date="1405509724469" expanded="true" signature="37898:38359" placeholder="..." />
+                <marker date="1405509724469" expanded="false" signature="50566:50582" placeholder="..." />
+                <marker date="1405509724469" expanded="true" signature="50584:50999" placeholder="..." />
+                <marker date="1405509724469" expanded="false" signature="50731:50772" placeholder="..." />
+                <marker date="1405509724469" expanded="false" signature="50939:50952" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="function.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yrms/class/function.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="116.0" vertical-offset="3132" max-vertical-offset="4986">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/yrms/vietsubmanga.php" />
+        <option value="$PROJECT_DIR$/yrms/class/vietsubmanga.class.php" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true">
+    <include_path>
+      <path value="." />
+      <path value="D:\Webserver\php\PEAR" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>CoffeeScript</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yurivn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yurivn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yurivn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yurivn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yurivn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yrms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yurivn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yurivn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yrms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="class" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="options.lastSelected" value="reference.settings.ide.settings.spelling" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+  </component>
+  <component name="PublishConfig" serverName="yurivn" serverId="252cfb9c-f190-4d9f-b8ea-9e61c315a1a1">
+    <servers>
+      <server id="252cfb9c-f190-4d9f-b8ea-9e61c315a1a1">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </server>
+      <server id="4785b864-3eec-4903-8b01-0756fbb1dad8">
+        <serverdata />
+      </server>
+      <server id="71d7b406-2944-4f36-8bd8-d1d394b87b0c">
+        <serverdata />
+      </server>
+      <server id="8b5cc70c-e062-45e8-8d96-196572af3be6">
+        <serverdata />
+      </server>
+      <server id="9cc77f17-8fcd-42af-86d6-4b01f76d9f7d">
+        <serverdata />
+      </server>
+      <server id="d7990407-dc83-451d-972c-473422116ec4">
+        <serverdata />
+      </server>
+    </servers>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="252cfb9c-f190-4d9f-b8ea-9e61c315a1a1" server_name="yurivn">
+      <method />
+    </configuration>
+    <list size="0" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SpellCheckerSettings" BundledDictionaries="7" BundledDictionary0="magento.dic" BundledDictionary1="jetbrains.dic" BundledDictionary2="twig.dic" BundledDictionary3="english.dic" BundledDictionary4="less.dic" BundledDictionary5="php.dic" BundledDictionary6="css.dic" Folders="0" Dictionaries="0" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2a58aec9-2bf3-42d1-91a3-41b8c0892d83" name="Default" comment="" />
+      <created>1404715333598</created>
+      <updated>1404715333598</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2497332" sideWeight="0.67" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.255603" sideWeight="0.67" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/yrms/vietsubmanga.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="151" column="31" selection-start="6747" selection-end="6762" vertical-scroll-proportion="0.0" vertical-offset="2232" max-vertical-offset="9324">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yrms/vietsubmanga.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="31" selection-start="1323" selection-end="1323" vertical-scroll-proportion="-13.333333" vertical-offset="432" max-vertical-offset="9414">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yrms/class/function.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="116.0" vertical-offset="3132" max-vertical-offset="4986">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yrms/class/vietsubmanga.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="581" column="36" selection-start="29398" selection-end="29398" vertical-scroll-proportion="0.6283367" vertical-offset="10152" max-vertical-offset="23166">
+          <folding>
+            <marker date="1405509724469" expanded="false" signature="16393:16409" placeholder="..." />
+            <marker date="1405509724469" expanded="true" signature="16411:16764" placeholder="..." />
+            <marker date="1405509724469" expanded="false" signature="16500:16541" placeholder="..." />
+            <marker date="1405509724469" expanded="false" signature="16704:16717" placeholder="..." />
+            <marker date="1405509724469" expanded="false" signature="20879:20895" placeholder="..." />
+            <marker date="1405509724469" expanded="true" signature="20897:21262" placeholder="..." />
+            <marker date="1405509724469" expanded="false" signature="20990:21031" placeholder="..." />
+            <marker date="1405509724469" expanded="false" signature="21198:21211" placeholder="..." />
+            <marker date="1405509724469" expanded="true" signature="30555:30679" placeholder="..." />
+            <marker date="1405509724469" expanded="true" signature="30928:30970" placeholder="..." />
+            <marker date="1405509724469" expanded="true" signature="31752:32348" placeholder="..." />
+            <marker date="1405509724469" expanded="true" signature="33066:33933" placeholder="..." />
+            <marker date="1405509724469" expanded="true" signature="34008:34179" placeholder="..." />
+            <marker date="1405509724469" expanded="true" signature="36103:36601" placeholder="..." />
+            <marker date="1405509724469" expanded="true" signature="37348:37472" placeholder="..." />
+            <marker date="1405509724469" expanded="true" signature="37816:38359" placeholder="..." />
+            <marker date="1405509724469" expanded="true" signature="37898:38359" placeholder="..." />
+            <marker date="1405509724469" expanded="false" signature="50566:50582" placeholder="..." />
+            <marker date="1405509724469" expanded="true" signature="50584:50999" placeholder="..." />
+            <marker date="1405509724469" expanded="false" signature="50731:50772" placeholder="..." />
+            <marker date="1405509724469" expanded="false" signature="50939:50952" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+

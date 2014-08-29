@@ -1,0 +1,136 @@
+#notify{
+width:365px;
+margin:0px auto
+}
+
+#notify span{
+color: black;
+font-size:12px
+}
+
+#notify a{
+text-decoration:underline;
+color: black;
+font-size:12px
+}
+
+#notify a:hover{
+    color: black;
+    text-decoration:none
+}
+
+#notify p,#failure p{
+margin:0 0 10px 0;
+padding-left:30px;
+padding-top:3px
+}
+
+.text_notice{
+padding-left:30px;
+padding-top:3px;
+padding-bottom:20px;
+text-align:left;
+background-color:#fff;
+border:solid 2px #000
+}
+
+#failure a{
+font-size:14px;
+color:#035e7e;
+text-decoration:underline
+}
+
+#failure a:hover{
+text-decoration:none
+}
+
+.error-notice,.answers-notice,.warn-notice,.info-notice,.success-notice,#failure{
+border-radius:4px;
+font-size:12px;
+font-weight:bold;
+min-height:27px;
+padding:5px 10px 5px 5px;
+-moz-box-shadow:0 2px 2px #2b2b2b;
+-webkit-box-shadow:0 2px 2px #2b2b2b;
+box-shadow:0 2px 2px #2b2b2b;
+-ms-filter:"progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#2B2B2B')";
+filter:progid:DXImageTransform.Microsoft.Shadow(Strength=2,Direction=135,Color='#2B2B2B')
+}
+
+.error-notice,#failure{
+background:#bc3e33;
+background:-moz-linear-gradient(top,#dd5952 0,#bc3e33 100%);
+background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#dd5952),color-stop(100%,#bc3e33));
+background:-webkit-linear-gradient(top,#dd5952 0,#bc3e33 100%);
+background:-o-linear-gradient(top,#dd5952 0,#bc3e33 100%);
+background:-ms-linear-gradient(top,#dd5952 0,#bc3e33 100%);
+background:linear-gradient(to bottom,#dd5952 0,#bc3e33 100%);
+color:#fff
+}
+
+.warn-notice,.answers-notice{
+background:#f4b445;
+background:-moz-linear-gradient(top,#f6c167 0,#f3b03b 100%);
+background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#f6c167),color-stop(100%,#f3b03b));
+background:-webkit-linear-gradient(top,#f6c167 0,#f3b03b 100%);
+background:-o-linear-gradient(top,#f6c167 0,#f3b03b 100%);
+background:-ms-linear-gradient(top,#f6c167 0,#f3b03b 100%);
+background:linear-gradient(to bottom,#f6c167 0,#f3b03b 100%);
+color:#3b3b3b
+}
+
+.info-notice{
+background:#4a9cbc;
+background:-moz-linear-gradient(top,#65b9d9 0,#4a9cbc 100%);
+background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#65b9d9),color-stop(100%,#4a9cbc));
+background:-webkit-linear-gradient(top,#65b9d9 0,#4a9cbc 100%);
+background:-o-linear-gradient(top,#65b9d9 0,#4a9cbc 100%);
+background:-ms-linear-gradient(top,#65b9d9 0,#4a9cbc 100%);
+background:linear-gradient(to bottom,#65b9d9 0,#4a9cbc 100%);
+color:#fff
+}
+
+.success-notice{
+background:#5fa74e;
+background:-moz-linear-gradient(top,#6cbd58 0,#5fa74e 100%);
+background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#6cbd58),color-stop(100%,#5fa74e));
+background:-webkit-linear-gradient(top,#6cbd58 0,#5fa74e 100%);
+background:-o-linear-gradient(top,#6cbd58 0,#5fa74e 100%);
+background:-ms-linear-gradient(top,#6cbd58 0,#5fa74e 100%);
+background:linear-gradient(to bottom,#6cbd58 0,#5fa74e 100%);
+color:#fff
+}
+
+#login-status .login-status-icon{
+display:block;
+position:absolute;
+width:27px;
+height:27px
+}
+
+#login-status.error-notice .login-status-icon{
+background-image:url(../images/notice-error.png)
+}
+
+#login-status.info-notice .login-status-icon{
+background-image:url(../images/notice-info.png)
+}
+
+#login-status.success-notice .login-status-icon{
+background-image:url(../images/notice-success.png)
+}
+
+#login-status.warn-notice .login-status-icon{
+background-image:url(../images/warning.png)
+}
+
+#failure{
+margin:45px auto;
+width:365px
+}
+
+#login-status-message{
+padding-left:36px;
+padding-top:5px;
+padding-bottom:5px
+}

@@ -1,0 +1,437 @@
+body
+{
+	background: #FFFFFF;
+	color: #666666;
+	font: 10pt tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	background-attachment: scroll;
+	background-image: url(../../styles/Momoe/back.jpg);
+	background-repeat: repeat-x;
+	background-position: left top;
+}
+a:link, body_alink
+{
+	color: #666666;
+	text-decoration: none;
+}
+a:visited, body_avisited
+{
+	color: #666666;
+	text-decoration: none;
+}
+a:hover, a:active, body_ahover
+{
+	color: #333333;
+	text-decoration: none;
+}
+.page
+{
+	background: #202020 url(../../styles/Momoe/bg2.gif);
+	color: #333333;
+	padding-top: 20px;
+}
+td, th, p, li
+{
+	font: 10pt tahoma,verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.tborder
+{
+	background: #F5F5F5;
+	color: #000000;
+	padding-bottom: 3px;
+}
+.tcat
+{
+	background: #FFFFFF url(../../styles/Momoe/h.gif) repeat-x top left;
+	color: #434343;
+	font: bold 10pt tahoma,verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
+.tcat a:link, .tcat_alink
+{
+	color: #8B8B8B;
+	text-decoration: none;
+}
+.tcat a:visited, .tcat_avisited
+{
+	color: #8B8B8B;
+	text-decoration: none;
+}
+.tcat a:hover, .tcat a:active, .tcat_ahover
+{
+	color: #8B8B8B;
+	text-decoration: none;
+}
+.thead
+{
+	background: #FFFFFF;
+	color: #858585;
+	font: bold 11px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	border-bottom: 1px solid #f3f3f3;
+}
+.thead a:link, .thead_alink
+{
+	color: #C1C1C1;
+}
+.thead a:visited, .thead_avisited
+{
+	color: #C1C1C1;
+}
+.thead a:hover, .thead a:active, .thead_ahover
+{
+	color: #C1C1C1;
+}
+.tfoot
+{
+	color: #333333;
+}
+.tfoot a:link, .tfoot_alink
+{
+	color: #333333;
+}
+.tfoot a:visited, .tfoot_avisited
+{
+	color: #333333;
+}
+.tfoot a:hover, .tfoot a:active, .tfoot_ahover
+{
+	color: #333333;
+	text-decoration: none;
+}
+.alt1, .alt1Active
+{
+	background: #FFFFFF;
+	color: #464646;
+	font: 10pt tahoma,verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.alt1 a:link, .alt1_alink, .alt1Active a:link, .alt1Active_alink
+{
+	color: #333333;
+	text-decoration: none;
+}
+.alt1 a:visited, .alt1_avisited, .alt1Active a:visited, .alt1Active_avisited
+{
+	color: #333333;
+	text-decoration: none;
+}
+.alt1 a:hover, .alt1 a:active, .alt1_ahover, .alt1Active a:hover, .alt1Active a:active, .alt1Active_ahover
+{
+	color: #666666;
+	text-decoration: none;
+}
+.alt2, .alt2Active
+{
+	background: #FFFFFF;
+	color: #464646;
+	font: 10pt tahoma,verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.alt2 a:link, .alt2_alink, .alt2Active a:link, .alt2Active_alink
+{
+	color: #333333;
+	text-decoration: none;
+}
+.alt2 a:visited, .alt2_avisited, .alt2Active a:visited, .alt2Active_avisited
+{
+	color: #333333;
+	text-decoration: none;
+}
+.alt2 a:hover, .alt2 a:active, .alt2_ahover, .alt2Active a:hover, .alt2Active a:active, .alt2Active_ahover
+{
+	color: #666666;
+	text-decoration: none;
+}
+.inlinemod
+{
+	background: #FFFFCC;
+	color: #000000;
+}
+.wysiwyg
+{
+	background: #f1f1f1;
+	color: #000000;
+	font: 10pt tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	margin: 5px 10px 10px 10px;
+	padding: 0px;
+}
+.wysiwyg a:link, .wysiwyg_alink
+{
+	color: #22229C;
+}
+.wysiwyg a:visited, .wysiwyg_avisited
+{
+	color: #22229C;
+}
+.wysiwyg a:hover, .wysiwyg a:active, .wysiwyg_ahover
+{
+	color: #FF4400;
+}
+textarea, .bginput
+{
+	background: #FAFAFA;
+	color: #000000;
+	font: 10pt tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	padding: 4px 6px;
+	border: 1px solid #CECECE;
+}
+.bginput option, .bginput optgroup
+{
+	font-size: 10pt;
+	font-family: tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.button
+{
+	background: #FFFFFF;
+	color: #666666;
+	font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	border: 1px solid #999999;
+		padding: 4px;
+		margin: 2px;
+}
+select
+{
+	font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+option, optgroup
+{
+	font-size: 11px;
+	font-family: verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.smallfont
+{
+	font: 11px tahoma,verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.time
+{
+	color: #FF0066;
+}
+.navbar
+{
+	font: 11px tahoma,verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.highlight
+{
+	color: #FF0000;
+	font-weight: bold;
+}
+.fjsel
+{
+	background: #666666;
+	color: #FFFFFF;
+}
+.fjdpth0
+{
+	background: #F7F7F7;
+	color: #000000;
+}
+.panel
+{
+	background: #FFFFFF;
+	color: #000000;
+	padding: 10px;
+}
+.panelsurround
+{
+	background: #FFFFFF;
+	color: #000000;
+}
+legend
+{
+	background: #F8F8F8;
+	color: #848484;
+	font: 10pt tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	-moz-border-radius: 5px; 
+	padding: 5px;
+	border: 1px inset #848484;
+}
+.vbmenu_control
+{
+	background: #202020 url(../../styles/Momoe/h.gif) repeat-x top left;
+	color: #999999;
+	font: bold 11px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.vbmenu_control a:link, .vbmenu_control_alink
+{
+	color: #999999;
+	text-decoration: none;
+}
+.vbmenu_control a:visited, .vbmenu_control_avisited
+{
+	color: #999999;
+	text-decoration: none;
+}
+.vbmenu_control a:hover, .vbmenu_control a:active, .vbmenu_control_ahover
+{
+	color: #999999;
+	text-decoration: none;
+}
+.vbmenu_popup
+{
+	background: #f2f2f2;
+	color: #666666;
+	border: 1px solid #ececec;
+}
+.vbmenu_option
+{
+	background: #f2f2f2 url(../../styles/Momoe/gradients/alt1.gif) repeat-x top left;
+	color: #666666;
+	font: 11px tahoma,verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	white-space: nowrap;
+	cursor: pointer;
+}
+.vbmenu_option a:link, .vbmenu_option_alink
+{
+	color: #999999;
+	text-decoration: none;
+}
+.vbmenu_option a:visited, .vbmenu_option_avisited
+{
+	color: #999999;
+	text-decoration: none;
+}
+.vbmenu_option a:hover, .vbmenu_option a:active, .vbmenu_option_ahover
+{
+	color: #999999;
+	text-decoration: none;
+}
+.vbmenu_hilite
+{
+	background: #ececec url(../../styles/Momoe/gradients/alt2.gif) repeat-x top left;
+	color: #999999;
+	font: 11px tahoma,verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	white-space: nowrap;
+	cursor: pointer;
+}
+.vbmenu_hilite a:link, .vbmenu_hilite_alink
+{
+	color: #666666;
+	text-decoration: none;
+}
+.vbmenu_hilite a:visited, .vbmenu_hilite_avisited
+{
+	color: #666666;
+	text-decoration: none;
+}
+.vbmenu_hilite a:hover, .vbmenu_hilite a:active, .vbmenu_hilite_ahover
+{
+	color: #666666;
+	text-decoration: none;
+}
+/* Ripped by ntduyphuong - VietVBB.Vn */
+/* ***** styling for 'big' usernames on postbit etc. ***** */
+.bigusername { font-size: 14pt; }
+
+/* ***** don't change the following ***** */
+form { display: inline; }
+label { cursor: default; }
+.normal { font-weight: normal; }
+.inlineimg { vertical-align: middle;} 
+
+/* ***** small padding on 'thead' elements ***** */
+td.thead, th.thead, div.thead { padding: 4px; }
+
+/* ***** basic styles for multi-page nav elements */
+.pagenav a { text-decoration: none; }
+.pagenav td { padding: 2px 4px 2px 4px; }
+
+/* ***** de-emphasized text */
+.shade, a.shade:link, a.shade:visited { color: #777777; text-decoration: none; }
+a.shade:active, a.shade:hover { color: #FF4400; text-decoration: underline; }
+.tcat .shade, .thead .shade, .tfoot .shade { color: #DDDDDD; }
+
+/* ***** define margin and font-size for elements inside panels ***** */
+.fieldset { margin-bottom: 6px; }
+.fieldset, .fieldset td, .fieldset p, .fieldset li { font-size: 11px; }
+/* Ripped by ntduyphuong - VietVBB.Vn */
+#nav_rs {
+background: url(../../styles/Momoe/banner.jpg) no-repeat left;
+height: 182px;
+margin: 0;
+padding: 0; 	
+}
+.menu_header a:link 
+{
+font-family: tahoma;
+font-size: 10pt;
+color: #FFFFFF;
+}
+
+.menu_header a:visited 
+{
+font-family: tahoma;
+font-size: 10pt;
+color: #FFFFFF;
+}
+.menu_header a:hover
+{
+font-family: tahoma;
+font-size: 10pt;
+color: #FFFFFF;
+text-decoration: underline;
+}
+
+.menu_header2 {
+	margin: 0px;
+	padding: 0px;
+background: url(../../styles/Momoe/gradients/navbar.jpg) repeat-x top;
+	height: 10px;
+	}
+
+.menu_header2 a:link {
+	font-family: tahoma;
+font-size: 10pt;
+	color: #5E5E5E;
+}
+.menu_header2 a:visited {
+	font-family: tahoma;
+font-size: 10pt;
+	color: #5E5E5E;
+}
+.menu_header2 a:hover {
+	font-family: tahoma;
+font-size: 10pt;
+	color: #5E5E5E;
+border-bottom: 1px solid #CFCFCF;
+}
+.threads_posts {
+font-size: 10px;
+color: #af830a;
+text-align:center;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-right: 4px;
+padding-left: 4px;
+background: url(../../styles/Momoe/ib.gif) no-repeat center;
+border-bottom: 1px solid #f3f3f3;
+}
+.tborder_
+{
+	background: #FFFFFF;
+	color: #000000;
+	padding-bottom: 3px;
+	
+}
+
+.lastpost {
+font-size: 10px;
+padding-top: 6px;
+padding-bottom: 4px;
+padding-right: 4px;
+padding-left: 4px;
+background: #FFFFFF url(../../styles/Momoe/lastpost.gif) no-repeat;
+}
+.postbit_bg
+{
+background: url(../../styles/Momoe/postbit.gif) repeat-y left; 
+border-bottom: solid 1px #f3f3f3;
+}
+.userinfo {
+	font-family: tahoma;
+	font-size: 10px;
+	color: #949393;
+	padding-right: 2px;
+	padding-left: 2px;
+	margin-bottom: 3px;
+	margin-bottom: 3px;
+}

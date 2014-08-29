@@ -1,0 +1,51 @@
+<!-- Page Title: "Install kBank" End Page Title-->
+<table class="tborder" width="100%" align="center" border="0" cellpadding="6" cellspacing="1">
+<tbody><tr>
+	<td class="tcat">
+		<a href="{$url_prefix}index">Help Index</a>
+		> <a href="{$url_prefix}install">Install kBank</a>
+	</td>
+</tr>
+<tr>
+	<td class="alt1">
+		First of all, thank you for using my product. Any question or suggestion please contact me at <a href="mailto:mrpaint@gmail.com">mrpaint@gmail.com</a>. And now, let's install kBank to your vBulletin board!<br/>
+		<br/>
+		<a name="install_1"></a><strong>Step 1:</strong> Install and Upload (I believe you have done this step correctly)<br/>
+		Go to your AdminCP, click <strong>Manage Products</strong> under <strong>Plugins & Products</strong>, click <strong>[Add/Import Product]</strong><br/>
+		<center><img border="1" src="{$image_url}install/install_001.png" alt="kBank Install"/></center><br/>
+		<br/>
+		Browse to "<em>product-kbank.xml</em>" and click <strong>Import</strong><br/>
+		<center><img border="1" src="{$image_url}install/install_002.png" alt="kBank Install"/></center><br/>
+		<br/>
+		Wait for a moment and you will get the this message<br/>
+		<center><img border="1" src="{$image_url}install/install_003.png" alt="kBank Install"/></center><br/>
+		<br/>
+		Now, you have to use a FTP client to upload all files/folders in <em>upload</em> folder to your forum root<br/>
+		<center><img border="1" src="{$image_url}install/install_004.png" alt="kBank Install"/></center><br/>
+		<br/>
+		<strong>Step 2:</strong> Config<br/>
+		After <a href="#install_1">step 1</a>, you will get this in the right panel of your AdminCP<br/>
+		<center><img border="1" src="{$image_url}install/install_005.png" alt="kBank Install"/></center><br/>
+		<br/>
+		The most important thing <strong>must</strong> be edit immediately is <em>AdminID(s)</em> in kBank Settings. Click <strong>Edit Settings</strong> under <strong>kBank</strong> to access kBank Settings. Look for <strong>AdminID(s)</strong> and type userid of the member you want to be kBank Administrator<br/>
+		<center><img border="1" src="{$image_url}install/install_006.png" alt="kBank Install"/></center><br/>
+		<br/>
+		<a name="install_usergroup"></a>Now, you have to add some usergroup to use as Companies group and Bank Rupted Users group. You can choose existing usergroup or add new usergroup (click <a href="{$url_prefix}install_usergroup">here</a> for detail instruction) then go to kBank Settings and add new value<br/>
+		<center><img border="1" src="{$image_url}install/install_007_usergroup_009.png" alt="kBank Install"/></center><br/>
+		<br/>
+		Another important part is Monthly Tax. To begin you should post a new thread for members who can't pay tax, something like this:<br/>
+		<center><img border="1" src="{$image_url}install/install_009_monthlytax_001.png" alt="kBank Install"/></center><br/>
+		<br/>
+		Then you go to kBank Settings and add some values for Monthly Tax<br/>
+		<center><img border="1" src="{$image_url}install/install_009_monthlytax_002.png" alt="kBank Install"/></center><br/>
+		<br/>
+		The value for <em>Monthly Tax - Step</em> is different from default value. I think it's better. With this new formular, Monthly Tax will be apply to the total value of income (posting, receive from companies, receiver from kBank). There are some example for you to understand:<br/>
+		<ul>
+			<li>Member A: income = 350. A will be applied Monthly Tax at 2% (350 < 500). Tax = 350x2% = 7. Very simple!</li>
+			<li>Member B: income = 800. It's little bit complicated! B will be applied 2% with the first 500 and 5% with the rest (300). Tax = 500x2% + 300x5% = 10 + 15 = 25
+			<li>Member C: income = 3000. Wow! That is a lot of money! Tax = 500x2% + 500x5% + 1000x10% + 1000x25% = 10 + 25 + 100 + 250 = 385
+		</ul>
+	</td>
+
+</tr>
+</tbody></table>
