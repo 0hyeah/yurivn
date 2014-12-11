@@ -1,145 +1,358 @@
 <?php
+class Manga
+{
+    protected $_mangaId;
+    protected $_awardId;
+    protected $_oldPostId;
+    protected $_active = 1;
+    protected $_illustration;
+    protected $_mangaTitle;
+    protected $_otherTitle;
+    protected $_author;
+    protected $_type;
+    protected $_numberOfChapter = 0;
+    protected $_finishedChapter = 0;
+    protected $_originalComposition;
+    protected $_genre;
+    protected $_summary;
+    protected $_fansubName;
+    protected $_fansubMember;
+    protected $_fansubSite;
+    protected $_fansubNote;
+    protected $_status = 2;
+    protected $_numberOfHost;
+    protected $_hostName = array();
+    protected $_readOnlineStatus;
+    protected $_action;
 
-class Manga extends Database{
-    public $mangaid;
-    public $awardid;
-    public $threadid;
-    public $oldpostid;
-    public $postid;
-    public $active = 1;
-    public $illustration;
-    public $mangatitle;
-    public $othertitle;
-    public $author;
-    public $type;
-    public $numberofchapter = 0;
-    public $finishedchapter = 0;
-    public $originalcomposition;
-    public $genre;
-    public $summary;
-    public $fansubname;
-    public $fansubmember;
-    public $fansubsite;
-    public $fansubnote;
-    public $status = 2;
-    public $numberofhost;
-    public $hostname;
-    public $readonlinestatus;
-    public $action;
-    
-    function __construct($mangaid='') {
-        if(!empty($mangaid)){
-            $this->mangaid=$mangaid;
-            $this->get();
+    protected $_forumId;
+    protected $_onlineForumId;
+    protected $_threadId;
+    protected $_postId;
+    protected $_posterId;
+
+    protected $_vbphrase;
+    protected $_db;
+    protected $_table;
+    protected $_limit = 0;
+    protected $_filter = 'mangatitle';
+    protected $_keyword = '';
+    protected $_page = 1;
+
+    const RESOURCE_TYPE = 'vietsubmanga_manga';
+
+    function __construct() {
+        global $vbphrase, $vbulletin;
+        $this->_db = new Database();
+        $this->_table = TABLE_PREFIX.'yrms_vietsubmanga_manga';
+        $this->_db->setTable($this->_table);
+        $this->_vbphrase = $vbphrase;
+        $this->_vbulletin = $vbulletin;
+
+        $this->_forumId = $this->_vbulletin->options['yrms_vietsubmanga_id_truyendich'];
+        $this->_onlineForumId = $this->_vbulletin->options['yrms_vietsubmanga_id_doconline'];
+
+        define('CHAPTER_LIST', serialize(array('url' => 'vietsubmanga_chapterlist.php&mangaid=', 'name' => $this->_vbphrase['yrms_chaptermanage'])));
+        define('MANGA_EDIT', serialize(array('url' => 'vietsubmanga_mangaedit.php&mangaid=', 'name' => $this->_vbphrase['yrms_edit'])));
+        define('MANGA_REPORT', serialize(array('url' => 'vietsubmanga_mangareport.php&mangaid=', 'name' => $this->_vbphrase['yrms_brokenlink_report'])));
+        define('MANGA_DELETE', serialize(array('url' => 'vietsubmanga_mangadelete.php&mangaid=', 'name' => $this->_vbphrase['yrms_delete'])));
+    }
+
+    public function getMangaId()
+    {
+        return $this->_mangaId;
+    }
+
+    public function getMangaTitle()
+    {
+        return $this->_mangaTitle;
+    }
+
+    public function getAuthor()
+    {
+        return $this->_author;
+    }
+
+    public function getFinishedChapter()
+    {
+        return $this->_finishedChapter;
+    }
+
+    public function getFansubName()
+    {
+        return $this->_fansubName;
+    }
+
+    public function getNumberOfChapter()
+    {
+        return $this->_numberOfChapter;
+    }
+
+    public function getStatus()
+    {
+        return $this->_status;
+    }
+
+    public function getForumId()
+    {
+        return $this->_forumId;
+    }
+
+    public function getOnlineForumId()
+    {
+        return $this->_onlineForumId;
+    }
+
+    public function getThreadId()
+    {
+        return $this->_threadId;
+    }
+
+    public function getTotal()
+    {
+        return $this->_db->getTotal("WHERE active = '1'");
+    }
+
+    public function getPosterId()
+    {
+        return $this->_posterId;
+    }
+
+    public function getPostId()
+    {
+        return $this->_postId;
+    }
+
+    public function setThreadId($threadId)
+    {
+        $this->_threadId = $threadId;
+        return $this;
+    }
+
+    public function setPostId($postId)
+    {
+        $this->_postId = $postId;
+        return $this;
+    }
+
+    public function setPosterId($posterId)
+    {
+        $this->_posterId = $posterId;
+        return $this;
+    }
+
+    public function setKeyword($keyword)
+    {
+        $this->_keyword = $keyword;
+        return $this;
+    }
+
+    public function setLimit($limit)
+    {
+        $this->_limit = $limit;
+        return $this;
+    }
+
+    public function setFilter($filter)
+    {
+        $this->_filter = $filter;
+        return $this;
+    }
+
+    public function setPage($page)
+    {
+        $this->_page = $page;
+        return $this;
+    }
+
+    public function getData()
+    {
+        foreach($this as $key => $value) {
+            $dataKey = strtolower(str_replace('_', '', $key));
+            if (isset($this->$key)) {
+                $mangaData[$dataKey] = $this->$key;
+            }
+        }
+        return $mangaData;
+    }
+
+    public function setData($mangaData)
+    {
+        if (isset($mangaData['fansubmember']) && unserialize($mangaData['fansubmember']) !== FALSE) {
+            $this->_fansubMember = unserialize($mangaData['fansubmember']);
+            unset($mangaData['fansubmember']);
+        }
+        if (isset($mangaData['hostname']) && unserialize($mangaData['hostname']) !== FALSE) {
+            $this->_hostName = unserialize($mangaData['hostname']);
+            unset($mangaData['hostname']);
+        }
+
+        foreach($this as $key => $value) {
+            $dataKey = strtolower(str_replace('_', '', $key));
+            if (isset($mangaData[$dataKey])) {
+                $this->$key = $mangaData[$dataKey];
+            }
+        }
+
+        if (empty($this->_author)) {
+            $this->_author = $this->_vbphrase['yrms_unknown'];
+        }
+        if (empty($this->_fansubName)) {
+            $this->_fansubName = $this->_vbphrase['yrms_unknown'];
+        }
+        if (empty($this->_fansubSite)) {
+            $this->_fansubSite = $this->_vbphrase['yrms_unknown'];
+        }
+        if ($this->_type == 2) {
+            $this->_numberOfChapter = 1;
+        }
+        if (empty($this->_posterId)) {
+            $this->_posterId = $this->_vbulletin->userinfo['userid'];
+        }
+
+        $this->_action = array(
+            unserialize(CHAPTER_LIST)
+        );
+        //    $action = "<a href='vietsubmanga.php?do=chapterlist&mangaid=".$manga->getMangaId()."'>{$vbphrase['yrms_chaptermanage']}</a><br/>
+        //               <a href='yrms/vietsubmanga.php?do=mangareport&mangaid=".$manga->getMangaId()."'>{$vbphrase['yrms_brokenlink_report']}</a><br/>";
+        //    if($manga->checkOwner()){
+        //        $action = "<a href='yrms/vietsubmanga.php?do=mangaedit&mangaid=".$manga->getMangaId()."'>{$vbphrase['yrms_edit']}</a><br/>$action";
+        //    }
+        //    if(can_moderate($vbulletin->options['yrms_vietsubmanga_id_truyendich']))
+        //        $action.= "<a href='yrms/vietsubmanga.php?do=delete&mangaid=".$manga->getMangaId()."'>{$vbphrase['yrms_delete']}</a><br/>";
+
+        return $this;
+    }
+
+    public function load($mangaId)
+    {
+        $award = new Award();
+        $awardTable = $award->getTable();
+        $mangaData = $this->_db->fetchOnce("SELECT $this->_table.*, $awardTable.awardid
+                                            FROM $this->_table, $awardTable
+                                            WHERE `$this->_table`.`mangaid` = `$awardTable`.`resourceid`
+                                            AND `$this->_table`.`mangaid` = '$mangaId'
+                                            AND `$awardTable`.`resourcetype` = '".self::RESOURCE_TYPE."'");
+
+        if (!empty($mangaData)) {
+            $this->setData($mangaData);
+            return $this;
+        } else {
+            return FALSE;
+        }
+
+    }
+
+    public function save() {
+        $this->threadSave();
+
+        $mangaData = array(
+            'threadid' => $this->_threadId,
+            'postid' => $this->_postId,
+            'illustration' => $this->_illustration,
+            'mangatitle' => $this->_mangaTitle,
+            'othertitle' => $this->_otherTitle,
+            'author' => $this->_author,
+            'type' => $this->_type,
+            'numberofchapter' => $this->_numberOfChapter,
+            'originalcomposition' => $this->_originalComposition,
+            'genre' => $this->_genre,
+            'summary' => $this->_summary,
+            'fansubname' => $this->_fansubName,
+            'fansubmember' => serialize($this->fansubmember),
+            'fansubsite' => $this->_fansubSite,
+            'fansubnote' => $this->_fansubNote,
+            'status' => $this->_status,
+            'numberofhost' => $this->numberOfHost,
+            'hostname' => serialize($this->_hostName)
+        );
+
+        if($this->_mangaId) {
+            $this->_db->setTable($this->_table)->update($mangaData, "`mangaid` = '$this->_mangaId'");
+        } else {
+            $this->_db->setTable($this->_table)->insert($mangaData);
+            $this->_mangaId=$this->_vbulletin->db->insert_id();
         }
     }
-    
-    public function add(){
-        global $vbulletin,$vbphrase;
-        //analysis information
-        if (empty($this->author)) {
-            $this->author = $vbphrase['yrms_unknown'];
-        }
-        if (empty($this->fansubname)) {
-            $this->fansubname = $vbphrase['yrms_unknown'];
-        }
-        if (empty($this->fansubsite)) {
-            $this->fansubsite = $vbphrase['yrms_unknown'];
-        }
-        if ($this->type == 2) {
-            $this->numberofchapter = 1;
-        }
-        $this->fansubmember=array(
-            "uploader" => $vbulletin->userinfo['userid']
-        );
-        
-        //set some information and make a new thread
-        $newpost = $this->build_headpost();
-        $idpack = newThread($newpost);
-        $this->threadid = $idpack['threadid'];
-        $this->postid = $idpack['postid'];
-        
-        $vbulletin->db->query_write("UPDATE `".TABLE_PREFIX."post` SET `yrmspost`=1 WHERE `postid`=$this->postid");
-        
-        //and add the manga to database     
-        $vbulletin->db->query_write("INSERT INTO `".TABLE_PREFIX."yrms_vietsubmanga_manga`(`threadid`, `postid`, `illustration`, `mangatitle`, `othertitle`, `author`, `type`, `numberofchapter`, `originalcomposition`, `genre`, `summary`, `fansubname`, `fansubmember`, `fansubsite`, `fansubnote`, `status`, `numberofhost`, `hostname`) 
-                                    VALUES ('$this->threadid','$this->postid','$this->illustration','$this->mangatitle','$this->othertitle','$this->author',$this->type,'$this->numberofchapter','$this->originalcomposition','$this->genre','$this->summary','$this->fansubname','".serialize($this->fansubmember)."','$this->fansubsite','$this->fansubnote','$this->status','$this->numberofhost','".serialize(array())."')"); 
-        $this->mangaid=$vbulletin->db->insert_id();     
-        
-        // <editor-fold defaultstate="collapsed" desc=" reward ">
-        $award = new Award;
-        $award->postid = $this->postid;
-        $award->awardcontent = array(
-            "{$vbulletin->userinfo['userid']}" => $vbulletin->options['yrms_vietsubmanga_yun_newproject'],
-        );
-        $award->resourcetype = 'vietsubmanga';
-        $award->resourceid = $this->mangaid;
-        $award->resourceheadid = $this->mangaid;
-        $award->add();  
-        // </editor-fold>
-        
-        // <editor-fold defaultstate="collapsed" desc=" return the success message ">
-        $return_message = construct_phrase($vbphrase['yrms_msg_success_newmanga'],
-                                           $vbulletin->userinfo['username'],
-                                           $this->mangatitle,
-                                           $vbulletin->options['yrms_vietsubmanga_yun_newproject'],
-                                           $this->mangaid);
 
+    public function threadSave()
+    {
+        //region Set_thread_main_Info
 
-        return $return_message;
+        $postInfo['prefixid'] = $this->_vbulletin->options['yrms_vietsubmanga_prefixid_type'.$this->_type];
 
+        if(!empty($this->_fansubName)) {
+            $postInfo['title'] .= "[{$this->_fansubName}] ";
+        }
+        if($this->_type == 3 && !empty($this->_originalComposition)) {
+            $postInfo['title'] .= "[{$this->_originalComposition}] ";
+        }
+        $postInfo['title'] .= $this->_mangaTitle;
 
-// </editor-fold>       
-    }
-    
-    public function build_headpost(){
-        global $vbulletin, $vbphrase;
-        //set id
-        $headpost['forumid'] = $vbulletin->options['yrms_vietsubmanga_id_truyendich'];
-        $headpost['threadid'] = $this->threadid;
-        $headpost['postid'] = $this->postid;
-        $headpost['prefixid'] = $vbulletin->options['yrms_vietsubmanga_prefixid_type'.$this->type];
-        //thread title
-        $headpost['title']="";
-        if(!empty($this->fansubname))
-            $headpost['title'] .= "[{$this->fansubname}] ";
-        if($this->type==3 && !empty($this->originalcomposition))
-            $headpost['title'] .= "[{$this->originalcomposition}] ";
-            $headpost['title'] .= $this->mangatitle;
-        
-        if ($this->numberofchapter == 0)
-            $numberofchapter = '??';
-        else 
-            $numberofchapter = $this->numberofchapter;
-        //reformat fansubmember
-        $linkformat = $this->build_linkformat();
+        $postInfo['allowsmilie'] = 1;
+        $postInfo['visible'] = 1;
+        $postInfo['parseurl'] = 1;
+        //endregion
+
+        //region Manga_info
+        if ($this->_numberOfChapter == 0)
+            $numberOfChapter = '??';
+        else
+            $numberOfChapter = $this->_numberOfChapter;
+
+        $mangaInfo = construct_phrase($this->_vbphrase['yrms_postformat_highlightvalue'], $this->_vbphrase['yrms_mangatitle'], $this->_mangaTitle)."\n";
+        if ($this->_otherTitle) {
+            $mangaInfo .= construct_phrase($this->_vbphrase['yrms_postformat_highlightvalue'], $this->_vbphrase['yrms_othertitle'], $this->_otherTitle)."\n";
+        }
+        $mangaInfo .= construct_phrase($this->_vbphrase['yrms_postformat_highlightvalue'], $this->_vbphrase['yrms_author'], $this->_author)."\n"
+                     .construct_phrase($this->_vbphrase['yrms_postformat_highlightvalue'], $this->_vbphrase['yrms_genre'], $this->_genre)."\n"
+                     .construct_phrase($this->_vbphrase['yrms_postformat_highlightvalue'], $this->_vbphrase['yrms_numberofchapter'], $numberOfChapter)."\n"
+                     .construct_phrase($this->_vbphrase['yrms_postformat_highlightvalue'], $this->_vbphrase['yrms_projectstatus'], $this->_vbphrase["yrms_projectstatus{$this->_status}"])."\n";
+
+        $fansubInfo = '';
+        if(!empty($this->_fansubMember['translator'])) {
+            $fansubInfo .= construct_phrase($this->_vbphrase['yrms_postformat_highlightvalue'], $this->_vbphrase['yrms_translator'], get_username_massively($this->_fansubMember['translator']))."\n";
+        }
+        if(!empty($this->_fansubMember['proofreader'])) {
+            $fansubInfo .= construct_phrase($this->_vbphrase['yrms_postformat_highlightvalue'], $this->_vbphrase['yrms_proofreader'], get_username_massively($this->_fansubMember['proofreader']))."\n";
+        }
+        if(!empty($this->_fansubMember['editor'])) {
+            $fansubInfo .= construct_phrase($this->_vbphrase['yrms_postformat_highlightvalue'], $this->_vbphrase['yrms_mangaeditor'], get_username_massively($this->_fansubMember['editor']))."\n";
+        }
+        if(!empty($this->_fansubMember['qualitychecker'])) {
+            $fansubInfo .= construct_phrase($this->_vbphrase['yrms_postformat_highlightvalue'], $this->_vbphrase['yrms_qualitychecker'], get_username_massively($this->_fansubMember['qualitychecker']))."\n";
+        }
+        if(!empty($this->_fansubMember['uploader'])) {
+            $fansubInfo .= construct_phrase($this->_vbphrase['yrms_postformat_highlightvalue'], $this->_vbphrase['yrms_uploader'], get_username_massively($this->_fansubMember['uploader']))."\n";
+        }
+        $fansubInfo .= construct_phrase($this->_vbphrase['yrms_postformat_highlightvalue'], $this->_vbphrase['yrms_fansub_website'], $this->_fansubSite);
+        //endregion
+
+        $linkformat = false;
         if($linkformat === false){
-            $linkformat = $vbphrase['yrms_tobeupdated'];
+            $linkformat = $this->_vbphrase['yrms_tobeupdated'];
         }
-        $fansubmember = '[B]'.$vbphrase['yrms_translator'].':[/B] '.  get_username_massively($this->fansubmember['translator'])."\n";
-        $fansubmember .= '[B]'.$vbphrase['yrms_proofreader'].':[/B] '.  get_username_massively($this->fansubmember['proofreader'])."\n";
-        $fansubmember .= '[B]'.$vbphrase['yrms_mangaeditor'].':[/B] '.  get_username_massively($this->fansubmember['editor'])."\n";
-        $fansubmember .= '[B]'.$vbphrase['yrms_qualitychecker'].':[/B] '.  get_username_massively($this->fansubmember['qualitychecker'])."\n";
-        $fansubmember .= '[B]'.$vbphrase['yrms_uploader'].':[/B] '.  get_username_massively($this->fansubmember['uploader'])."\n";
-        //build link format
-        $headpost['pagetext']= construct_phrase($vbphrase['yrms_postformat_vietsubmanga'],
-                               $this->illustration,
-                               $this->mangatitle,
-                               $this->author,
-                               $this->genre,
-                               $numberofchapter,
-                               $vbphrase["yrms_projectstatus{$this->status}"],
-                               $this->summary,
-                               $this->fansubname,
-                               $fansubmember,
-                               $this->fansubsite,
-                               $this->fansubnote,
-                               $linkformat);
-        //other setting
-        $headpost['allowsmilie'] = 1;
-        $headpost['visible'] = 1;
-        $headpost['parseurl'] = 1;
-        return $headpost;                       
+
+        //build post
+        $postInfo['pagetext']= construct_phrase($this->_vbphrase['yrms_postformat_vietsubmanga'],
+                                                $this->_vbulletin->options['yrms_main_illustrationwidth'],
+                                                $this->_illustration,
+                                                $mangaInfo,
+                                                $this->_summary,
+                                                $this->_fansubName,
+                                                $fansubInfo,
+                                                $this->_fansubNote,
+                                                $linkformat);
+
+        $thread = new ForumPost('thread');
+        $thread->setForumId($this->_forumId)
+               ->setThreadId($this->_threadId)
+               ->setPostInfo($postInfo)
+               ->setYrmspost(1)
+               ->setPosterId($this->_posterId)
+               ->save();
+        $this->_threadId = $thread->getThreadId();
+        $this->_postId = $thread->getPostId();
     }
     
     public function build_linkformat(){
@@ -158,7 +371,7 @@ class Manga extends Database{
         $allchapters = array();
         $allchaptersid=$vbulletin->db->query_read("SELECT `chapterid` "
                                                 . "FROM `".TABLE_PREFIX."yrms_vietsubmanga_chapter` "
-                                                . "WHERE `mangaid` = '$this->mangaid' "
+                                                . "WHERE `mangaid` = '$this->_mangaId' "
                                                 . "ORDER BY `type`,`chapternumber` ASC ");                                       
         if($vbulletin->db->num_rows($allchaptersid)!=0){
             while ($chapteridpack = $vbulletin->db->fetch_array($allchaptersid)) {
@@ -212,55 +425,55 @@ class Manga extends Database{
     
     public function update(){
         global $vbulletin,$vbphrase;
-        if(empty($this->author))
-                $this->author = $vbphrase['yrms_unknown'];
-        if(empty($this->fansubname))
-                $this->fansubname = $vbphrase['yrms_unknown'];
-        if(empty($this->fansubsite))
-                $this->fansubsite = $vbphrase['yrms_unknown'];
-        if($this->type == 2)
-            $this->numberofchapter = 1;
+        if(empty($this->_author))
+                $this->_author = $vbphrase['yrms_unknown'];
+        if(empty($this->_fansubName))
+                $this->_fansubName = $vbphrase['yrms_unknown'];
+        if(empty($this->_fansubSite))
+                $this->_fansubSite = $vbphrase['yrms_unknown'];
+        if($this->_type == 2)
+            $this->_numberOfChapter = 1;
         
 
         //if postid was changed, update some information
-        if($this->oldpostid!=$this->postid && !empty($this->postid)){
-            $this->threadid=$vbulletin->db->fetch_array($vbulletin->db->query_read("SELECT `threadid` FROM `".TABLE_PREFIX."thread` WHERE `firstpostid`='$this->postid'"));
-            $this->threadid = $this->threadid['threadid'];
+        if($this->_oldPostId!=$this->_postId && !empty($this->_postId)){
+            $this->_threadId=$vbulletin->db->fetch_array($vbulletin->db->query_read("SELECT `threadid` FROM `".TABLE_PREFIX."thread` WHERE `firstpostid`='$this->_postId'"));
+            $this->_threadId = $this->_threadId['threadid'];
             $vbulletin->db->query_write("UPDATE `".TABLE_PREFIX."post` 
                                          SET    `yrmspost`='0'
-                                         WHERE  `postid`='$this->oldpostid'"); 
+                                         WHERE  `postid`='$this->_oldPostId'"); 
             $vbulletin->db->query_write("UPDATE `".TABLE_PREFIX."post` 
                                          SET    `yrmspost`='1'
-                                         WHERE  `postid`='$this->postid'");
+                                         WHERE  `postid`='$this->_postId'");
             $vbulletin->db->query_write("UPDATE `".TABLE_PREFIX."yrms_award` 
-                                         SET    `postid`='$this->postid'
-                                         WHERE  `postid`='$this->oldpostid'"); 
+                                         SET    `postid`='$this->_postId'
+                                         WHERE  `postid`='$this->_oldPostId'"); 
         }
         //update new information to database
         $vbulletin->db->query_write("UPDATE `".TABLE_PREFIX."yrms_vietsubmanga_manga` "
-                                  . "SET     `awardid`='$this->awardid',"
-                                          . "`threadid`='$this->threadid',"
-                                          . "`postid`='$this->postid',"
-                                          . "`active`='$this->active',"
-                                          . "`illustration`='$this->illustration',"
-                                          . "`mangatitle`='$this->mangatitle',"
-                                          . "`othertitle`='$this->othertitle',"
-                                          . "`author`='$this->author',"
-                                          . "`type`='$this->type',"
-                                          . "`finishedchapter`='$this->finishedchapter',"
-                                          . "`numberofchapter`='$this->numberofchapter',"
-                                          . "`originalcomposition`='$this->originalcomposition',"
-                                          . "`genre`='$this->genre',"
-                                          . "`summary`='$this->summary',"
-                                          . "`fansubname`='$this->fansubname',"
+                                  . "SET     `awardid`='$this->_awardId',"
+                                          . "`threadid`='$this->_threadId',"
+                                          . "`postid`='$this->_postId',"
+                                          . "`active`='$this->_active',"
+                                          . "`illustration`='$this->_illustration',"
+                                          . "`mangatitle`='$this->_mangaTitle',"
+                                          . "`othertitle`='$this->_otherTitle',"
+                                          . "`author`='$this->_author',"
+                                          . "`type`='$this->_type',"
+                                          . "`finishedchapter`='$this->_finishedChapter',"
+                                          . "`numberofchapter`='$this->_numberOfChapter',"
+                                          . "`originalcomposition`='$this->_originalComposition',"
+                                          . "`genre`='$this->_genre',"
+                                          . "`summary`='$this->_summary',"
+                                          . "`fansubname`='$this->_fansubName',"
                                           . "`fansubmember`='".serialize($this->fansubmember)."',"
-                                          . "`fansubsite`='$this->fansubsite',"
-                                          . "`fansubnote`='$this->fansubnote',"
+                                          . "`fansubsite`='$this->_fansubSite',"
+                                          . "`fansubnote`='$this->_fansubNote',"
                                           . "`status`='$this->status',"
                                           . "`numberofhost`='$this->numberofhost',"
                                           . "`hostname`='".serialize($this->hostname)."',"
                                           . "`readonlinestatus`='$this->readonlinestatus'"
-                                  . "WHERE   `mangaid`=$this->mangaid");
+                                  . "WHERE   `mangaid`=$this->_mangaId");
         
         //and update the post in forum
         $edit = $this->build_headpost();
@@ -275,205 +488,117 @@ class Manga extends Database{
         return $mangainfo;
     }
 
-    public function checkOwner($mangaId='', $userId=''){
-        global $vbulletin;
-        if (empty($userId)) {
-            $userId = $vbulletin->userinfo['userId'];
-        }
-        if (!empty($mangaId)) {
-            $this->get($mangaId);
+    public function checkOwner($userId=''){
+        if(empty($userId)) {
+            $userId = $this->_vbulletin->userinfo['userid'];
         }
 
-        if (!empty($this->fansubmember)) {
-            foreach ($this->fansubmember as $fansubmembers) {
-                if (in_array($userId, explode(',', $fansubmembers))) {
-                    return true;
-                }
-            }
-            return false;
-        } else {
-            return false;
+        if(can_moderate($this->_forumId)) {
+            return true;
         }
+
+        if (is_first_poster($this->_threadId)) {
+            return true;
+        }
+
+        return false;
+//        global $vbulletin;
+//        if (empty($userId)) {
+//            $userId = $vbulletin->userinfo['userId'];
+//        }
+//        if (!empty($mangaId)) {
+//            $this->get($mangaId);
+//        }
+//
+//        if (!empty($this->fansubmember)) {
+//            foreach ($this->fansubmember as $fansubmembers) {
+//                if (in_array($userId, explode(',', $fansubmembers))) {
+//                    return true;
+//                }
+//            }
+//            return false;
+//        } else {
+//            return false;
+//        }
     }
     
-    public function getAll($perPage='', $filter='',$keyword=''){
-        global $vbulletin;
-
-        if (!empty($perPage)) {
-            $totalmangas=$vbulletin->db->query_read("SELECT * FROM `".TABLE_PREFIX."yrms_vietsubmanga_manga` WHERE `active` = '1'");
-            if(empty($_GET['page']))
-                $page=1;
-            else
-                $page = $_GET['page'];
-            if($page>ceil($vbulletin->db->num_rows($totalmangas)/$perPage))
-                $page = ceil($vbulletin->db->num_rows($totalmangas)/$perPage);
-            if(empty($keyword))
-                $query = "SELECT * FROM `".TABLE_PREFIX."yrms_vietsubmanga_manga` WHERE `active` = '1' LIMIT ".($perPage*($page-1)).",$perPage";
-            else if($filter=='mangatitle')
-                $query = "SELECT * FROM `".TABLE_PREFIX."yrms_vietsubmanga_manga` WHERE `active` = '1' AND `mangatitle` LIKE '%{$keyword}%' OR `othertitle` LIKE '%{$keyword}%' LIMIT ".($perPage*($page-1)).",$perPage";
-            else
-                $query = "SELECT * FROM `".TABLE_PREFIX."yrms_vietsubmanga_manga` WHERE `active` = '1' AND {$filter} LIKE '%{$keyword}%' LIMIT ".($perPage*($page-1)).",$perPage";
-        } else {
-            $query = "SELECT * FROM `".TABLE_PREFIX."yrms_vietsubmanga_manga` WHERE `active` = '1'";
-        }
-
-
-        $result = $vbulletin->db->query_read($query);
-
-        $mangas = array();
-        while($row = $vbulletin->db->fetch_array($result)){
-            $mangas[] = $row;
-        }
-
-        return $mangas;
-
-    }
-    
-    public function myproject(){
-        global $vbulletin, $vbphrase;
-        $perPage = 5;
-
-        $myprojects = '';    
-        $mangas = $vbulletin->db->query_read("SELECT * FROM `".TABLE_PREFIX."yrms_vietsubmanga_manga` WHERE `active` = '1'");
-        
-        if(empty($_GET['page']))
-            $page=1;
-        else
-            $page = $_GET['page'];
-        if($page>ceil($vbulletin->db->num_rows($mangas)/$perPage))
-            $page = ceil($vbulletin->db->num_rows($mangas)/$perPage);
-        
-        $tableorder = 1;
-        $myprojectnumber = 0;
-        while($manga = $vbulletin->db->fetch_array($mangas)){
-            $this->set($manga);
-            
-            if($this->isfansubmember()){
-                $action = '<a href="yrms/vietsubmanga.php?do=mangaedit&mangaid='.$this->mangaid.'">'.$vbphrase['yrms_edit'].'</a><br/>
-                           <a href="yrms/vietsubmanga.php?do=chapterlist&mangaid='.$this->mangaid.'">'.$vbphrase['yrms_chaptermanage'].'</a><br/>
-                           <a href="yrms/vietsubmanga.php?do=mangareport&mangaid='.$this->mangaid.'">'.$vbphrase['yrms_brokenlink_report'].'</a><br/>';
-                if(can_moderate($vbulletin->options['yrms_vietsubmanga_id_truyendich']))
-                    $action.= '<a href="yrms/vietsubmanga.php?do=delete&mangaid='.$this->mangaid.'">'.$vbphrase['yrms_delete'].'</a><br/>';
-                
-                if($this->numberofchapter==0)
-                    $numberofchapter = '??';
-                else 
-                    $numberofchapter = $this->numberofchapter;
-                if($myprojectnumber>=($perPage*($page-1)) && $myprojectnumber<($perPage*$page)){
-                $myproject = "<td>$this->mangaid</td>
-                              <td style=\"text-align:left;\">
-                              $this->mangatitle <img id=\"{$this->mangaid}toggle\" style=\"vertical-align: middle;margin-bottom:2px;\" height=\"18\" src=\"yrms/images/expand.png\" onclick=\"toggleOption({$this->mangaid})\"/>
-                              <div id=\"{$this->mangaid}content\" style=\"display:none;\">$action</div>
-                              </td>
-                              <td>$this->author</td>
-                              <td>$this->finishedchapter/$numberofchapter</td>
-                              <td>$this->fansubname</td>
-                              <td>{$vbphrase["yrms_projectstatus$this->status"]}</td>";
-                if($tableorder%2==1)
-                    $myproject = "<tr>$myproject</tr>";
-                else
-                    $myproject = "<tr class=\"alt\">$myproject</tr>";
-                $myprojects .= $myproject;
-                $tableorder++;
-                }
-                
-                $myprojectnumber++;
+    public function getCollection(){
+        if($this->_keyword){
+            if($this->_filter == 'mangatitle') {
+                $searchQuery = "AND $this->_table.mangatitle LIKE '$this->_keyword' OR `othertitle` LIKE '$this->_keyword'";
+            } else {
+                $searchQuery = "AND $this->_table.$this->_filter LIKE '$this->_keyword'";
             }
         }
-        if(!empty($myprojects))
-            $myprojects='<div class="datagrid">
-                        <table>
-                         <thead>
-                             <tr>
-                                 <th>'.$vbphrase['yrms_id'].'</th>
-                                 <th>'.$vbphrase['yrms_mangatitle'].'</th>
-                                 <th>'.$vbphrase['yrms_author'].'</th>
-                                 <th>'.$vbphrase['yrms_numberofchapter'].'</th>
-                                 <th>'.$vbphrase['yrms_fansub_name'].'</th>
-                                 <th>'.$vbphrase['yrms_projectstatus'].'</th>
-                             </tr>
-                         </thead>
-                         <tbody>
-                         '.$myprojects.'
-                         </tbody>
-                         <tfoot>
-                            <tr>
-                                <td colspan="6">
-                                    <div id="paging" style="padding-right:10px;">
-                                        '.  construct_pagenavigation($page, $perPage, $vbulletin->db->num_rows($mangas), removeqsvar($_SERVER['REQUEST_URI'],page)).'
-                                    </div>
-                                </td>  
-                            </tr>
-                         </tfoot>
-                         </table>
-                         </div>';
-        else{
-            $messagetype = "error";
-            $message= construct_phrase($vbphrase['yrms_msg_error_emptylist'],$vbphrase['yrms_manga'],$vbphrase['yrms_mangaadd']);
-            $messagebox = vB_Template::create('yrms_messagebox');
-            $messagebox->register('messagetype', $messagetype);
-            $messagebox->register('message', $message);
-            $myprojects=$messagebox->render();
+
+        if ($this->_limit) {
+            $totalManga= $this->getTotal();
+
+            $totalPage = ceil($totalManga/$this->_limit);
+            if($this->_page > $totalPage) {
+                $this->_page = $totalPage;
+            }
+
+            $limitQuery = "LIMIT ".($this->_limit*($this->_page-1)).",$this->_limit";
         }
-            return $myprojects;   
-           
-    }
-    
-    public function set($mangainfo){
-         $this->mangaid = $mangainfo['mangaid']; 
-         $this->awardid = $mangainfo['awardid']; 
-         $this->threadid = $mangainfo['threadid']; 
-         $this->oldpostid = $mangainfo['postid'];
-         $this->postid = $mangainfo['postid']; 
-         $this->active = $mangainfo['active']; 
-         $this->illustration = $mangainfo['illustration']; 
-         $this->mangatitle = $mangainfo['mangatitle']; 
-         $this->othertitle = $mangainfo['othertitle']; 
-         $this->author = $mangainfo['author']; 
-         $this->type = $mangainfo['type']; 
-         $this->numberofchapter = $mangainfo['numberofchapter'];
-         $this->finishedchapter = $mangainfo['finishedchapter'];
-         $this->originalcomposition = $mangainfo['originalcomposition']; 
-         $this->genre = $mangainfo['genre']; 
-         $this->summary = $mangainfo['summary']; 
-         $this->fansubname = $mangainfo['fansubname']; 
-         $this->fansubmember = unserialize($mangainfo['fansubmember']); 
-         $this->fansubsite = $mangainfo['fansubsite']; 
-         $this->fansubnote = $mangainfo['fansubnote']; 
-         $this->status = $mangainfo['status'];
-         $this->numberofhost = $mangainfo['numberofhost']; 
-         $this->hostname = unserialize($mangainfo['hostname']);
-         $this->readonlinestatus = $mangainfo['readonlinestatus'];
+
+        $chapterObject = new Chapter;
+        $chapterTable = $chapterObject->getTable();
+        $query = "SELECT $this->_table.*, IFNULL(chapter.count_chapter, 0) AS `finishedchapter` FROM `$this->_table` LEFT JOIN
+                  (
+                    SELECT COUNT(*) AS count_chapter, mangaid
+                    FROM $chapterTable
+                    WHERE `active` = '1'
+                    AND `type` = '1'
+                    GROUP BY mangaid
+                  ) chapter
+                  ON $this->_table.mangaid = chapter.mangaid
+                  WHERE $this->_table.`active` = '1'
+                  $searchQuery
+                  $limitQuery";
+        $mangaDatas = $this->_db->fetchAll($query);
+
+        if (!empty($mangaDatas)) {
+            $mangaCollection = array();
+            foreach ($mangaDatas as $mangaData) {
+                $this->setData($mangaData);
+                $mangaCollection[] = clone $this;
+            }
+            return $mangaCollection;
+        } else {
+            return NULL;
+        }
+
     }
     
     public function reward(){
         global $vbulletin,$vbphrase;
         //analysis information
-        if(empty($this->author))
-                $this->author = $vbphrase['yrms_unknown'];
-        if(empty($this->fansubname))
-                $this->fansubname = $vbphrase['yrms_unknown'];
-        if(empty($this->fansubsite))
-                $this->fansubsite = $vbphrase['yrms_unknown'];
-        if($this->type == 2)
-            $this->numberofchapter = 1;
+        if(empty($this->_author))
+                $this->_author = $vbphrase['yrms_unknown'];
+        if(empty($this->_fansubName))
+                $this->_fansubName = $vbphrase['yrms_unknown'];
+        if(empty($this->_fansubSite))
+                $this->_fansubSite = $vbphrase['yrms_unknown'];
+        if($this->_type == 2)
+            $this->_numberOfChapter = 1;
         
         //get some misc information
-        $this->threadid=$vbulletin->db->fetch_array($vbulletin->db->query_read("SELECT `threadid` FROM `".TABLE_PREFIX."thread` WHERE `firstpostid`='$this->postid'"));
-        $this->threadid=$this->threadid['threadid'];
+        $this->_threadId=$vbulletin->db->fetch_array($vbulletin->db->query_read("SELECT `threadid` FROM `".TABLE_PREFIX."thread` WHERE `firstpostid`='$this->_postId'"));
+        $this->_threadId=$this->_threadId['threadid'];
         
-        $userid=$vbulletin->db->fetch_array($vbulletin->db->query_read("SELECT `userid` FROM `".TABLE_PREFIX."post` WHERE `postid`='$this->postid'"));
+        $userid=$vbulletin->db->fetch_array($vbulletin->db->query_read("SELECT `userid` FROM `".TABLE_PREFIX."post` WHERE `postid`='$this->_postId'"));
         $userid=$userid['userid'];
         $this->fansubmember=array(
             $vbphrase['yrms_uploader'] => $userid
         );
         
         //make the post became yrmspost
-        $vbulletin->db->query_write("UPDATE `".TABLE_PREFIX."post` SET `yrmspost`=1 WHERE `postid`=$this->postid");
+        $vbulletin->db->query_write("UPDATE `".TABLE_PREFIX."post` SET `yrmspost`=1 WHERE `postid`=$this->_postId");
         
         //reward the poster
         $award = new Award;
-        $award->postid = $this->postid;
+        $award->postid = $this->_postId;
         $award->awardcontent = array(
             "{$userid}" => $vbulletin->options['yrms_vietsubmanga_yun_newproject'],
         );
@@ -482,62 +607,8 @@ class Manga extends Database{
         
         //and add the manga to database     
         $vbulletin->db->query_write("INSERT INTO `".TABLE_PREFIX."yrms_vietsubmanga_manga`(`awardid`, `threadid`, `postid`, `illustration`, `mangatitle`, `othertitle`, `author`, `type`, `numberofchapter`, `originalcomposition`, `genre`, `summary`, `fansubname`, `fansubmember`, `fansubsite`, `fansubnote`, `status`, `numberofhost`) 
-                                    VALUES ('$award->awardid','$this->threadid','$this->postid','$this->illustration','$this->mangatitle','$this->othertitle','$this->author',$this->type,'$this->numberofchapter','$this->originalcomposition','$this->genre','$this->summary','$this->fansubname','".serialize($this->fansubmember)."','$this->fansubsite','$this->fansubnote','$this->status','$this->numberofhost')");         
+                                    VALUES ('$award->awardid','$this->_threadId','$this->_postId','$this->_illustration','$this->_mangaTitle','$this->_otherTitle','$this->_author',$this->_type,'$this->_numberOfChapter','$this->_originalComposition','$this->_genre','$this->_summary','$this->_fansubName','".serialize($this->fansubmember)."','$this->_fansubSite','$this->_fansubNote','$this->status','$this->numberofhost')");         
     }
-    
-    public function validate(){
-        global $vbulletin, $vbphrase;
-        $error = "";
-        //check postid
-        if(isset($this->postid)){
-            if(empty($this->postid))
-                $error.= construct_phrase($vbphrase['yrms_msg_error_blankfield'],$vbphrase['yrms_postid'])."\n";
-            else if($vbulletin->db->num_rows($vbulletin->db->query_read("SELECT* FROM `".TABLE_PREFIX."thread` WHERE `firstpostid`='$this->postid'"))==0)
-                $error.= construct_phrase($vbphrase['yrms_msg_error_postid'],$vbphrase['yrms_postid'])."\n";
-            
-        }
-        //check illustration
-        if(strpos($this->illustration, "http://")===false && strpos($this->illustration, "https://")===false){
-            $error.= construct_phrase($vbphrase['yrms_msg_error_invalidimagelink'],$vbphrase['yrms_illustration'])."\n";
-        }
-        //check mangatitle
-        if($this->mangatitle==""){
-            $error.= construct_phrase($vbphrase['yrms_msg_error_blankfield'],$vbphrase['yrms_mangatitle'])."\n";
-        }
-        //check othername
-        if($this->othertitle!=""){
-            $othertitles = explode(',', $this->othertitle);
-            foreach($othertitles as $othertitle){
-                if($othertitle==$this->mangatitle){
-                    $error.= construct_phrase($vbphrase['yrms_msg_error_othertitle'],$vbphrase['yrms_othertitle'],$vbphrase['yrms_mangatitle'])."\n";
-                    break;
-                }
-            }            
-        }
-
-        //check author
-        if($this->author == '' && $this->action == 'add') {
-            $error.= construct_phrase($vbphrase['yrms_msg_error_blankfield'],$vbphrase['yrms_author'])."\n";
-        }
-
-        //check type
-        if($this->type==""){
-            $error.= construct_phrase($vbphrase['yrms_msg_error_blankselect'],$vbphrase['yrms_type'])."\n";
-        }
-
-        //check original composition
-        if($this->type == 3 && $this)
-
-        //check genre
-        if($this->genre==""){
-            $error.= construct_phrase($vbphrase['yrms_msg_error_blankfield'],$vbphrase['yrms_genre'])."\n";
-        }
-        //check summary
-        if($this->summary==""){
-            $error.= construct_phrase($vbphrase['yrms_msg_error_blankfield'],$vbphrase['yrms_summary'])."\n";
-        }
-        return $error;
-    }   
 }
 
 class Chapter{
@@ -561,12 +632,16 @@ class Chapter{
     public $poster;
     public $readonlineposter;
 
-    function __construct(Manga $manga, $chapterid='') {
-        $this->manga=$manga; 
-        if (!empty($chapterid)) {
-            $this->chapterid = $chapterid;
-            $this->get();
-        }
+    protected $_db;
+    protected $_table;
+    function __construct() {
+        $this->_db = new Database();
+        $this->_table = TABLE_PREFIX.'yrms_vietsubmanga_chapter';
+    }
+
+    public function getTable()
+    {
+        return $this->_table;
     }
 
     public function getAll($perPage = ''){
@@ -601,7 +676,7 @@ class Chapter{
     public function add(){
         global $vbulletin,$vbphrase;
         // <editor-fold defaultstate="collapsed" desc="analysis information">
-        if ($this->type == 2) {
+        if ($this->_type == 2) {
             $this->chapternumber = "";
         }
         $this->fansubmember = str_replace('false', '', $this->fansubmember);
@@ -610,7 +685,7 @@ class Chapter{
         
         // <editor-fold defaultstate="collapsed" desc="make new update post, and new read online thread">
         $downloadpost = $this->buildpost('download');
-        $this->postid = newPost($downloadpost);
+        $this->_postId = newPost($downloadpost);
 
         if (!empty($this->onlinelink)) {
             $onlinepost = $this->buildpost('online');
@@ -620,7 +695,7 @@ class Chapter{
         //set yrms type for new posts
         $vbulletin->db->query_write("UPDATE `" . TABLE_PREFIX . "post` "
                 . "SET `yrmspost`=1 "
-                . "WHERE `postid` = '$this->postid'");
+                . "WHERE `postid` = '$this->_postId'");
         $vbulletin->db->query_write("UPDATE `" . TABLE_PREFIX . "post` "
                 . "SET `yrmspost`=1 "
                 . "WHERE `postid` = '$this->readonlinepostid'");
@@ -643,11 +718,11 @@ class Chapter{
                 . "`fansubmember`, "
                 . "`fansubnote`) "
         . "VALUES ('{$this->manga->mangaid}',"
-                . "'$this->postid',"
+                . "'$this->_postId',"
                 . "'$this->readonlinepostid',"
                 . "'1',"
                 . "'$this->status',"
-                . "'$this->type',"
+                . "'$this->_type',"
                 . "'$this->chapternumber',"
                 . "'$this->chaptertitle',"
                 . "'$this->rate',"
@@ -655,14 +730,14 @@ class Chapter{
                 . "'".serialize($this->downloadlink)."',"
                 . "'$this->onlinelink',"
                 . "'".serialize($this->fansubmember)."',"
-                . "'$this->fansubnote')");
+                . "'$this->_fansubNote')");
         $this->chapterid = $vbulletin->db->insert_id();
 // </editor-fold>
 
         // <editor-fold defaultstate="collapsed" desc="update manga">
         $this->manga->fansubmember = update_array_to_array($this->fansubmember, $this->manga->fansubmember);
         $this->manga->fansubmember = reindex_array($this->manga->fansubmember, array("translator","proofreader","editor","qualitychecker","uploader"));
-        if ($this->type == 1 || $this->type ==2) {
+        if ($this->_type == 1 || $this->_type ==2) {
             $this->manga->finishedchapter++;
         }
         if(!empty($this->onlinelink)){
@@ -683,7 +758,7 @@ class Chapter{
         // <editor-fold defaultstate="collapsed" desc=" reward ">
         //For download post
         $award_download = new Award;
-        $award_download->postid = $this->postid;
+        $award_download->postid = $this->_postId;
         if (strpos(strtolower($this->manga->fansubsite),'yurivn')) {
             $award_download->awardcontent = $this->build_awardcontent_fansubmember();
         } else{
@@ -737,7 +812,7 @@ class Chapter{
 
 
         $return_message = construct_phrase($vbphrase['yrms_msg_success_newchapter'],                                            $vbulletin->userinfo['username'], 
-                                           $vbphrase["yrms_chaptertype{$this->type}"] . " " . $this->chapternumber,                                            $this->manga->mangatitle,                                            nl2br($awardinfo));
+                                           $vbphrase["yrms_chaptertype{$this->_type}"] . " " . $this->chapternumber,                                            $this->manga->mangatitle,                                            nl2br($awardinfo));
 
 
         return $return_message;
@@ -749,13 +824,13 @@ class Chapter{
     public function reward(){
         global $vbulletin,$vbphrase;
         // <editor-fold defaultstate="collapsed" desc="analysis information">
-        if ($this->type == 2) {
+        if ($this->_type == 2) {
             $this->chapternumber = "";
         }
         $this->fansubmember = str_replace('false', '', $this->fansubmember);
         $this->fansubmember = str_replace(',,', '', $this->fansubmember);
-        if ($this->postid == 0){
-            $this->postid = $this->manga->postid;
+        if ($this->_postId == 0){
+            $this->_postId = $this->manga->postid;
         }
         // </editor-fold>
         
@@ -763,10 +838,10 @@ class Chapter{
         // <editor-fold defaultstate="collapsed" desc=" create new update post ">
         //normal case: there is update post for the chapter, or there is not but no 18+ content.
         //reward and add chapter to the database only, no need to make any new post. Only set the post to yrmspost.
-        if ($this->postid != $this->manga->postid){
+        if ($this->_postId != $this->manga->postid){
             $vbulletin->db->query_write("UPDATE `" . TABLE_PREFIX . "post` "
                                       . "SET `yrmspost`=1 "
-                                      . "WHERE `postid` = '$this->postid'");
+                                      . "WHERE `postid` = '$this->_postId'");
             if($this->rate==1 && !empty($this->numberofhost)){
                 $downloadpost = $this->buildpost('download');
                 editPost($downloadpost);
@@ -775,12 +850,12 @@ class Chapter{
         
         //abnormal case 1: the dumb poster didn't make update post and this chapter is 18+ content
         //we will create a new update post for her
-        else if ($this->postid == $this->manga->postid && $this->rate == 1) {
+        else if ($this->_postId == $this->manga->postid && $this->rate == 1) {
             $downloadpost = $this->buildpost('download');
-            $this->postid = newPost($downloadpost, $this->poster);
+            $this->_postId = newPost($downloadpost, $this->poster);
             $vbulletin->db->query_write("UPDATE `" . TABLE_PREFIX . "post` "
                                       . "SET `yrmspost`=1 "
-                                      . "WHERE `postid` = '$this->postid'");
+                                      . "WHERE `postid` = '$this->_postId'");
         }
 
 
@@ -803,7 +878,7 @@ class Chapter{
         
         //abnormal case: readonline post is the same as update post, or manga post
         //turn it into normal case and treat as normal case
-        if (!empty($this->onlinelink) && ($this->readonlinepostid == $this->postid || $this->readonlinepostid == $this->manga->postid || $this->readonlinepostid == 0)) {
+        if (!empty($this->onlinelink) && ($this->readonlinepostid == $this->_postId || $this->readonlinepostid == $this->manga->postid || $this->readonlinepostid == 0)) {
             $readonlinepost = $this->buildpost('online');
             $idpack = newThread($readonlinepost,  $this->readonlineposter);
             $this->readonlinepostid = $idpack['postid'];
@@ -831,11 +906,11 @@ class Chapter{
                 . "`fansubmember`, "
                 . "`fansubnote`) "
         . "VALUES ('{$this->manga->mangaid}',"
-                . "'$this->postid',"
+                . "'$this->_postId',"
                 . "'$this->readonlinepostid',"
                 . "'1',"
                 . "'$this->status',"
-                . "'$this->type',"
+                . "'$this->_type',"
                 . "'$this->chapternumber',"
                 . "'$this->chaptertitle',"
                 . "'$this->rate',"
@@ -843,14 +918,14 @@ class Chapter{
                 . "'".serialize($this->downloadlink)."',"
                 . "'$this->onlinelink',"
                 . "'".serialize($this->fansubmember)."',"
-                . "'$this->fansubnote')");
+                . "'$this->_fansubNote')");
         $this->chapterid = $vbulletin->db->insert_id();
 // </editor-fold>
 
         // <editor-fold defaultstate="collapsed" desc="update manga">
         $this->manga->fansubmember = update_array_to_array($this->fansubmember, $this->manga->fansubmember);
         $this->manga->fansubmember = reindex_array($this->manga->fansubmember, array("translator","proofreader","editor","qualitychecker","uploader"));
-        if ($this->type == 1 || $this->type ==2) {
+        if ($this->_type == 1 || $this->_type ==2) {
             $this->manga->finishedchapter++;
         }
         if(!empty($this->onlinelink)){
@@ -873,7 +948,7 @@ class Chapter{
         // <editor-fold defaultstate="collapsed" desc=" reward ">
         //For download post
         $award_download = new Award;
-        $award_download->postid = $this->postid;
+        $award_download->postid = $this->_postId;
         if (strpos(strtolower($this->manga->fansubsite),'yurivn')) {
             $award_download->awardcontent = $this->build_awardcontent_fansubmember();
         }
@@ -928,7 +1003,7 @@ class Chapter{
 
         $return_message = construct_phrase($vbphrase['yrms_msg_success_rewardchapter'],
                                            $vbulletin->userinfo['username'], 
-                                           $vbphrase["yrms_chaptertype{$this->type}"] . " " . $this->chapternumber, 
+                                           $vbphrase["yrms_chaptertype{$this->_type}"] . " " . $this->chapternumber, 
                                            $this->manga->mangatitle,                                            
                                            nl2br($awardinfo));
 
@@ -947,11 +1022,11 @@ class Chapter{
     
     public function set($chapterinfo){
         $this->chapterid = $chapterinfo['chapterid'];
-        $this->postid = $chapterinfo['postid'];
+        $this->_postId = $chapterinfo['postid'];
         $this->readonlinepostid = $chapterinfo['readonlinepostid'];
-        $this->active = $chapterinfo['active'];
+        $this->_active = $chapterinfo['active'];
         $this->status = $chapterinfo['status'];
-        $this->type = $chapterinfo['type'];
+        $this->_type = $chapterinfo['type'];
         if ($chapterinfo['chapternumber'] == 0) {
             $this->chapternumber = "";
         } else{
@@ -963,7 +1038,7 @@ class Chapter{
         $this->downloadlink = unserialize($chapterinfo['downloadlink']);
         $this->onlinelink = $chapterinfo['onlinelink'];
         $this->fansubmember = unserialize($chapterinfo['fansubmember']);
-        $this->fansubnote = $chapterinfo['fansubnote'];
+        $this->_fansubNote = $chapterinfo['fansubnote'];
     }
     
     public function chapterlist(){
@@ -1035,7 +1110,7 @@ class Chapter{
             
 
             $chapterdata = "<td style=\"text-align:left;\">
-                          {$vbphrase["yrms_chaptertype{$this->type}"]} $chapternumber $chaptertitle <img id=\"{$this->chapterid}toggle\" style=\"vertical-align: middle;margin-bottom:2px;\" height=\"18\" src=\"yrms/images/expand.png\" onclick=\"toggleOption({$this->chapterid})\"/>
+                          {$vbphrase["yrms_chaptertype{$this->_type}"]} $chapternumber $chaptertitle <img id=\"{$this->chapterid}toggle\" style=\"vertical-align: middle;margin-bottom:2px;\" height=\"18\" src=\"yrms/images/expand.png\" onclick=\"toggleOption({$this->chapterid})\"/>
                           <div id=\"{$this->chapterid}content\" style=\"display:none;\">$action</div>
                           </td>
                           <td>{$vbphrase["yrms_availablestatus{$mirrorstatus}"]}</td>
@@ -1110,7 +1185,7 @@ class Chapter{
             $post['forumid'] = $vbulletin->options['yrms_vietsubmanga_id_truyendich'];
             $post['parentid'] = $this->manga->postid;
             $post['threadid'] = $this->manga->threadid;
-            $post['postid'] = $this->postid;
+            $post['postid'] = $this->_postId;
         }
         else if($type=='online'){
             $post['forumid'] = $vbulletin->options['yrms_vietsubmanga_id_doconline'];
@@ -1119,10 +1194,10 @@ class Chapter{
         }
         
         //title
-        if($this->manga->type==2 && $this->type==1)
+        if($this->manga->type==2 && $this->_type==1)
             $post['title']="{$this->manga->mangatitle}";
         else    
-            $post['title']="{$this->manga->mangatitle} {$vbphrase["yrms_chaptertype{$this->type}"]} {$this->chapternumber}";
+            $post['title']="{$this->manga->mangatitle} {$vbphrase["yrms_chaptertype{$this->_type}"]} {$this->chapternumber}";
         if(!empty($this->chaptertitle))
             $post['title'].="- {$this->chaptertitle}";        
         
@@ -1133,16 +1208,16 @@ class Chapter{
         
         if($type=='download'){       
             if ($this->rate == 1) {
-                $post['pagetext'] = construct_phrase($vbphrase['yrms_postformat_updatehide'], $post['title'], $vbphrase['yrms_fansub_note'].": ".$this->fansubnote, $this->build_linkformat());
+                $post['pagetext'] = construct_phrase($vbphrase['yrms_postformat_updatehide'], $post['title'], $vbphrase['yrms_fansub_note'].": ".$this->_fansubNote, $this->build_linkformat());
             } else {
-                $post['pagetext'] = construct_phrase($vbphrase['yrms_postformat_update'], $post['title'], $vbphrase['yrms_fansub_note'].": ".$this->fansubnote);
+                $post['pagetext'] = construct_phrase($vbphrase['yrms_postformat_update'], $post['title'], $vbphrase['yrms_fansub_note'].": ".$this->_fansubNote);
             }
         }
         else if ($type == 'online') {
             if ($this->rate == 1) {
-                $post['pagetext'] = construct_phrase($vbphrase['yrms_postformat_readonlinehide'], $post['title'], $vbphrase['yrms_fansub_note'].": ".$this->fansubnote, $this->onlinelink);
+                $post['pagetext'] = construct_phrase($vbphrase['yrms_postformat_readonlinehide'], $post['title'], $vbphrase['yrms_fansub_note'].": ".$this->_fansubNote, $this->onlinelink);
             } else{
-                $post['pagetext'] = construct_phrase($vbphrase['yrms_postformat_readonline'], $post['title'], $vbphrase['yrms_fansub_note'].": ".$this->fansubnote, $this->onlinelink);
+                $post['pagetext'] = construct_phrase($vbphrase['yrms_postformat_readonline'], $post['title'], $vbphrase['yrms_fansub_note'].": ".$this->_fansubNote, $this->onlinelink);
             }
         }
 
@@ -1180,8 +1255,8 @@ class Chapter{
         // <editor-fold defaultstate="collapsed" desc=" for reward only ">
         if ($_POST['submitted'] == $vbphrase['yrms_newchapter_award']) {
             //check postid
-            if (isset($this->postid)) {
-                if ($vbulletin->db->num_rows($vbulletin->db->query_read("SELECT* FROM `" . TABLE_PREFIX . "post` WHERE `postid`='$this->postid'")) == 0) {
+            if (isset($this->_postId)) {
+                if ($vbulletin->db->num_rows($vbulletin->db->query_read("SELECT* FROM `" . TABLE_PREFIX . "post` WHERE `postid`='$this->_postId'")) == 0) {
                     $error.= construct_phrase($vbphrase['yrms_msg_error_postid'], $vbphrase['yrms_posturl']) . "\n";
                 }
             }
@@ -1209,13 +1284,13 @@ class Chapter{
         
         // <editor-fold defaultstate="collapsed" desc=" for both ">
         //check chapter type
-        if ($this->type == 2 && ($this->manga->finishedchapter > 0 || $this->manga->type == 1)) {
+        if ($this->_type == 2 && ($this->manga->finishedchapter > 0 || $this->manga->type == 1)) {
             $error.= construct_phrase($vbphrase['yrms_msg_error_invalidchaptertype'], $vbphrase['yrms_type'], $vbphrase['yrms_chaptertype2']) . "\n";
         }
 
 
         //check chapternumber
-        if (empty($this->chapternumber) && $this->type != 2) {
+        if (empty($this->chapternumber) && $this->_type != 2) {
             $error.= construct_phrase($vbphrase['yrms_msg_error_blankfield'], $vbphrase['yrms_chapternumber']) . "\n";
         }
 

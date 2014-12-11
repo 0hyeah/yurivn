@@ -39,7 +39,7 @@ if ($_SERVER["REMOTE_ADDR"] == "123.24.196.180") {
 	//	****** DATABASE NAME ******
 	//	This is the name of the database where your vBulletin will be located.
 	//	This must be created by your webhost.
-$config['Database']['dbname'] = 'yurivn_gin';
+$config['Database']['dbname'] = 'yurivn_GIN';
 
 	//	****** TABLE PREFIX ******
 	//	Prefix that your vBulletin tables have in the database.

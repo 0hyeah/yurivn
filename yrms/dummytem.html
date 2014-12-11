@@ -1,0 +1,132 @@
+<link rel="stylesheet" type="text/css" href="yrms/css/form.css" />
+<link rel="stylesheet" href="yrms/css/tooltip.css"/>
+<script src="yrms/script/tooltip1.js"></script>
+<script src="yrms/script/tooltip2.js"></script>
+<script src="yrms/script/miscfunction.js"></script>
+<vb:if condition="$currentAction ==add">
+    <script>
+        $(function() {
+            $( document ).tooltip();
+            $('.unique').change(
+                    function(){
+                        var mangaNames = $('#mangatitle').val() + ',' + $('#othertitle').val();
+                        $.ajax({
+                            type: 'POST',
+                            url: 'yrms/include/AJAX.php',
+                            data: {
+                                do: 'checkVietSubManga',
+                                mangaNames: mangaNames
+                            },
+                            success: function(result){
+                                if(result) {
+                                    $('#warning').css({"padding":"10px 3px 3px 10px","margin":"3px 5px 5px 10px"});
+                                } else {
+                                    $('#warning').css({"padding":"","margin":""});
+                                }
+
+                                $('#warning').html(result);
+                            }
+                        });
+                    }
+            );
+        });
+    </script>
+</vb:if>
+
+<script type="text/javascript">
+    function showhideOption(){
+        var rads = document.getElementsByName("type");
+        if(rads[0].checked){
+            document.getElementById('numberofchapter_label').setAttribute('style','visibility:visible;');
+            document.getElementById('numberofchapter_input').setAttribute('style','visibility:visible;');
+            document.getElementById('originalcomposition_label').setAttribute('style','visibility:hidden;line-height:0;height:0px;');
+            document.getElementById('originalcomposition_input').setAttribute('style','visibility:hidden;line-height:0;height:0px;');
+        }
+
+        if(rads[1].checked){
+            document.getElementById('numberofchapter_label').setAttribute('style','visibility:hidden;line-height:0;height:0px;');
+            document.getElementById('numberofchapter_input').setAttribute('style','visibility:hidden;line-height:0;height:0px;');
+            document.getElementById('originalcomposition_label').setAttribute('style','visibility:hidden;line-height:0;height:0px;');
+            document.getElementById('originalcomposition_input').setAttribute('style','visibility:hidden;line-height:0;height:0px;');
+        }
+
+        if(rads[2].checked){
+            document.getElementById('numberofchapter_label').setAttribute('style','visibility:visible;');
+            document.getElementById('numberofchapter_input').setAttribute('style','visibility:visible;');
+            document.getElementById('originalcomposition_label').setAttribute('style','visibility:visible;');
+            document.getElementById('originalcomposition_input').setAttribute('style','visibility:visible;');
+        }
+    }
+    window.onload = showhideOption;
+</script>
+
+<h2 class="blockhead">{vb:raw pageTitle}</h2>
+<div class="blockbody formcontrols settings_form_border">
+    <div class="section">
+
+        <form action="" method="POST">
+            <div class="blockrow" style="border:none;">{vb:raw messagebox}</div>
+            <fieldset class="blockrow" style="border-bottom:none;">
+                <legend>{vb:rawphrase yrms_manga_info}</legend>
+                <vb:if condition="$currentAction ==reward">
+                    <label class="required">{vb:rawphrase yrms_posturl}</label>
+                    <input type="text" class="primary textbox" name="posturl" title="{vb:rawphrase yrms_posturl_manga_description}" value="{vb:raw posturl}" required/><br/>
+                </vb:if>
+                <label class="required">{vb:rawphrase yrms_illustration}</label>
+                <input type="text" class="primary textbox" name="illustration" title="{vb:rawphrase yrms_illustration_description}" value="{vb:raw inputData.illustration}" required/><br/>
+
+                <label class="required">{vb:rawphrase yrms_mangatitle}</label>
+                <input type="text" class="primary textbox unique" id="mangatitle" name="mangatitle" value="{vb:raw inputData.mangatitle}" required/><br/>
+
+                <div id="warning"></div>
+
+                <label>{vb:rawphrase yrms_othertitle}</label>
+                <input type="text" class="primary textbox unique" id="othertitle" name="othertitle" title="{vb:rawphrase yrms_othertitle_description}" value="{vb:raw inputData.othertitle}"/><br/>
+
+                <label class="required">{vb:rawphrase yrms_author}</label>
+                <input type="text" class="primary textbox" size="20" name="author" title="{vb:rawphrase yrms_author_description}" value="{vb:raw inputData.author}" required/><br/>
+
+                <label class="required">{vb:rawphrase yrms_type}</label>
+                <div style="display:inline-block;" title="{vb:rawphrase yrms_mangatype1_description}"><input type="radio" name="type" {vb:raw type_check.1} value="1" onclick="showhideOption();" required/>{vb:rawphrase yrms_mangatype1}</div>
+                <div style="display:inline-block;" title="{vb:rawphrase yrms_mangatype2_description}"><input type="radio" name="type" {vb:raw type_check.2} value="2" onclick="showhideOption();"/>{vb:rawphrase yrms_mangatype2}</div>
+                <div style="display:inline-block;" title="{vb:rawphrase yrms_mangatype3_description}"><input type="radio" name="type" {vb:raw type_check.3} value="3" onclick="showhideOption();"/>{vb:rawphrase yrms_mangatype3}</div><br/>
+
+
+                <label id="numberofchapter_label">{vb:rawphrase yrms_numberofchapter}</label>
+                <input id="numberofchapter_input" type="text" class="primary textbox" maxlength="3" size="3" name="numberofchapter" onkeypress="return NumberOnly(event)" title="{vb:rawphrase yrms_numberofchapter_description}" value="{vb:raw inputData.numberofchapter}"/><br/>
+
+                <label class="required" id="originalcomposition_label">{vb:rawphrase yrms_originalcomposition}</label>
+                <input id="originalcomposition_input" type="text" class="primary textbox" name="originalcomposition" value="{vb:raw inputData.originalcomposition}"/><br/>
+
+                <label class="required">{vb:rawphrase yrms_genre}</label>
+                <input type="text" class="primary textbox" name="genre" title="{vb:rawphrase yrms_genre_description}" value="{vb:raw inputData.genre}" required/><br/>
+
+                <label class="required">{vb:rawphrase yrms_summary}</label>
+                <textarea class="primary textbox" maxlength="1000" name="summary" required>{vb:raw inputData.summary}</textarea><br/>
+            </fieldset>
+
+            <fieldset class="blockrow">
+                <legend>{vb:rawphrase yrms_fansub_info}</legend>
+                <label>{vb:rawphrase yrms_fansub_name}</label>
+                <input type="text" class="primary textbox" size="20" name="fansubname" title="{vb:rawphrase yrms_fansub_name_description}" value="{vb:raw inputData.fansubname}"/><br/>
+
+                <label>{vb:rawphrase yrms_fansub_website}</label>
+                <input type="text" class="primary textbox" name="fansubsite" value="{vb:raw inputData.fansubsite}"/><br/>
+
+                <label>{vb:rawphrase yrms_fansub_note}</label>
+                <textarea class="primary textbox" name="fansubnote" title="{vb:rawphrase yrms_fansub_note_description_manga}">{vb:raw inputData.fansubnote}</textarea><br/>
+            </fieldset>
+            <div class="blockrow" style="border:none;">
+                <vb:if condition="$currentAction==reward">
+                    <input type="submit" class="button" name="submitted" value="{vb:rawphrase yrms_reward}"/>
+                    <vb:elseif condition="$currentAction==edit"/>
+                    <input type="submit" class="button" name="submitted" value="{vb:rawphrase yrms_edit}"/>
+                    <vb:else />
+                    <input type="submit" class="button" name="submitted" value="{vb:rawphrase yrms_mangaadd}"/>
+                </vb:if>
+            </div>
+        </form>
+
+    </div> <!-- section -->
+
+</div> <!-- block body --> 

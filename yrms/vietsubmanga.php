@@ -37,56 +37,7 @@ if ($_REQUEST['do'] == 'mangamyproject'){
 }
 
 if ($_REQUEST['do'] == 'mangaadd'){
-    $pagetitle = $vbphrase['yrms_mangaadd'];
-    $messagetype = "info";
-    $message= $vbphrase['yrms_inputtip'];
-    if(isset($_POST['submitted'])){
-        $manga = new Manga;
-        $manga->action = 'add';
 
-        $_POST['illustration']="[IMG={$vbulletin->options['yrms_main_illustrationwidth']}|]{$_POST['illustration']}[/IMG]";
-        $_POST['illustration'] = str_replace("[IMG={$vbulletin->options['yrms_main_illustrationwidth']}|][IMG]", "[IMG={$vbulletin->options['yrms_main_illustrationwidth']}|]", $_POST['illustration']);
-        $_POST['illustration'] = str_replace("[IMG={$vbulletin->options['yrms_main_illustrationwidth']}|][IMG={$vbulletin->options['yrms_main_illustrationwidth']}|]", "[IMG={$vbulletin->options['yrms_main_illustrationwidth']}|]", $_POST['illustration']);
-        $_POST['illustration'] = str_replace("[/IMG][IMG]", "[/IMG]", $_POST['illustration']);
-        
-        $manga->illustration = $_POST['illustration']; 
-        $manga->mangatitle = $_POST['mangatitle']; 
-        $manga->othertitle = $_POST['othertitle']; 
-        $manga->author = $_POST['author']; 
-        $manga->type = $_POST['type'];
-        $type_check[$_POST['type']] = "checked";
-        $manga->numberofchapter = $_POST['numberofchapter'];
-        $manga->finishedchapter = $_POST['finishedchapter'];
-        $manga->originalcomposition = $_POST['originalcomposition']; 
-        $manga->genre = $_POST['genre']; 
-        $manga->summary = $_POST['summary']; 
-        $manga->fansubname = $_POST['fansubname']; 
-        $manga->fansubsite = $_POST['fansubsite']; 
-        $manga->fansubnote = $_POST['fansubnote']; 
-        
-        $error=$manga->validate();
-        if($error==""){     
-            $messagetype = "success";
-            $message= $manga->add();
-            $contenttemplatename = 'yrms_message';
-        }
-            
-        else{
-            $messagetype = "error";
-            $message= nl2br(construct_phrase($vbphrase['yrms_msg_error_head'],$vbphrase['yrms_mangaadd'])."\n".$error);
-        } 
-    }
-    
-    if(!isset($contenttemplatename))
-        $contenttemplatename = 'yrms_vietsubmanga_manga_add';
-    if(!isset($_POST['fansubname']))
-        $_POST['fansubname'] = "Yurivn";
-    if(!isset($_POST['fansubsite']))
-        $_POST['fansubsite'] = "http://yurivn.net";
-    
-    $messagebox = vB_Template::create('yrms_messagebox');
-    $messagebox->register('messagetype', $messagetype);
-    $messagebox->register('message', $message);  
 }
 
 if ($_REQUEST['do'] == 'mangareward'){
@@ -387,19 +338,7 @@ if ($_REQUEST['do'] == 'chapteronlinelinkadd'){
 
     $page_templater = vB_Template::create($contenttemplatename);
     if($contenttemplatename == 'yrms_vietsubmanga_manga_add'){
-        $page_templater->register('illustration',$_POST['illustration']);
-        $page_templater->register('mangatitle',$_POST['mangatitle']);
-        $page_templater->register('othertitle',$_POST['othertitle']);
-        $page_templater->register('author',$_POST['author']);
-        $page_templater->register('type_check',$type_check);
-        $page_templater->register('numberofchapter',$_POST['numberofchapter']);
-        $page_templater->register('originalcomposition',$_POST['originalcomposition']);
-        $page_templater->register('genre',$_POST['genre']);
-        $page_templater->register('summary',$_POST['summary']);
-        $page_templater->register('fansubname',$_POST['fansubname']);
-        $page_templater->register('fansubsite',$_POST['fansubsite']);
-        $page_templater->register('fansubnote',$_POST['fansubnote']);   
-        $page_templater->register('messagebox',$messagebox->render());  
+
     }
     if($contenttemplatename == 'yrms_vietsubmanga_manga_list'){
         $page_templater->register('mangalist',$mangalist);

@@ -30,5 +30,10 @@
         color:red;
         font-weight: bold;
     }
+
+    form #warning{
+        color:red;
+        width: 480px;
+    }
     
 
